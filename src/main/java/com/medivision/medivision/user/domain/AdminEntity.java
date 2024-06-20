@@ -1,4 +1,4 @@
-package com.medivision.user.domain;
+package com.medivision.medivision.user.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
