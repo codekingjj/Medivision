@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.medivision",
+        basePackages = "com.medivision.pacs",
         entityManagerFactoryRef = "pacsEntityManager",
         transactionManagerRef = "pacsTransactionManager"
 )
@@ -44,24 +44,24 @@ public class PacsDataSourceConfig {
                 .build();
     }
 
-//    @Bean(name = "pacsEntityManager")
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-//
-//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        vendorAdapter.setGenerateDdl(true);
-//
-//        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-//        factory.setJpaVendorAdapter(vendorAdapter);
-//        factory.setPackagesToScan("com.medivision");
-//        factory.setDataSource(dataSource());
-//        return factory;
-//    }
-//
-//    @Bean(name = "pacsTransactionManager")
-//    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-//
-//        JpaTransactionManager txManager = new JpaTransactionManager();
-//        txManager.setEntityManagerFactory(entityManagerFactory);
-//        return txManager;
-//    }
+    @Bean(name = "pacsEntityManager")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("com.medivision.pacs");
+        factory.setDataSource(dataSource());
+        return factory;
+    }
+
+    @Bean(name = "pacsTransactionManager")
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+
+        JpaTransactionManager txManager = new JpaTransactionManager();
+        txManager.setEntityManagerFactory(entityManagerFactory);
+        return txManager;
+    }
 }
