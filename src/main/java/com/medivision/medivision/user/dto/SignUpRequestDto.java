@@ -1,4 +1,4 @@
-package com.medivision.user.dto;
+package com.medivision.medivision.user.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
