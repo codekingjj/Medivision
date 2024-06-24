@@ -60,8 +60,9 @@ public class MedivisionDataSourceConfig {
         factory.setDataSource(dataSource());
 
         Map<String, Object> properties = new HashMap<>();
-        properties.put("generate-ddl", false);
-        properties.put("show-sql", true);
+        properties.put("hibernate.hbm2ddl.auto", "none");
+        properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
+        properties.put("hibernate.implicit_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy");
         factory.setJpaPropertyMap(properties);
 
         return factory;

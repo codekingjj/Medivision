@@ -2,6 +2,7 @@ package com.medivision.medivision.user.controller;
 
 import com.medivision.medivision.user.domain.service.AdminService;
 import com.medivision.medivision.user.dto.request.SignUpRequestDto;
+import com.medivision.medivision.user.dto.response.SignInResponseDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,6 @@ public class UserController {
         ResponseEntity<? super SignUpResponseDto> response = adminService.signUp(requestBody);
         return  response;
     }
+
 
 }
