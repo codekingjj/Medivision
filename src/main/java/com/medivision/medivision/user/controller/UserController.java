@@ -1,4 +1,4 @@
-package com.medivision.medivision.user.domain;
+package com.medivision.medivision.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

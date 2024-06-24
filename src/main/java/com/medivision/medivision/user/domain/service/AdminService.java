@@ -1,4 +1,4 @@
-package com.medivision.medivision.user.domain;
+package com.medivision.medivision.user.domain.service;
 
 import com.medivision.medivision.user.dto.SignUpRequestDto;
 import com.medivision.medivision.user.dto.SignUpResponseDto;
