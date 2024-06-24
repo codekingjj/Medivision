@@ -11,6 +11,5 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class SignUpRequestDto {
 
-    private String juminSC;
     private int userCode;
 }
