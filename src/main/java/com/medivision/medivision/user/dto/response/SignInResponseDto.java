@@ -3,9 +3,11 @@ package com.medivision.medivision.user.dto.response;
 import com.medivision.common.ResponseCode;
 import com.medivision.common.ResponseDto;
 import com.medivision.common.ResponseMessage;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+@Getter
 public class SignInResponseDto extends ResponseDto {
 
     private String token;
@@ -13,7 +15,7 @@ public class SignInResponseDto extends ResponseDto {
     public SignInResponseDto(String token) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         this.token = token;
-        expirationTime = 3600;
+        this.expirationTime = 3600;
     }
 
     public static ResponseEntity<SignInResponseDto> success(String token){
