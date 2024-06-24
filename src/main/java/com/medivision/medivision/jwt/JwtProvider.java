@@ -19,7 +19,7 @@ public class JwtProvider {
     //jwt 생성 메소드
     public String create(int userCode){
 
-        Date expiredDate = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
+        Date expiredDate = Date.from(Instant.now().plus(2, ChronoUnit.HOURS));
 
         String userCodeVarchar = String.valueOf(userCode);
 
