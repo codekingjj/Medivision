@@ -26,13 +26,10 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-
+    implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.8.12'
     //java
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
-
 
     //web
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -51,6 +48,11 @@ dependencies {
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.3.0.0'
     implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.3.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+
+    //jwt
+    implementation group : 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
