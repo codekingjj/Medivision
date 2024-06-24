@@ -1,4 +1,4 @@
-package com.medivision.medivision.user.dto;
+package com.medivision.medivision.user.dto.response;
 
 import com.medivision.common.ResponseCode;
 import com.medivision.common.ResponseDto;
