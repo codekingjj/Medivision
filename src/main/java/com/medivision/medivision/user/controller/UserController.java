@@ -1,12 +1,25 @@
 package com.medivision.medivision.user.controller;
 
+import com.medivision.medivision.user.domain.service.AdminService;
+import com.medivision.medivision.user.dto.SignUpRequestDto;
+import com.medivision.medivision.user.dto.SignUpResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+import javax.validation.Valid;
+
+@Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
 public class UserController {
+
+    private final AdminService adminService;
+
+    @PostMapping("/admin")
+    public ResponseEntity<? super SignUpResponseDto> signup(@RequestBody SignUpRequestDto requestBody){
+        ResponseEntity<? super SignUpResponseDto> response = adminService.signUp(requestBody);
+        return  response;
+    }
 
 }

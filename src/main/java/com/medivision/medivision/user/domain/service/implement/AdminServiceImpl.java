@@ -3,13 +3,17 @@ package com.medivision.medivision.user.domain.service.implement;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
+import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.AdminService;
 import com.medivision.medivision.user.dto.SignUpRequestDto;
 import com.medivision.medivision.user.dto.SignUpResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -18,21 +22,42 @@ import java.util.Random;
 public class AdminServiceImpl implements AdminService {
 
     private final AdminRepository adminRepository;
-    
-    
+    private final UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     // 회원가입
     @Override
     public ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto) {
+        System.out.println(dto.getUserCode());
+        Optional<AdminEntity> result = adminRepository.findById(dto.getUserCode());
+        List<AdminEntity> list = adminRepository.findAll();
+        for(AdminEntity adminEntity : list){
+            System.out.println("user_code: "+adminEntity.getUserCode());
+            System.out.println("user_jumin: "+adminEntity.getUserJuminSC());
+            System.out.println();
+        }
+        System.out.println("AdminList: "+list.size());
+        System.out.println("result.get().getUserCode() : " + (result.isEmpty() ? "null" : result.get().getUserCode()));
+        if(result == null) return SignUpResponseDto.databaseError();
 
-        Optional<AdminEntity> admin = adminRepository.findById(dto.getUserCode());
+        boolean dupulicateId = true;
+        String id = "";
+        while (dupulicateId){
+            id = generateRandomString();
+            dupulicateId = userRepository.existsByUserId(id);
+        }
+        //패스워드 암호화
+        String encodePassword = passwordEncoder.encode(dto.getJuminSC());
 
-        if(admin.isEmpty()) return SignUpResponseDto.databaseError();
+        UserEntity user = new UserEntity(dto.getUserCode(), id, encodePassword);
 
-        String id = generateRandomString();
-        AdminEntity checkId =
+        System.out.println("code: "+dto.getUserCode());
+        System.out.println("id: "+id);
+        System.out.println("password(before): " + dto.getJuminSC());
+        System.out.println("password(after): "+passwordEncoder.toString());
 
-        UserEntity user = new UserEntity(dto.getUserCode(), )
-
+        userRepository.save(user);
         return SignUpResponseDto.success();
     }
     
