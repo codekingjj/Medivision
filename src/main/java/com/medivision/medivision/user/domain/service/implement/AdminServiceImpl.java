@@ -5,16 +5,14 @@ import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.AdminService;
-import com.medivision.medivision.user.dto.SignUpRequestDto;
-import com.medivision.medivision.user.dto.SignUpResponseDto;
+import com.medivision.medivision.user.dto.request.SignUpRequestDto;
+import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
