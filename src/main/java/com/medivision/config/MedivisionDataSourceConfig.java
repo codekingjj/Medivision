@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableJpaRepositories(
@@ -56,6 +58,13 @@ public class MedivisionDataSourceConfig {
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.medivision.medivision");
         factory.setDataSource(dataSource());
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("hibernate.hbm2ddl.auto", "none");
+        properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
+        properties.put("hibernate.implicit_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy");
+        factory.setJpaPropertyMap(properties);
+
         return factory;
     }
 

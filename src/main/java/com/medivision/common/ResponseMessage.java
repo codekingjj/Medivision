@@ -1,6 +1,6 @@
 package com.medivision.common;
 
-public interface ReponseMessage {
+public interface ResponseMessage {
     //public static final
 
     // HTTP Status 200
