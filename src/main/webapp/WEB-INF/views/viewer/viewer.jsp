@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Viewer</title>
+    <script src="resources/static/script/viewer.js"/>
+</head>
+<body>
+
+</body>
 </html>
