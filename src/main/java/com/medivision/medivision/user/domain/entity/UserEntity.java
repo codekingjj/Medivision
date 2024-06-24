@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @Entity
 public class UserEntity {
 
-    @Id @Column(name = "user_code")
+    @Id //@Column(name = "user_code")
     private int userCode;
-    @Column(name = "user_id")
+    //@Column(name = "user_id")
     private String userId;
-    @Column(name = "user_password")
+    //@Column(name = "user_password")
     private String userPassword;
 
 }
