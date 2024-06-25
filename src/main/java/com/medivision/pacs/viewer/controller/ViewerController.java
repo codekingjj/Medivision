@@ -1,4 +1,4 @@
-package com.medivision.viewer.controller;
+package com.medivision.pacs.viewer.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
