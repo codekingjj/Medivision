@@ -30,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
         System.out.println(dto.getUserCode());
         AdminEntity result = adminRepository.findById(dto.getUserCode()).orElseThrow();
         if(result == null) return SignUpResponseDto.databaseError();
-
+//        result.setSignup(true);
 
 
         boolean dupulicateId = true;
