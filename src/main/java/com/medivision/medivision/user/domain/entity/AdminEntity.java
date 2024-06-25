@@ -3,6 +3,7 @@ package com.medivision.medivision.user.domain.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "admin")
@@ -23,7 +25,7 @@ public class AdminEntity {
     //@Column(name = "user_juminSC")
     private String userJuminSC;
     //@Column(name = "user_phonenumber")
-    private String userPhonenumer;
+    private String userPhonenumber;
     //@Column(name = "user_telecom")
     private String userTelecom;
     //@Column(name = "user_name")

@@ -1,5 +1,6 @@
 package com.medivision.medivision.user.domain.service.implement;
 
+import com.medivision.common.ResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
@@ -7,12 +8,15 @@ import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.AdminService;
 import com.medivision.medivision.user.dto.request.SignUpRequestDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
+import com.medivision.medivision.user.dto.response.UserListReponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -30,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
         System.out.println(dto.getUserCode());
         AdminEntity result = adminRepository.findById(dto.getUserCode()).orElseThrow();
         if(result == null) return SignUpResponseDto.databaseError();
-//        result.setSignup(true);
+        result.setSignup(true);
 
 
         boolean dupulicateId = true;
@@ -52,8 +56,15 @@ public class AdminServiceImpl implements AdminService {
         userRepository.save(user);
         return SignUpResponseDto.success();
     }
-    
-    
+
+    @Override
+    public ResponseEntity<? super UserListReponseDto> userLIst() {
+        List<AdminEntity> userList = adminRepository.findAll();
+        if(userList == null) return ResponseDto.databaseError();
+        return  UserListReponseDto.success(userList);
+    }
+
+
     // 아이디 자동 생성
     private static String generateRandomString() {
         // 랜덤 객체 생성
