@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "com.medivision",
+        basePackages = "com.medivision.pacs",
         entityManagerFactoryRef = "pacsEntityManager",
         transactionManagerRef = "pacsTransactionManager"
 )
@@ -52,7 +52,7 @@ public class PacsDataSourceConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.medivision");
+        factory.setPackagesToScan("com.medivision.pacs");
         factory.setDataSource(dataSource());
         return factory;
     }
