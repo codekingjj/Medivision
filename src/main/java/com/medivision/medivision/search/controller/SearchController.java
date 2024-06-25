@@ -1,11 +1,8 @@
 package com.medivision.medivision.search.controller;
 
 import com.medivision.medivision.search.domain.service.SearchService;
-import com.medivision.medivision.search.dto.request.SearchRequestDto;
-import com.medivision.medivision.search.dto.response.SearchResponseDto;
-import com.medivision.pacs.entity.PacsEntity;
+import com.medivision.pacs.entity.StudyEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +22,7 @@ public class SearchController {
 
     @GetMapping("findall")
     @ResponseBody
-    public List<PacsEntity> findAll(){
+    public List<StudyEntity> findAll(){
         return searchService.findAll();
     }
 
