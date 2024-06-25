@@ -4,7 +4,7 @@ import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
-import com.medivision.pacs.study.StudyRepository;
+import com.medivision.pacs.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

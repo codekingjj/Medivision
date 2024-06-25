@@ -1,7 +1,7 @@
 package com.medivision.medivision.search.domain.service;
 
-import com.medivision.pacs.entity.StudyEntity;
-import com.medivision.pacs.repository.StudyRepository;
+import com.medivision.pacs.entity.VStudyEntity;
+import com.medivision.pacs.repository.VStudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class SearchService {
 
-    private final StudyRepository studyRepository;
+    private final VStudyRepository studyRepository;
 
 
-    public List<StudyEntity> findAll(){
+    public List<VStudyEntity> findAll(){
         return studyRepository.findAll();
     }
 }

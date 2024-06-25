@@ -1,7 +1,7 @@
 package com.medivision.medivision.search.controller;
 
 import com.medivision.medivision.search.domain.service.SearchService;
-import com.medivision.pacs.entity.StudyEntity;
+import com.medivision.pacs.entity.VStudyEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class SearchController {
 
     @GetMapping("findall")
     @ResponseBody
-    public List<StudyEntity> findAll(){
+    public List<VStudyEntity> findAll(){
         return searchService.findAll();
     }
 
