@@ -12,6 +12,6 @@
 <div id="messages"></div>
 <input type="text" id="messageInput" placeholder="Type a message..." />
 <button onclick="sendMessage()">Send</button>
-<script src="${pageContext.request.contextPath}/script/chat.js"></script>
+<script src="${pageContext.request.contextPath}/script/chat/chat.js"></script>
 </body>
 </html>
