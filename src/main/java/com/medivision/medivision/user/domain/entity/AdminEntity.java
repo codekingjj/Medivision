@@ -25,7 +25,7 @@ public class AdminEntity {
     //@Column(name = "user_juminSC")
     private String userJuminSC;
     //@Column(name = "user_phonenumber")
-    private String userPhonenumer;
+    private String userPhonenumber;
     //@Column(name = "user_telecom")
     private String userTelecom;
     //@Column(name = "user_name")
