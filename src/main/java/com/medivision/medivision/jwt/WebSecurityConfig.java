@@ -32,9 +32,9 @@ public class WebSecurityConfig {
                 .httpBasic().disable() //로그인창 사용 여부
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/","/admin/**","/auth/**","/viewer/**","/test","/test232","/css/**","/assets/**",
-                        "/js/**",
-                        "/static/**")
+                .antMatchers("/","/admin/**","/auth/**","/viewer/**","/test","/test232","/search/**","/style/**","/assets/**", "/js/**",
+                        "/static/**",
+                        "/script/**")
                 .permitAll() //매칭에 따라서 작업 여부
                 .antMatchers(HttpMethod.GET,"/board/**").permitAll()
                 .anyRequest().authenticated().and()
