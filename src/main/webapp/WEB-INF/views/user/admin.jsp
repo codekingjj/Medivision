@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivision</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
 <body class="body">
 <div class="container">
@@ -41,7 +41,7 @@
                 <td>010-0000-0000</td>
                 <td>남</td>
                 <td>-</td>
-                <td><img src="check-round-fill.png" alt="Profile Image" class="ok-img"></td></td>
+                <td><img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img"></td></td>
             </tr>
             <tr>
                 <td>
@@ -72,7 +72,7 @@
                 <td>남</td>
                 <td>-</td>
                 <td>
-                    <img src="check-round-fill.png" alt="Profile Image" class="ok-img">
+                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
                 </td>
             </tr>
             <tr>
@@ -104,7 +104,7 @@
                 <td>남</td>
                 <td>-</td>
                 <td>
-                    <img src="check-round-fill.png" alt="Profile Image" class="ok-img">
+                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
                 </td>
             </tr>
             <tr>
@@ -116,7 +116,7 @@
                 <td>남</td>
                 <td>-</td>
                 <td>
-                    <img src="check-round-fill.png" alt="Profile Image" class="ok-img">
+                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
                 </td>
             </tr>
             </tbody>
