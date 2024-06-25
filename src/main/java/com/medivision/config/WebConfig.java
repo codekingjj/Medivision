@@ -1,4 +1,4 @@
-package com.medivision.medivision.jwt;
+package com.medivision.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
