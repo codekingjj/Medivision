@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Viewer</title>
-    <script src="resources/static/script/viewer.js"/>
+<%--    <script src="resources/static/script/viewer.js"/>--%>
 </head>
 <body>
 
