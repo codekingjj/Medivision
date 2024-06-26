@@ -24,7 +24,7 @@ public class ReportService {
     public ResponseEntity<? super ReportResponse> getReportList(int studyKey){
         Long studykey = Long.valueOf(studyKey);
         boolean isExist = studyRepository.existsByStudykey(studykey);
-        if(!isExist) return ReportResponse.getListFail();
+        if(!isExist) return ReportResponse.getListFail(); //수정 메소드 들어가서
 
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
         List<ReportResponseDto> result = new ArrayList<>();
@@ -42,7 +42,7 @@ public class ReportService {
 
     public ResponseEntity<? super ReportResponse> getReport(int reportIndex){
         ReportEntity report = reportRepository.findByReportIndex(reportIndex);
-        if(report == null) return ReportResponse.getListFail();
+        if(report == null) return ReportResponse.getListFail();  //수정 메소드 들어가서
 
         List<ReportResponseDto> result = new ArrayList<>();
         int writer = report.getWriter();
@@ -58,10 +58,48 @@ public class ReportService {
     public ResponseEntity<? super ReportResponse> createReport(ReportRequestDto reportDto){
         int writer = reportDto.getWriter();
         AdminEntity admin = adminRepository.findByUserCode(writer);
-        if(admin == null || admin.getUserLicensenum() == null) return ReportResponse.getListFail();
+        if(admin == null || admin.getUserLicensenum() == null) return ReportResponse.getListFail(); //수정 메소드 들어가서
+
+        String typeDecode = reportDto.getTypeDecode();
+
+        if("예비판독".equals(typeDecode)){
+            if(!checkSpareReport(reportDto)) return ReportResponse.getListFail(); //수정
+        }else if("판독".equals(typeDecode)){
+            if(!checkReportList(reportDto)) return ReportResponse.getListFail(); //수정
+        }
 
         reportRepository.save(reportDto);
         return ReportResponse.createReportSuccess();
+    }
+
+    private boolean checkSpareReport(ReportRequestDto reportRequestDto){
+        int studyKey = reportRequestDto.getStudyKey();
+        List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+        for(ReportEntity reportEntity : list){
+            String typeDecode = reportEntity.getTypeDecode();
+            if("예비판독".equals(typeDecode)){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean checkReportList(ReportRequestDto reportRequestDto){
+        int studyKey = reportRequestDto.getStudyKey();
+        List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+
+        int cnt = 0;
+        for(ReportEntity reportEntity : list){
+            String typeDecode = reportEntity.getTypeDecode();
+            if("판독".equals(typeDecode)){
+                cnt ++;
+            }
+        }
+
+        if(cnt == 2)return false;
+
+        return true;
     }
 
 }
