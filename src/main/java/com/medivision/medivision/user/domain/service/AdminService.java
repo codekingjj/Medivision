@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 public interface AdminService {
 
     ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto);
-    ResponseEntity<? super UserListReponseDto> userLIst();
+    ResponseEntity<? super UserListReponseDto> userLIst(int pageNum, int pageSize);
 
     boolean adminSignIn(SignInRequestDto requestDto);
 }

@@ -11,6 +11,8 @@ import com.medivision.medivision.user.dto.request.SignUpRequestDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import com.medivision.medivision.user.dto.response.UserListReponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -59,10 +61,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public ResponseEntity<? super UserListReponseDto> userLIst() {
-        List<AdminEntity> userList = adminRepository.findAll();
+    public ResponseEntity<? super UserListReponseDto> userLIst(int pageNum, int pageSize) {
+        Page<AdminEntity> userList = adminRepository.findAll(PageRequest.of(pageNum - 1, pageSize));
         if(userList == null) return ResponseDto.databaseError();
         return  UserListReponseDto.success(userList);
+    }
+    public long getTotalCount(){
+        return adminRepository.count();
     }
 
     @Override
