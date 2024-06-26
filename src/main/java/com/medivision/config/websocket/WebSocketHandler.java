@@ -11,19 +11,26 @@ import java.util.concurrent.ConcurrentHashMap;
 //@Service
 //@ServerEndpoint(value="/chat")
 public class WebSocketHandler extends TextWebSocketHandler {
-    //private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-    private final Map<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
+    private final Map<Integer, WebSocketSession> sessions = new ConcurrentHashMap<>();
 
+    // (@AuthenticationPrincipal String code){
     @Override // 웹 소켓 연결시
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("connection established");
+        int userCode = 3;
 
-        sessions.put(session.getId(), session);
+        System.out.println("new connection");
 
+        if (!sessions.containsKey(userCode)) {
+            sessions.put(userCode, session);
+            System.out.println("added userCode: " + userCode);
+        } else {
+            System.out.println("userCode exists: " + userCode);
+        }
     }
 
     @Override // 메시지 전달
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        System.out.println("sent message");
         System.out.println(message.getPayload());
     }
 

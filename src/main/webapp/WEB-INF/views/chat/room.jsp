@@ -5,5 +5,6 @@
 </head>
 <body>
     <h1>Room</h1>
+    <p>${room.id}</p>
 </body>
 </html>
