@@ -34,4 +34,9 @@ public class ReportResponse extends ResponseDto {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    public static ResponseEntity<ResponseDto> createReportSuccess(){
+        ReportResponse result = new ReportResponse(null);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
 }
