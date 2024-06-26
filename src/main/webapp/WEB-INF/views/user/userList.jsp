@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jujae
-  Date: 2024-06-25
-  Time: 오후 5:21
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,13 +24,50 @@
         </div>
     </div>
     <div class="content">
-        <div class="notice-box">
-            <div class="notice-title">계정 아이디는</div>
-            <div class="notice-id">[xxxxxxxx]</div>
-            <div class="notice-title">입니다.</div>
-            <div class="notice-password">[초기 비밀번호는 주민번호 뒷자리]</div>
+        <table class="user-table">
+            <thead>
+            <th>선택</th>
+            <th>이름</th>
+            <th>핸드폰 번호</th>
+            <th>성별</th>
+            <th>면허번호(있을시)</th>
+            <th>회원가입 여부</th>
+            </thead>
+            <tbody>
+            <c:forEach items="${userLists}" var="user">
+                <tr>
+                    <td>
+                        <input type="radio" name="checkuser">
+                    </td>
+                    <td><c:out value="${user.userName}" /></td>
+                    <td><c:out value="${user.userPhonenumber}" /></td>
+                    <td><c:out value="${user.userJuminSC}" /></td>
+                    <td><c:out value="${user.userLicensenum}" /></td>
+                    <td>
+<%--                        <c:out value="${user.signup}" />--%>
+                        <c:choose>
+                            <c:when test="${user.signup}">
+                                <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
+                            </c:when>
+                            <c:otherwise>
+                                -
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <div class="page-button-box">
+<%--            <div class="page-button-left">--%>
+<%--                < 이전--%>
+<%--            </div>--%>
+<%--            <div class="page-button-right">--%>
+<%--                다음 >--%>
+<%--            </div>--%>
+        ${ pagingImg }
         </div>
-        <input type="button" class="join-button" value="확인">
+        <input type="button" class="join-button" value="계정 만들기">
     </div>
 </div>
 </body>

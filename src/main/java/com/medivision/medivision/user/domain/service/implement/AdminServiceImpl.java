@@ -6,10 +6,13 @@ import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.AdminService;
+import com.medivision.medivision.user.dto.request.SignInRequestDto;
 import com.medivision.medivision.user.dto.request.SignUpRequestDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import com.medivision.medivision.user.dto.response.UserListReponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,10 +61,23 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public ResponseEntity<? super UserListReponseDto> userLIst() {
-        List<AdminEntity> userList = adminRepository.findAll();
-        if(userList == null) return ResponseDto.databaseError();
-        return  UserListReponseDto.success(userList);
+    public Page<AdminEntity> userLIst(int pageNum, int pageSize) {
+        Page<AdminEntity> userList = adminRepository.findAll(PageRequest.of(pageNum - 1, pageSize));
+        if(userList == null) return null;
+        return  userList;
+    }
+    public long getTotalCount(){
+        return adminRepository.count();
+    }
+
+    @Override
+    public boolean adminSignIn(SignInRequestDto requestBody) {
+        String userId = requestBody.getUserId();
+        String userPassword = requestBody.getUserPassword();
+        if(userId.equals("admin") && userPassword.equals("admin")){
+            return true;
+        }
+        return false;
     }
 
 
@@ -74,7 +90,7 @@ public class AdminServiceImpl implements AdminService {
         StringBuilder alphaPart = new StringBuilder(5);
         for (int i = 0; i < 5; i++) {
             // 'A'에서 'Z' 사이의 랜덤한 문자 선택
-            char randomChar = (char) ('A' + random.nextInt(26));
+            char randomChar = (char) ('a' + random.nextInt(26));
             alphaPart.append(randomChar);
         }
 

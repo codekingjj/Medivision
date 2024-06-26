@@ -18,12 +18,13 @@ public class JwtProvider {
     
     //jwt 생성 메소드
     public String create(int userCode){
-
         Date expiredDate = Date.from(Instant.now().plus(2, ChronoUnit.HOURS));
 
         String userCodeVarchar = String.valueOf(userCode);
+        Claims claims = Jwts.claims().setSubject(userCodeVarchar);
 
         String jwt = Jwts.builder()
+                .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS256,secretKey)
                 .setSubject(userCodeVarchar).setIssuedAt(new Date()).setExpiration(expiredDate)
                 .compact();

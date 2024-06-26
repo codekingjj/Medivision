@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivision</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/login.css">
-    <script src="${pageContext.request.contextPath}/script/user/login.js"></script>
+    <script src="${pageContext.request.contextPath}/script/user/adminLogin.js"></script>
 </head>
 <body class="body">
 <div class="container">
@@ -16,9 +16,11 @@
         </div>
     </div>
     <div class="content">
-        <input type="text" name="userId" id="userId" class="login-write-button" placeholder=" 로그인*">
-        <input type="password" name="userPassword" id="userPassword" class="login-write-button" placeholder=" 비밀번호*">
+        <form action="/admin/sign-in" method="post" id="login-form">
+        <input type="text" name="userId" class="login-write-button" placeholder=" 로그인*">
+        <input type="password" name="userPassword" class="login-write-button" placeholder=" 비밀번호*">
         <input type="button" class="login-button" value="로그인" onclick="onsubmitForm()">
+        </form>
     </div>
 </div>
 </body>
