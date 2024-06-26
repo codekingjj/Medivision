@@ -4,7 +4,7 @@
     <title>Medivision</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/report.css">
     <script>
-        var pop;
+        let pop;
         window.onunload = function() { pop.close(); }
         function popup() {
             var url = `/report/targetReport`;
