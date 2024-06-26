@@ -1,5 +1,6 @@
 package com.medivision.medivision.report.domain.service;
 
+import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
@@ -52,6 +53,15 @@ public class ReportService {
         result.add(target);
 
         return ReportResponse.getReportSuccess(result);
+    }
+
+    public ResponseEntity<? super ReportResponse> createReport(ReportRequestDto reportDto){
+        int writer = reportDto.getWriter();
+        AdminEntity admin = adminRepository.findByUserCode(writer);
+        if(admin == null || admin.getUserLicensenum() == null) return ReportResponse.getListFail();
+
+        reportRepository.save(reportDto);
+        return ReportResponse.createReportSuccess();
     }
 
 }
