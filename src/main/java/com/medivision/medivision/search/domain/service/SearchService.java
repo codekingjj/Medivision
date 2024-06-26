@@ -17,4 +17,25 @@ public class SearchService {
     public List<VStudyEntity> findAll(){
         return studyRepository.findAll();
     }
+
+
+    public List<VStudyEntity> findByPidLike(String pid){
+        return studyRepository.findByPidLike("%" + pid + "%");
+    }
+
+    public List<VStudyEntity> findByReportstatus(int reportStatus){
+        return studyRepository.findByReportstatus(reportStatus);
+    }
+
+
+    public List<VStudyEntity> findByModality(String modality){
+        return studyRepository.findByModality(modality);
+    }
+
+
+    public List<VStudyEntity> findByPnameLike(String pname){
+        return studyRepository.findByPnameLike("%" + pname + "%");
+    }
+
+
 }
