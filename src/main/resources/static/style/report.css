@@ -1,3 +1,87 @@
-table{
-    min-width: 800px;
+body{
+    width: 800px;
+    margin:auto;
+    margin-top: 30px;
 }
+
+table{
+    width:100%;
+}
+
+#th-1{
+    width: 20%;
+}
+#th-2{
+    width : 20%
+}
+#th-3{
+    width : 30%
+}
+#th-4{
+    width: 30%;
+}
+
+th{
+    height: 30px;
+    background-color : #1E7952;
+    color : white;
+}
+
+td{
+    height: 30px;
+    background-color : #F1F1F1;
+    color : black;
+}
+
+div#content-container{
+    height: 250px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+textarea{
+    width: 100%;
+    background-color: #E8E8E8;
+    border: none;
+    resize: none;
+    font-size: 1.2em;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+a{
+    color: dimgrey;
+}
+
+input[type="submit"],
+input[type="button"]{
+    margin-top: 10px;
+    width: 80px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+input[type="button"]{
+    margin-right: auto;
+    background-color: dimgrey;
+    color: white;
+}
+
+input[type="submit"]:hover,
+input[type="button"],
+td:hover{
+    cursor: pointer;
+}
+
+#report{
+    background-color: #1E7952;
+    color:white;
+    border: none;
+}
+
