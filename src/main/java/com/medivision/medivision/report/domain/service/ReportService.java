@@ -1,5 +1,7 @@
 package com.medivision.medivision.report.domain.service;
 
+import com.medivision.medivision.decode.domain.entity.DecodeEntity;
+import com.medivision.medivision.decode.domain.repository.DecodeRepository;
 import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
@@ -20,6 +22,7 @@ public class ReportService {
     private final ReportRepository reportRepository;
     private final StudyRepository studyRepository;
     private final AdminRepository adminRepository;
+    private final DecodeRepository decodeRepository;
 
     public ResponseEntity<? super ReportResponse> getReportList(int studyKey){
         Long studykey = Long.valueOf(studyKey);
@@ -68,9 +71,15 @@ public class ReportService {
             if(!checkReportList(reportDto)) return ReportResponse.getListFail(); //수정
         }
 
-        reportRepository.save(reportDto);
-        String decode = typeDecode+" 완료";
-        //decode update
+        ReportEntity reportEntity = new ReportEntity(reportDto);
+        reportRepository.save(reportEntity);
+
+        int studyKey = reportDto.getStudyKey();
+        DecodeEntity decode = decodeRepository.findByStudyKey(studyKey);
+
+        String decodeStatus = typeDecode+" 완료";
+        decode = new DecodeEntity(decode.getStudyKey(),decodeStatus);
+        decodeRepository.save(decode);
         return ReportResponse.createReportSuccess();
     }
 
