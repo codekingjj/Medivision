@@ -69,6 +69,8 @@ public class ReportService {
         }
 
         reportRepository.save(reportDto);
+        String decode = typeDecode+" 완료";
+        //decode update
         return ReportResponse.createReportSuccess();
     }
 
