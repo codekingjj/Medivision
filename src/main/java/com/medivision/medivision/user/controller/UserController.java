@@ -34,7 +34,10 @@ public class UserController {
 
 
     @PostMapping("/auth/sign-in")
-    public ResponseEntity<? super SignInResponseDto> signin(@RequestBody SignInRequestDto requestBody){
+    public ResponseEntity<? super SignInResponseDto> signin(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword){
+        SignInRequestDto requestBody = new SignInRequestDto();
+        requestBody.setUserId(userId);
+        requestBody.setUserPassword(userPassword);
         ResponseEntity<? super  SignInResponseDto> response = userService.signin(requestBody);
         return response;
     }
@@ -43,5 +46,29 @@ public class UserController {
     public ResponseEntity<? super UserListReponseDto>userList(){
         ResponseEntity<? super UserListReponseDto> reponse = adminService.userLIst();
         return  reponse;
+    }
+
+    @GetMapping("/auth/select")
+    public String authSelect(){
+        return"user/select";
+    }
+
+    @GetMapping("/admin/sign-in")
+    public String adminSigninPage(){
+        return "user/adminLogin";
+    }
+
+    @PostMapping("/admin/sign-in")
+    public String adminSignin(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword){
+        SignInRequestDto requestBody = new SignInRequestDto();
+        requestBody.setUserId(userId);
+        requestBody.setUserPassword(userPassword);
+        System.out.println("id: "+ requestBody.getUserId());
+        System.out.println("pw: "+ requestBody.getUserPassword());
+        boolean isCheck = adminService.adminSignIn(requestBody);
+        System.out.println("check: "+isCheck);
+        if(isCheck)
+            return "user/admin";
+        return "user/select";
     }
 }
