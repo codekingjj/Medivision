@@ -10,5 +10,4 @@ import java.util.List;
 public interface ReportRepository extends JpaRepository<ReportEntity,Integer> {
     ReportEntity findByReportIndex(int reportIndex);
     List<ReportEntity> findByStudyKey(int studyKey);
-    void save(ReportRequestDto reportRequestDto);
 }
