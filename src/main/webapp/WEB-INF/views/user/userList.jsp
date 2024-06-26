@@ -59,14 +59,14 @@
             </tbody>
         </table>
         <div class="page-button-box">
-            <div class="page-button-left">
-                < 이전
-            </div>
-            <div class="page-button-right">
-                다음 >
-            </div>
-        </div>
+<%--            <div class="page-button-left">--%>
+<%--                < 이전--%>
+<%--            </div>--%>
+<%--            <div class="page-button-right">--%>
+<%--                다음 >--%>
+<%--            </div>--%>
         ${ pagingImg }
+        </div>
         <input type="button" class="join-button" value="계정 만들기">
     </div>
 </div>
