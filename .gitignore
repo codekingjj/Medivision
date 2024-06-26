@@ -1,3 +1,6 @@
+application.properties
+src/main/resources/application.properties
+
 HELP.md
 .gradle
 build/
@@ -36,7 +39,6 @@ out/
 
 ### VS Code ###
 .vscode/
-src/main/resources/application.properties
 /dist
 /node_modules
 
