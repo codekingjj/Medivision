@@ -6,13 +6,13 @@
 <body>
 <div id="content-container">
     <div>[Finding]</div>
-    <textarea id="finding"></textarea>
+    <textarea id="finding" readonly></textarea>
     <div>[Conclusion]</div>
-    <textarea id="conclusion"></textarea>
+    <textarea id="conclusion" readonly></textarea>
     <div>[Recommend]</div>
-    <textarea id="recommend"></textarea>
+    <textarea id="recommend" readonly></textarea>
     <div>[comment]</div>
-    <textarea id="comment"></textarea>
+    <textarea id="comment" readonly></textarea>
 </div>
 
 </body>
