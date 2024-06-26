@@ -61,10 +61,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public ResponseEntity<? super UserListReponseDto> userLIst(int pageNum, int pageSize) {
+    public Page<AdminEntity> userLIst(int pageNum, int pageSize) {
         Page<AdminEntity> userList = adminRepository.findAll(PageRequest.of(pageNum - 1, pageSize));
-        if(userList == null) return ResponseDto.databaseError();
-        return  UserListReponseDto.success(userList);
+        if(userList == null) return null;
+        return  userList;
     }
     public long getTotalCount(){
         return adminRepository.count();

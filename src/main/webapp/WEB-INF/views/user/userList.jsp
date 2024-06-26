@@ -39,97 +39,23 @@
                     <td>
                         <input type="radio" name="checkuser">
                     </td>
+                    <td><c:out value="${user.userName}" /></td>
+                    <td><c:out value="${user.userPhonenumber}" /></td>
+                    <td><c:out value="${user.userJuminSC}" /></td>
+                    <td><c:out value="${user.userLicensenum}" /></td>
                     <td>
-
+<%--                        <c:out value="${user.signup}" />--%>
+                        <c:choose>
+                            <c:when test="${user.signup}">
+                                <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
+                            </c:when>
+                            <c:otherwise>
+                                -
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                 </tr>
             </c:forEach>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>-</td>
-                <td><img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img"></td></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>110-111111-1111</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>110-111111-1111</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>-</td>
-                <td>
-                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>110-111111-1111</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>-</td>
-                <td>
-                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="checkuser">
-                </td>
-                <td>주승재</td>
-                <td>010-0000-0000</td>
-                <td>남</td>
-                <td>-</td>
-                <td>
-                    <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
-                </td>
-            </tr>
             </tbody>
         </table>
         <div class="page-button-box">
@@ -140,6 +66,7 @@
                 다음 >
             </div>
         </div>
+        ${ pagingImg }
         <input type="button" class="join-button" value="계정 만들기">
     </div>
 </div>

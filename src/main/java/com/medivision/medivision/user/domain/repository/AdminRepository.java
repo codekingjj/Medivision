@@ -9,4 +9,5 @@ public interface AdminRepository extends JpaRepository<AdminEntity, Integer> {
 
      AdminEntity findByUserCode(int userCode);
 
+
 }

@@ -5,6 +5,7 @@ import com.medivision.common.ResponseDto;
 import com.medivision.common.ResponseMessage;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,8 @@ public class UserListReponseDto extends ResponseDto {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         userLIst = list;
     }
-    public static ResponseEntity<UserListReponseDto> success(Page<AdminEntity> list){
+    public Page<AdminEntity> success(Page<AdminEntity> list){
         UserListReponseDto result = new UserListReponseDto(list);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return result.getUserLIst();
     }
 }
