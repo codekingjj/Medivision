@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivision</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/login.css">
-    <script src="${pageContext.request.contextPath}/script/user/login.js"></script>
+    <script src="${pageContext.request.contextPath}/script/user/adminLogin.js"></script>
 </head>
 <body class="body">
 <div class="container">
