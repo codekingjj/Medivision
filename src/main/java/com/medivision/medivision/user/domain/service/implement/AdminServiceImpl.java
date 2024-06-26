@@ -6,6 +6,7 @@ import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.AdminService;
+import com.medivision.medivision.user.dto.request.SignInRequestDto;
 import com.medivision.medivision.user.dto.request.SignUpRequestDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import com.medivision.medivision.user.dto.response.UserListReponseDto;
@@ -64,6 +65,16 @@ public class AdminServiceImpl implements AdminService {
         return  UserListReponseDto.success(userList);
     }
 
+    @Override
+    public boolean adminSignIn(SignInRequestDto requestBody) {
+        String userId = requestBody.getUserId();
+        String userPassword = requestBody.getUserPassword();
+        if(userId.equals("admin") && userPassword.equals("admin")){
+            return true;
+        }
+        return false;
+    }
+
 
     // 아이디 자동 생성
     private static String generateRandomString() {
@@ -74,7 +85,7 @@ public class AdminServiceImpl implements AdminService {
         StringBuilder alphaPart = new StringBuilder(5);
         for (int i = 0; i < 5; i++) {
             // 'A'에서 'Z' 사이의 랜덤한 문자 선택
-            char randomChar = (char) ('A' + random.nextInt(26));
+            char randomChar = (char) ('a' + random.nextInt(26));
             alphaPart.append(randomChar);
         }
 

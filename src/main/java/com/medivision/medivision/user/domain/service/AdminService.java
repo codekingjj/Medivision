@@ -1,5 +1,6 @@
 package com.medivision.medivision.user.domain.service;
 
+import com.medivision.medivision.user.dto.request.SignInRequestDto;
 import com.medivision.medivision.user.dto.request.SignUpRequestDto;
 import com.medivision.medivision.user.dto.response.SignUpResponseDto;
 import com.medivision.medivision.user.dto.response.UserListReponseDto;
@@ -10,4 +11,6 @@ public interface AdminService {
 
     ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto);
     ResponseEntity<? super UserListReponseDto> userLIst();
+
+    boolean adminSignIn(SignInRequestDto requestDto);
 }
