@@ -16,11 +16,9 @@
         </div>
     </div>
     <div class="content">
-        <form action="/auth/sign-in" method="post" id="login-form">
-        <input type="text" name="userId" class="login-write-button" placeholder=" 로그인*">
-        <input type="password" name="userPassword" class="login-write-button" placeholder=" 비밀번호*">
-        <input type="submit" class="login-button" value="로그인" onclick="onsubmitForm()">
-        </form>
+        <input type="text" name="userId" id="userId" class="login-write-button" placeholder=" 로그인*">
+        <input type="password" name="userPassword" id="userPassword" class="login-write-button" placeholder=" 비밀번호*">
+        <input type="button" class="login-button" value="로그인" onclick="onsubmitForm()">
     </div>
 </div>
 </body>
