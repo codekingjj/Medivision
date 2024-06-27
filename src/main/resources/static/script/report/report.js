@@ -59,11 +59,11 @@ $(document).ready(function() {
         const regDate = new Date(dates);
 
         const year = regDate.getFullYear();
-        const month = (regDate.getMonth()+1).length == 2 ? (regDate.getMonth()+1) : "0"+(regDate.getMonth()+1);
-        const date = regDate.getDate().length > 3 ? ""+regDate.getDate() : "0"+ regDate.getDate();
-        const hour = regDate.getHours().length > 3 ? ""+regDate.getHours() : "0"+ regDate.getHours();
-        const min = regDate.getMinutes().length == 2 ? ""+regDate.getMinutes() : "0"+ regDate.getMinutes();
-        const sec = regDate.getSeconds().length > 3 ? ""+regDate.getSeconds() : "0"+regDate.getSeconds();
+        const month = (regDate.getMonth()+1) > 9 ? (regDate.getMonth()+1) : "0"+(regDate.getMonth()+1);
+        const date = regDate.getDate() > 9 ? ""+regDate.getDate() : "0"+ regDate.getDate();
+        const hour = regDate.getHours() > 9 ? ""+regDate.getHours() : "0"+ regDate.getHours();
+        const min = regDate.getMinutes() > 9 ? ""+regDate.getMinutes() : "0"+ regDate.getMinutes();
+        const sec = regDate.getSeconds() > 9 ? ""+regDate.getSeconds() : "0"+regDate.getSeconds();
 
         const result = year +"-"+month+"-"+date+" "+ hour+":"+min+":"+sec;
 
@@ -156,5 +156,3 @@ $(document).ready(function() {
     });
 
 });
-
-
