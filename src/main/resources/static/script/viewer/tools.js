@@ -1,14 +1,22 @@
-// import {addTool, MagnifyTool, ToolGroupManager, WindowLevelTool, ZoomTool} from '@cornerstonejs/tools';
+// import * as cornerstone from '@cornerstonejs/core'
+// import { WindowLevelTool, ZoomTool} from '@cornerstonejs/tools'
+// import cornerstone3DTools
+//     from "@cornerstonejs/tools/dist/cjs/utilities/segmentation/InterpolationManager/InterpolationManager";
+// import cornerstone3DTools
+//     from "@cornerstonejs/tools/src/utilities/segmentation/InterpolationManager/InterpolationManager";
+
+
+
+
+
 //
-// let cornerstone;
-// cornerstoneTools.external.cornerstone = cornerstone;
-// //
-// addTool(ZoomTool);
-// addTool(WindowLevelTool);
+// cornerstone3DTools.addTool(ZoomTool);
+// cornerstone3DTools.addTool(WindowLevelTool);
 //
 // const toolGroupId = 'ToolGroup';
 // const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
-//
+
+
 // toolGroup.addTool(ZoomTool.toolName);
 // toolGroup.addTool(WindowLevelTool.toolName);
 //
@@ -27,11 +35,4 @@
 //         },
 //     ],
 // });
-//
-// function magnifyTool() {
-//     const magnifyTool = new MagnifyTool();
-//
-//     cornerstoneTools.setToolActive()
-// }
-//
 //
