@@ -31,11 +31,11 @@
     <div class="content">
         <div class="notice-box">
             <div class="notice-title">계정 아이디는</div>
-            <div class="notice-id">[xxxxxxxx]</div>
+            <div class="notice-id">[${userId}]</div>
             <div class="notice-title">입니다.</div>
             <div class="notice-password">[초기 비밀번호는 주민번호 뒷자리]</div>
         </div>
-        <input type="button" class="join-button" value="확인">
+        <input type="button" class="join-button" value="확인" onclick="location.href='/admin'">
     </div>
 </div>
 </body>
