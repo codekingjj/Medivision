@@ -23,7 +23,7 @@ table{
 
 th{
     height: 30px;
-    background-color : #1E7952;
+    background-color : #00673B;
     color : white;
 }
 
@@ -31,14 +31,16 @@ td{
     height: 30px;
     background-color : #F1F1F1;
     color : black;
+    text-align: center;
 }
+
 
 div#content-container{
     height: 250px;
     background-color: #E8E8E8;
     border-radius: 10px;
-    padding: 20px;
     overflow-y: scroll;
+    padding: 20px;
 }
 
 textarea{
@@ -47,6 +49,7 @@ textarea{
     border: none;
     resize: none;
     font-size: 1.2em;
+    margin-botton: 10px;
 }
 
 textarea:focus{
@@ -75,7 +78,7 @@ input[type="button"]{
 
 input[type="submit"]:hover,
 input[type="button"],
-td:hover{
+#tr1,#tr2,#tr3{
     cursor: pointer;
 }
 
@@ -84,4 +87,17 @@ td:hover{
     color:white;
     border: none;
 }
+
+#close{
+    display: flex;
+    width: 800px;
+}
+
+#close-button{
+    margin-left: auto;
+}
+
+
+
+
 
