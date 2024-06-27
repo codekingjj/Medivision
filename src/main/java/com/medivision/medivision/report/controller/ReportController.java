@@ -30,9 +30,7 @@ public class ReportController {
 
     @PostMapping("/report")
     public ResponseEntity<? super ReportResponse> report(@RequestBody ReportRequestDto reportDto,@AuthenticationPrincipal String code) {
-        //작성자 임의 배정
-        int writer = 1;
-        reportDto.setWriter(writer);  //Integer.parseInt(code)
+        reportDto.setWriter(Integer.parseInt(code));
         return reportService.createReport(reportDto);
     }
 
