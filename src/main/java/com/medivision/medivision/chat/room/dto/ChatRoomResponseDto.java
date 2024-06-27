@@ -11,9 +11,9 @@ import java.sql.Timestamp;
 @Setter
 @NoArgsConstructor
 public class ChatRoomResponseDto {
-    private final int roomId;
-    private final String name;
-    private final Timestamp createDate;
+    private  int roomId;
+    private  String name;
+    private  Timestamp createDate;
 
     public ChatRoomResponseDto(ChatRoom chatRoom) {
         this.roomId = chatRoom.getRoomId();

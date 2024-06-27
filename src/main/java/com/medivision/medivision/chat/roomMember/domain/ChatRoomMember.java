@@ -19,20 +19,20 @@ public class ChatRoomMember {
     //private MessageRoom messageRoom;
     @Id
     @Column(name = "room_id")
-    private final int roomId;
+    private  int roomId;
 
     //@ManyToOne
     //@JoinColumn(name = "user_code", referencedColumnName = "code")
     //private User user;
     @Id
     @Column(name = "user_code")
-    private final int userCode;
+    private  int userCode;
 
     @CreationTimestamp
-    private final Timestamp lastVisitedDate;
+    private  Timestamp lastVisitedDate;
 
     @CreationTimestamp
-    private final Timestamp createDate;
+    private  Timestamp createDate;
 
     public ChatRoomMember(ChatRoomMemberRequestDto chatRoomMemberDto) {
         this.roomId = chatRoomMemberDto.getRoomId();
