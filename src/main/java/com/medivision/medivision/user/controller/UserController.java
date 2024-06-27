@@ -24,10 +24,17 @@ public class UserController {
 
     private final AdminService adminService;
     private final UserService userService;
-    @PostMapping("/admin")
-    public ResponseEntity<? super SignUpResponseDto> signup(@RequestBody SignUpRequestDto requestBody){
+    @PostMapping("/auth/sign-up")
+    public String signup(@RequestParam("userCode") int userCode, Model model){
+        SignUpRequestDto requestBody = new SignUpRequestDto();
+        requestBody.setUserCode(userCode);
         ResponseEntity<? super SignUpResponseDto> response = adminService.signUp(requestBody);
-        return  response;
+        if(response.getBody() instanceof SignUpResponseDto){
+            SignUpResponseDto dto = (SignUpResponseDto)response.getBody();
+            String userId= dto.getUserId();
+            model.addAttribute("userId",userId);
+        }
+        return  "user/signUpResult";
     }
 
     @GetMapping("/auth/sign-in")
@@ -44,11 +51,12 @@ public class UserController {
         return response;
     }
 
+
     @GetMapping("/admin")
     public String userList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
 
         int pageSize = 8;
-        int blockPage = 5;
+        int blockPage = 2;
 
         Page<AdminEntity> userList = adminService.userLIst(pageNum,pageSize);
         long totalCountLong = adminService.getTotalCount();

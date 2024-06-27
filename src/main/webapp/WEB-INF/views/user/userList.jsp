@@ -8,14 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivision</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/userList.css">
+    <script src="${pageContext.request.contextPath}/script/user/userList.js"></script>
 </head>
 <body class="body">
 <div class="container">
+            <form action="/auth/sign-up" method="post" id="userList">
     <div class="header">
         <div class="logo">
             <div class="mark"></div>
         </div>
-        <div class="menu">
+        <div class="menu" onclick="location.href='/auth/select'">
             <div class="logout-img">
             </div>
             <div class="logout-text">
@@ -36,15 +38,23 @@
             <tbody>
             <c:forEach items="${userLists}" var="user">
                 <tr>
-                    <td>
-                        <input type="radio" name="checkuser">
-                    </td>
+                    <c:choose>
+                        <c:when test="${user.signup}">
+                            <td>
+                            -
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <input type="radio" name="userCode" id="userCode" value="${user.userCode}">
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
                     <td><c:out value="${user.userName}" /></td>
                     <td><c:out value="${user.userPhonenumber}" /></td>
                     <td><c:out value="${user.userJuminSC}" /></td>
                     <td><c:out value="${user.userLicensenum}" /></td>
                     <td>
-<%--                        <c:out value="${user.signup}" />--%>
                         <c:choose>
                             <c:when test="${user.signup}">
                                 <img src="${pageContext.request.contextPath}/assets/check-round-fill.png" alt="Profile Image" class="ok-img">
@@ -67,8 +77,9 @@
 <%--            </div>--%>
         ${ pagingImg }
         </div>
-        <input type="button" class="join-button" value="계정 만들기">
+        <input type="button" class="join-button" value="계정 만들기" onclick="onsubmitForm()">
     </div>
+            </form>
 </div>
 </body>
 </html>
