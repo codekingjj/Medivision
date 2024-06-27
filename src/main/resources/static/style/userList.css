@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -122,15 +128,52 @@
     margin: 0 auto;
     gap: 20px;
 }
-
-.page-button-left, .page-button-right {
-    width: 500px;
+.page-button-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+.page-block-button{
+    font-family: ONE-Mobile-POP;
+    text-decoration: none;
+    color: #333;
+}
+.page-button {
+    font-family: ONE-Mobile-POP;
+    font-weight: 500;
+}
+.page-button-div{
     display: flex;
     align-items: center;
-    cursor: pointer;
-    padding: 5px;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
 }
-
+.page-block-button:hover{
+    text-decoration:underline;
+}
+.select-div{
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.selected-page{
+    color: #00673B;
+}
+.option-page{
+    text-decoration: none;
+    color: black;
+}
+.option-page:hover{
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 20px;
+    height: 20px;
+    margin: -4.5px;
+    text-align: center;
+    border-radius: 3px;
+}
 .join-button{
     align-self: center;
     border: none;
