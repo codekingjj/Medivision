@@ -18,12 +18,12 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    @GetMapping("/reports{studykey}")
+    @GetMapping("/reports/{studykey}")
     public ResponseEntity<? super ReportResponse> reports(@PathVariable("studykey") String studyKey) {
         return reportService.getReportList(Integer.parseInt(studyKey));
     }
 
-    @GetMapping("/report{reportIndex}")
+    @GetMapping("/report/{reportIndex}")
     public ResponseEntity<? super ReportResponse> targetReport(@PathVariable("reportIndex") String reportIndex ) {
         return reportService.getReport(Integer.parseInt(reportIndex));
     }
