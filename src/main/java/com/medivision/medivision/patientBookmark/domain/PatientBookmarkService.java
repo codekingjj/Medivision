@@ -11,13 +11,13 @@ import java.util.List;
 @Service
 public class PatientBookmarkService {
     private final PatientBookmarkRepository patientBookmarkRepository;
+    private final VStudyRepository vStudyRepository;
 
     public List<PatientBookmark> findByUserCode(int userCode) {
         return patientBookmarkRepository.findByUserCode(userCode);
     }
 
-    public List<PatientBookmark> findPatientAllUserCode(int userCode) {
-        //return patientBookmarkRepository.findPatientAllByUserCode(userCode);
-        return null;
+    public List<VStudyEntity> findByPid(String pid) {
+        return vStudyRepository.findByPid(pid);
     }
 }

@@ -11,11 +11,11 @@ import java.sql.Timestamp;
 @Setter
 @NoArgsConstructor
 public class ChatRoomMemberResponseDto {
-    private int roomId;
-    private int userCode;
+    private final int roomId;
+    private final int userCode;
 
-    private Timestamp lastVisitedDate;
-    private Timestamp createDate;
+    private final Timestamp lastVisitedDate;
+    private final Timestamp createDate;
 
     public ChatRoomMemberResponseDto(ChatRoomMember chatRoomMember) {
         this.roomId = chatRoomMember.getRoomId();

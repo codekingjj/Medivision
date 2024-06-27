@@ -11,5 +11,5 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class PatientBookmarkId implements Serializable {
     private int userCode;
-    private int pid;
+    private String pid;
 }
