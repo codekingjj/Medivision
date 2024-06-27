@@ -2,25 +2,9 @@
 <html>
 <head>
     <title>Medivision</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/report.css">
-    <script>
-        let pop;
-        window.onunload = function() { pop.close(); }
-        function popup() {
-            var url = `/report/targetReport`;
-            var name = "popup test";
-            var option = "width=800, height=500, left=100, top=50, location=no"
-            pop = window.open(url, name, option);
-        }
-        function close(){
-            pop.close();
-        }
-
-        function autoResize(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = textarea.scrollHeight + 'px';
-        }
-    </script>
+    <script src="${pageContext.request.contextPath}/script/report/report.js"></script>
 </head>
 <body>
 <div id="container">
@@ -37,19 +21,19 @@
                 </tr>
             </thead>
             <tbody id="report-list">
-                <tr id="first">
+                <tr id="tr1">
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                <tr id="second">
+                <tr id="tr2">
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                <tr id="third">
+                <tr id="tr3">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -64,24 +48,25 @@
         <form method="POST" action="/report">
             <div id="content-container">
                 <a>[Finding]</a>
-                <textarea id="finding" onkeyup="autoResize(this)" onkeydown="autoResize(this)" rows="2" style="overflow:hidden;"></textarea>
+                <textarea id="finding"  rows="2" style="overflow:hidden;"></textarea>
                 <a>[Conclusion]</a>
-                <textarea id="conclusion" onkeyup="autoResize(this)" onkeydown="autoResize(this)" rows="2" style="overflow:hidden;"></textarea>
+                <textarea id="conclusion"  rows="2" style="overflow:hidden;"></textarea>
                 <a>[Recommend]</a>
-                <textarea id="recommend" onkeyup="autoResize(this)" onkeydown="autoResize(this)" rows="2" style="overflow:hidden;"></textarea>
+                <textarea id="recommend"  rows="2" style="overflow:hidden;"></textarea>
                 <a>[comment]</a>
-                <textarea id="comment" onkeyup="autoResize(this)" onkeydown="autoResize(this)" rows="2" style="overflow:hidden;"></textarea>
+                <textarea id="comment"  rows="2" style="overflow:hidden;"></textarea>
+                <textarea id="empty" rows="1" readonly></textarea>
             </div>
             <input type="submit" id="spare-report" value="예비판독">
             <input type="submit" id="report" value="판독">
         </form>
     </div>
-    <div id="close-button">
-        <input type="button" value="닫기" />
+    <div id="close">
+        <input id="close-button" type="button" value="닫기" onclick="close()" />
     </div>
 
 <%--    <input type="button" value="팝업" onclick="popup(1);" />--%>
 </div>
-<script src="${pageContext.request.contextPath}/script/report/report.js" />
+
 </body>
 </html>
