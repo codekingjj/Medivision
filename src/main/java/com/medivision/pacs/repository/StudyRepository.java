@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface StudyRepository extends JpaRepository<StudyEntity,Long> {
 
-    public List<StudyEntity> findAll();
-    public boolean existsByStudykey(Long studykey);
+    List<StudyEntity> findAll();
+    boolean existsByStudykey(Long studykey);
 }
