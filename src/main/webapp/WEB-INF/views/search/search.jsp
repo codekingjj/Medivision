@@ -36,7 +36,7 @@
 
             <label for="reportstatus">판독상태</label>
             <select id="reportstatus" name="reportstatus">
-                <option value="999">선택</option>
+                <option value="-1">선택</option>
                 <option value="3">읽지않음</option>
                 <option value="5">예비판독</option>
                 <option value="6">판독</option>
@@ -83,8 +83,8 @@
             </select>
 
             <label >날짜</label>
-<%--            <input type="date" id="start-date" name="start-date" value="2000-01-01">--%>
-<%--            <input type="date" id="end-date" name="end-date" value="2000-01-01">--%>
+            <input type="date" id="startDate" name="startDate" value="2000-01-01">
+            <input type="date" id="endDate" name="endDate" value="2000-01-01">
 
             <button type="submit">검색</button>
         </form>

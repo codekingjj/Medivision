@@ -20,6 +20,7 @@ $(document).ready(function() {
                 let countArea = $('#search-count');
                 tbody.empty();
                 countArea.empty();
+                console.log(data);
                 count = '<p>' + data.length + '명의 환자를 찾았습니다.</p>';
                 countArea.append(count);
                 data.forEach(function(item) {
