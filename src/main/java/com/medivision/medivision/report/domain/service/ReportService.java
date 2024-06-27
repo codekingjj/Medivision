@@ -45,7 +45,7 @@ public class ReportService {
 
     public ResponseEntity<? super ReportResponse> getReport(int reportIndex){
         ReportEntity report = reportRepository.findByReportIndex(reportIndex);
-        if(report == null) return ReportResponse.getListFail();  //수정 메소드 들어가서
+        if(report == null) return ReportResponse.getReportFail();  //수정 메소드 들어가서
 
         List<ReportResponseDto> result = new ArrayList<>();
         int writer = report.getWriter();
@@ -66,9 +66,9 @@ public class ReportService {
         String typeDecode = reportDto.getTypeDecode();
 
         if("예비판독".equals(typeDecode)){
-            if(!checkSpareReport(reportDto)) return ReportResponse.getListFail(); //수정
+            if(!checkSpareReport(reportDto)) return ReportResponse.createSpareReportFail(); //수정
         }else if("판독".equals(typeDecode)){
-            if(!checkReportList(reportDto)) return ReportResponse.getListFail(); //수정
+            if(!checkReportList(reportDto)) return ReportResponse.createReportFail(); //수정
         }
 
         ReportEntity reportEntity = new ReportEntity(reportDto);
