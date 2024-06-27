@@ -10,8 +10,6 @@ import java.util.List;
 public interface VStudyRepository extends JpaRepository<VStudyEntity, Integer> {
 
 
-
-
     List<VStudyEntity> findByModality(String modality);
 
 //    되는 코드들
@@ -20,4 +18,6 @@ public interface VStudyRepository extends JpaRepository<VStudyEntity, Integer> {
     List<VStudyEntity> findByPnameLike(String pname);
 
     List<VStudyEntity> findByReportstatus(int reportstatus);
+
+
 }

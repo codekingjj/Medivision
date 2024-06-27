@@ -7,8 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -32,40 +31,110 @@ public class SearchController {
     @GetMapping("detail")
     @ResponseBody
     public List<VStudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto){
-        System.out.println("시작");
         List<VStudyEntity> result = new ArrayList<>();
+        List<VStudyEntity> temp = new ArrayList<>();
 
-        List<VStudyEntity> findPid;
-        List<VStudyEntity> findPName;
-        List<VStudyEntity> findReportStatus;
-        List<VStudyEntity> findModality;
+        List<VStudyEntity> findPid = new ArrayList<>();
+        List<VStudyEntity> findPName = new ArrayList<>();
+        List<VStudyEntity> findReportStatus = new ArrayList<>();
+        List<VStudyEntity> findModality = new ArrayList<>();
+
+        boolean pidFlag = false;
+        boolean pNameFlag = false;
+        boolean reportStatusFlag = false;
+        boolean modalityFlag = false;
+
+        boolean start = false;
 
         String pid = searchRequestDto.getPid();
         String pname = searchRequestDto.getPname();
-        System.out.println(pname);
         int reportstatus = searchRequestDto.getReportstatus();
         String modality = searchRequestDto.getModality();
-
-        if(!(pid == null || pid.isEmpty())){
+        Date startDate = searchRequestDto.getStartDate();
+        Date endDate = searchRequestDto.getEndDate();
+        System.out.println(startDate + "- " + endDate);
+        if(!pid.isEmpty()){
             findPid = searchService.findByPidLike(pid);
+            pidFlag = true;
         }
 
-        if(!(pname == null || pname.isEmpty())){
+        if(!pname.isEmpty()){
             findPName = searchService.findByPnameLike(pname);
+            pNameFlag = true;
         }
 
-        if(!(reportstatus == -1)){
+        if(reportstatus != -1){
             findReportStatus = searchService.findByReportstatus(reportstatus);
+            reportStatusFlag = true;
         }
 
-        if(!(modality == null || modality.isEmpty())){
+        if(!modality.isEmpty()){
             findModality = searchService.findByModality(modality);
+            modalityFlag = true;
         }
 
-        System.out.println(pname);
-        result = searchService.findByModality(modality);
+        if(pidFlag){
+            result.addAll(findPid);
+            start = true;
+        }
+
+        if(pNameFlag && !start){
+            result.addAll(findPName);
+            start = true;
+        } else if (pNameFlag && start) {
+            for(int i=0; i<findPName.size(); i++){
+                VStudyEntity vStudyEntity = findPName.get(i);
+
+                for(int j=0; j<result.size(); j++){
+                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
+                        temp.add(vStudyEntity);
+                    }
+                }
+            }
+            result.clear();
+            result.addAll(temp);
+            temp.clear();
+        }
+
+        if(reportStatusFlag && !start){
+            result.addAll(findReportStatus);
+            start = true;
+        } else if (reportStatusFlag && start) {
+            for(int i=0; i<findReportStatus.size(); i++){
+                VStudyEntity vStudyEntity = findReportStatus.get(i);
+
+                for(int j=0; j<result.size(); j++){
+                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
+                        temp.add(vStudyEntity);
+                    }
+                }
+            }
+            result.clear();
+            result.addAll(temp);
+            temp.clear();
+        }
+
+        if(modalityFlag && !start){
+            result.addAll(findModality);
+            start = true;
+        } else if (modalityFlag && start) {
+            for(int i=0; i<findModality.size(); i++){
+                VStudyEntity vStudyEntity = findModality.get(i);
+
+                for(int j=0; j<result.size(); j++){
+                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
+                        temp.add(vStudyEntity);
+                    }
+                }
+            }
+            result.clear();
+            result.addAll(temp);
+            temp.clear();
+        }
+
 
         return  result;
+
     }
 
 }
