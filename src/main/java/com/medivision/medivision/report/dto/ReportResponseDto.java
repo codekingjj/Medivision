@@ -28,9 +28,9 @@ public class ReportResponseDto {
     private Timestamp modDate;
     private String typeDecode;
 
-    private String writerCode;
+    private String writerName;
 
-    public ReportResponseDto(ReportEntity reportEntity, String writerCode) {
+    public ReportResponseDto(ReportEntity reportEntity, String writerName) {
         this.reportIndex = reportEntity.getReportIndex();
         this.studyKey = reportEntity.getStudyKey();
         this.writer = reportEntity.getWriter();
@@ -41,7 +41,7 @@ public class ReportResponseDto {
         this.regDate = reportEntity.getRegDate();
         this.modDate = reportEntity.getModDate();
         this.typeDecode = reportEntity.getTypeDecode();
-        this.writerCode = writerCode;
+        this.writerName = writerName;
     }
 
 }
