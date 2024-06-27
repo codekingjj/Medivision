@@ -10,9 +10,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class PatientBookmarkService {
-    private final VStudyRepository studyRepository;
+    private final PatientBookmarkRepository patientBookmarkRepository;
 
-    public List<VStudyEntity> findAll() {
-        return studyRepository.findAll();
+    public List<PatientBookmark> findByUserCode(int userCode) {
+        return patientBookmarkRepository.findByUserCode(userCode);
+    }
+
+    public List<PatientBookmark> findPatientAllUserCode(int userCode) {
+        //return patientBookmarkRepository.findPatientAllByUserCode(userCode);
+        return null;
     }
 }

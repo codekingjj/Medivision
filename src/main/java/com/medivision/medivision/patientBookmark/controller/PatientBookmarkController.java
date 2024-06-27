@@ -1,5 +1,6 @@
 package com.medivision.medivision.patientBookmark.controller;
 
+import com.medivision.medivision.patientBookmark.domain.PatientBookmark;
 import com.medivision.medivision.patientBookmark.domain.PatientBookmarkService;
 import com.medivision.pacs.entity.VStudyEntity;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,10 @@ public class PatientBookmarkController {
     }
 
     @GetMapping("/all")
-    public List<VStudyEntity> findAll(){
-        List<VStudyEntity> studies = patientBookmarkService.findAll();
+    public List<PatientBookmark> findByUserCode(){
+        int userCode = 1;
+        List<PatientBookmark> patientBookmarks = patientBookmarkService.findByUserCode(userCode);
 
-        return studies;
+        return patientBookmarks;
     }
 }
