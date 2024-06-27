@@ -10,6 +10,10 @@ import java.util.List;
 public interface VStudyRepository extends JpaRepository<VStudyEntity, Integer> {
 
 
+
+
+    List<VStudyEntity> findByPid(String pid);
+
     List<VStudyEntity> findByModality(String modality);
 
 //    되는 코드들
