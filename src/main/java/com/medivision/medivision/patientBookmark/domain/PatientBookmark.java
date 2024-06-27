@@ -19,7 +19,7 @@ public class PatientBookmark {
 
     @Id
     @Column(name = "pid")
-    private int pid;
+    private String pid;
 
     private Timestamp createdDate;
 }
