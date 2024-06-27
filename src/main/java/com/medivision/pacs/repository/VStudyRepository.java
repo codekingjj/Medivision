@@ -11,6 +11,7 @@ public interface VStudyRepository extends JpaRepository<VStudyEntity, Integer> {
 
 
 
+
     List<VStudyEntity> findByPid(String pid);
 
     List<VStudyEntity> findByModality(String modality);
@@ -21,4 +22,6 @@ public interface VStudyRepository extends JpaRepository<VStudyEntity, Integer> {
     List<VStudyEntity> findByPnameLike(String pname);
 
     List<VStudyEntity> findByReportstatus(int reportstatus);
+
+
 }

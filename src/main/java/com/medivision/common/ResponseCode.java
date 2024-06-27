@@ -10,6 +10,11 @@ public interface ResponseCode {
     String VALIDATION_FAILED = "VE";
     String NOT_EXISTED_USER = "NU";
     String NOT_EXISTED_BOARD = "NB";
+    String NOT_EXISTED_STUDY = "NS";
+    String NOT_EXISTED_REPORT = "NR";
+
+    String SPARE_REPORT_ALREADY_EXIST = "SR";
+    String REPORT_ALREADY_FULL = "RF";
 
     // HTTP Status 401
     String SIGN_IN_FAIL = "SF";
