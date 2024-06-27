@@ -38,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
         AdminEntity result = adminRepository.findById(dto.getUserCode()).orElseThrow();
         if(result == null) return SignUpResponseDto.databaseError();
         result.setSignup(true);
-
+        adminRepository.save(result);
 
         boolean dupulicateId = true;
         String id = "";
@@ -57,7 +57,7 @@ public class AdminServiceImpl implements AdminService {
         System.out.println("password(after): "+passwordEncoder.toString());
 
         userRepository.save(user);
-        return SignUpResponseDto.success();
+        return SignUpResponseDto.success(id);
     }
 
     @Override
