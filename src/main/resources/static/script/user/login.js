@@ -24,3 +24,15 @@ function onsubmitForm(){
             });
     }
 }
+function onClickPasswordTypeHandler(){
+    const passwordInput = document.querySelector('.login-write-button');
+    const imageBox = document.querySelector('.password-type-image-box');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        imageBox.classList.add('show');
+    } else {
+        passwordInput.type = 'password';
+        imageBox.classList.remove('show');
+    }
+}
