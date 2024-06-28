@@ -4,19 +4,18 @@
 //     from "@cornerstonejs/tools/dist/cjs/utilities/segmentation/InterpolationManager/InterpolationManager";
 // import cornerstone3DTools
 //     from "@cornerstonejs/tools/src/utilities/segmentation/InterpolationManager/InterpolationManager";
-
-
-
-
-
+//
+//
+//
+//
 //
 // cornerstone3DTools.addTool(ZoomTool);
 // cornerstone3DTools.addTool(WindowLevelTool);
 //
 // const toolGroupId = 'ToolGroup';
 // const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
-
-
+//
+//
 // toolGroup.addTool(ZoomTool.toolName);
 // toolGroup.addTool(WindowLevelTool.toolName);
 //
