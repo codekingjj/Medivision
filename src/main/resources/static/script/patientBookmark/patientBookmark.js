@@ -4,16 +4,7 @@ window.onload = () => {
 
 function deleteCheckedStudiesToPatientBookmark() {
     const checkedCheckboxes = $(".study-checkbox:checked");
-
-    const checkedCheckboxIds = [];
-
-    checkedCheckboxes.each(function() {
-        checkedCheckboxIds.push(this.id);
-    })
-
-    console.log(checkedCheckboxIds)
-
-    const data = { pids: checkedCheckboxIds };
+    const data = { pids: getIdsOfCheckedCheckboxes(checkedCheckboxes) };
 
     $.ajax({
         url: "/patientBookmark/delete",
@@ -21,15 +12,38 @@ function deleteCheckedStudiesToPatientBookmark() {
         data: JSON.stringify(data),
         contentType: "application/json",
         success: function(data) {
+            window.location.href = "/patientBookmark/all";
         },
         error: function(error) {
-            console.error('Error fetching data', error);
+            console.log(error);
         }
     });
 }
 
 function addCheckedStudiesToPatientBookmark() {
     const checkboxChecked = $(".study-checkbox:checkbox:checked");
+    const data = { pids: getIdsOfCheckedCheckboxes(checkedCheckboxes) };
 
-    console.log(checkboxChecked);
+    $.ajax({
+        url: "/patientBookmark/add",
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function(data) {
+            window.location.href = "/patientBookmark/all";
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function getIdsOfCheckedCheckboxes(checkboxes) {
+    const checkedCheckboxIds = [];
+
+    checkboxes.each(function() {
+        checkedCheckboxIds.push(this.id);
+    });
+
+    return checkedCheckboxIds;
 }
