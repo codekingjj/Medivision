@@ -2,6 +2,25 @@ $(document).ready(function() {
 
     let count = "";
 
+    let startDate = $('#startDate').val();
+    let endDate = $('#endDate').val();
+    $("#startDate").on("change", function(event) {
+        startDate = $('#startDate').val();
+        console.log(startDate);
+        console.log(typeof startDate);
+    });
+
+
+    $("#endDate").on("change", function(event) {
+        endDate = $('#endDate').val();
+        console.log(endDate);
+        console.log(typeof endDate);
+    });
+    console.log(startDate);
+    console.log(endDate);
+
+    document.getElementById('endDate').value = new Date().toISOString().substring(0, 10);
+
     $('#search-form').submit(function(event) {
         event.preventDefault();
         fetchData();
