@@ -4,8 +4,6 @@
 <head>
     <title>검색</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="script/search.js"></script>
-    <link href="style/search.css" rel="stylesheet">
 </head>
 <body>
 <header>

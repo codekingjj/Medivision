@@ -1,19 +1,35 @@
 let stompClient = null;
 
 function connect() {
-    var socket = new SockJS('/chat');
+    const WEBSOCKET_END_POINT = "/chat";
+
+    let socket = new SockJS(WEBSOCKET_END_POINT);
+
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/chat/messages', function (message) {
+
+    stompClient.connect({}, function () {
+        console.log("Connected");
+
+        stompClient.subscribe('/topic/messages', function (message) {
             showMessage(message.body);
         });
     });
 }
 
 function sendMessage() {
-    var message = document.getElementById('messageInput').value;
-    stompClient.send("/chat/sendMessage", {}, message);
+    let message = document.getElementById('messageInput').value;
+    const roomId = 1;
+    const userCode = 1;
+
+    const data = {
+        roomId: roomId,
+        senderUserCode: userCode,
+        message: message,
+    };
+
+    stompClient.send("/chat/sendMessage", {}, JSON.stringify(data));
+
+    console.log("message sent");
 }
 
 function showMessage(message) {
@@ -24,3 +40,7 @@ function showMessage(message) {
 }
 
 connect();
+
+window.onload = () => {
+
+};

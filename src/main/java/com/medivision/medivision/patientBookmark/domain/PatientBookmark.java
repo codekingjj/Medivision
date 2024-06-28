@@ -1,6 +1,6 @@
 package com.medivision.medivision.patientBookmark.domain;
 
-import com.medivision.medivision.chat.roomMember.domain.ChatRoomMemberId;
+import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,4 +22,9 @@ public class PatientBookmark {
     private String pid;
 
     private Timestamp createdDate;
+
+    public PatientBookmark(PatientBookmarkRequestDto patientBookmarkResponseDto) {
+        this.userCode = patientBookmarkResponseDto.getUserCode();
+        this.pid = patientBookmarkResponseDto.getPid();
+    }
 }

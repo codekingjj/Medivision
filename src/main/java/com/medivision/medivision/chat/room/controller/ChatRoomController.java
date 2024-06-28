@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/chatRoom")
 public class ChatRoomController {
     private final ChatRoomService chatRoomService;
-    private final int userCode = 2;
+    private int userCode = 2;
 
     @GetMapping("/all")
     public ModelAndView findChatRoomAllByUserCode() {
