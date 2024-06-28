@@ -5,10 +5,39 @@
     font-family: Arial, sans-serif;
 }
 
-.body {
+header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+
+    padding: 10px;
+    color: white;
+}
+
+header .logo img {
+    height: 50px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+    background-color: #00673B;
+    background-size : 1000px 10000px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+aside {
+    background-color: #00673B;
+    display: flex;
+
 }
