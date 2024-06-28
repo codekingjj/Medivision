@@ -83,8 +83,8 @@
             </select>
 
             <label >날짜</label>
-            <input type="date" id="startDate" name="startDate" value="2000-01-01">
-            <input type="date" id="endDate" name="endDate" value="2000-01-01">
+            <input type="date" id="startDate" name="startDate" value="1990-01-01">
+            <input type="date" id="endDate" name="endDate" >
 
             <button type="submit">검색</button>
         </form>
