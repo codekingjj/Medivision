@@ -6,6 +6,8 @@ body{
 
 table{
     width:100%;
+    border-spacing: 0px;
+    border-collapse: collapse
 }
 
 #th-1{
@@ -29,11 +31,17 @@ th{
 
 td{
     height: 30px;
-    background-color : #F1F1F1;
     color : black;
     text-align: center;
 }
 
+#tr1,#tr3{
+    background-color : #F1F1F1;
+}
+
+#tr2{
+    background-color : #FAFAFA;
+}
 
 div#content-container{
     height: 250px;
@@ -70,6 +78,10 @@ input[type="button"]{
     font-size: 1.2em;
 }
 
+#spare-report{
+    margin-right: 5px;
+}
+
 input[type="button"]{
     margin-right: auto;
     background-color: dimgrey;
@@ -77,9 +89,13 @@ input[type="button"]{
 }
 
 input[type="submit"]:hover,
-input[type="button"],
-#tr1,#tr2,#tr3{
+input[type="button"]:hover,
+table:hover{
     cursor: pointer;
+}
+
+thead:hover{
+    cursor : default;
 }
 
 #report{
@@ -88,15 +104,17 @@ input[type="button"],
     border: none;
 }
 
-#close{
-    display: flex;
-    width: 800px;
+#spare-report{
+    margin-left : 300px;
+}
+
+#report{
+    margin-left : 5px;
 }
 
 #close-button{
-    margin-left: auto;
+    margin-left: 240px;
 }
-
 
 
 

@@ -57,15 +57,15 @@
                 <textarea id="comment"  rows="2" style="overflow:hidden;"></textarea>
                 <textarea id="empty" rows="1" readonly></textarea>
             </div>
-            <input type="submit" id="spare-report" value="예비판독">
-            <input type="submit" id="report" value="판독">
+
+            <div id="button">
+                <input type="submit" id="spare-report" value="예비판독">
+                <input type="submit" id="report" value="판독">
+
+                <input id="close-button" type="button" value="닫기" />
+            </div>
         </form>
     </div>
-    <div id="close">
-        <input id="close-button" type="button" value="닫기" onclick="close()" />
-    </div>
-
-<%--    <input type="button" value="팝업" onclick="popup(1);" />--%>
 </div>
 
 </body>
