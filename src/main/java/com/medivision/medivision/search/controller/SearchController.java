@@ -38,21 +38,24 @@ public class SearchController {
         List<VStudyEntity> findPName = new ArrayList<>();
         List<VStudyEntity> findReportStatus = new ArrayList<>();
         List<VStudyEntity> findModality = new ArrayList<>();
+        List<VStudyEntity> findAll = findAll();
 
         boolean pidFlag = false;
         boolean pNameFlag = false;
         boolean reportStatusFlag = false;
         boolean modalityFlag = false;
-
+        boolean dateFlag = false;
         boolean start = false;
 
         String pid = searchRequestDto.getPid();
         String pname = searchRequestDto.getPname();
         int reportstatus = searchRequestDto.getReportstatus();
         String modality = searchRequestDto.getModality();
-        Date startDate = searchRequestDto.getStartDate();
-        Date endDate = searchRequestDto.getEndDate();
-        System.out.println(startDate + "- " + endDate);
+        int startDate = searchService.dateformat(searchRequestDto.getStartDate());
+        int endDate = searchService.dateformat(searchRequestDto.getEndDate());
+
+        System.out.println(startDate + " " + endDate);
+
         if(!pid.isEmpty()){
             findPid = searchService.findByPidLike(pid);
             pidFlag = true;
@@ -72,11 +75,15 @@ public class SearchController {
             findModality = searchService.findByModality(modality);
             modalityFlag = true;
         }
+        if(startDate <= endDate){
+            dateFlag = true;
+        }
 
         if(pidFlag){
             result.addAll(findPid);
             start = true;
         }
+
 
         if(pNameFlag && !start){
             result.addAll(findPName);
@@ -132,6 +139,22 @@ public class SearchController {
             temp.clear();
         }
 
+        if(dateFlag && !start){
+            start = true;
+            result = searchService.findDateSearch(startDate,endDate);
+
+        }else if (dateFlag && start) {
+            for(int i=0; i<result.size(); i++){
+                VStudyEntity vStudyEntity = result.get(i);
+                int date = searchService.dateformat(vStudyEntity.getStudydate());
+                if(date >= startDate && date <= endDate){
+                    temp.add(vStudyEntity);
+                }
+            }
+            result.clear();
+            result.addAll(temp);
+            temp.clear();
+        }
 
         return  result;
 
