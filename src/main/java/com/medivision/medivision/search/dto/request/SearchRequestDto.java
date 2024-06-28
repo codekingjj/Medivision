@@ -16,8 +16,8 @@ public class SearchRequestDto {
     private String pname;
     private String modality;
     private String studydesc;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private int reportstatus;
     private int examstatus;
 }
