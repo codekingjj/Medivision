@@ -1,5 +1,7 @@
 package com.medivision.medivision.user.controller;
 
+import com.medivision.medivision.jwt.JwtProvider;
+import com.medivision.medivision.log.login.domain.service.LoginLogService;
 import com.medivision.medivision.user.domain.Paging;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.service.AdminService;
@@ -24,6 +26,7 @@ public class UserController {
 
     private final AdminService adminService;
     private final UserService userService;
+    private final LoginLogService loginLogService;
     @PostMapping("/auth/sign-up")
     public String signup(@RequestParam("userCode") int userCode, Model model){
         SignUpRequestDto requestBody = new SignUpRequestDto();
@@ -48,9 +51,9 @@ public class UserController {
         requestBody.setUserId(userId);
         requestBody.setUserPassword(userPassword);
         ResponseEntity<? super  SignInResponseDto> response = userService.signin(requestBody);
+        loginLogService.saveLogin(userId);
         return response;
     }
-
 
     @GetMapping("/admin")
     public String userList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
@@ -93,6 +96,11 @@ public class UserController {
         if(isCheck)
             return "redirect:/admin";
         return "redirect:/auth/select";
+    }
+    @PostMapping("/test3")
+    public String ad(@AuthenticationPrincipal String code){
+        System.out.println("code: "+code);
+        return "index";
     }
 
 }

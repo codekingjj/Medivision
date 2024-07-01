@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: jujae
+  Date: 2024-07-01
+  Time: 오후 5:59
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!doctype html>
 <html lang="en">
@@ -8,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>header</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/log.css">
 </head>
 <body>
 <div class="container">
@@ -46,7 +54,31 @@
         </div>
     </div>
     <div class="aside"></div>
-    <div class="content"></div>
+    <div class="content">
+        <div class="content-top">
+            <div class="content-top-title">로그인 로그 기록</div>
+        </div>
+        <div class="content-bottom">
+            <div class="content-bottom-box">
+                <div class="content-bottom-table">
+                    <table class="log-table">
+                        <thead>
+                        <th>아이디</th>
+                        <th>아이피</th>
+                        <th>접속시간</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>sadf</th>
+                            <th>127.0.0.1</th>
+                            <th>2024.12.30 15:30</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="footer">
         <div class="footer-left">
             copyright@Megastudy
