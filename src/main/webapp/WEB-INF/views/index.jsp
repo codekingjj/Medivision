@@ -47,7 +47,12 @@
     </div>
     <div class="aside"></div>
     <div class="content"></div>
-    <div class="footer"></div>
+    <div class="footer">
+        <div class="footer-left">
+            copyright@Megastudy
+        </div>
+        <div class="footer-right"></div>
+    </div>
 </div>
 </body>
 </html>
