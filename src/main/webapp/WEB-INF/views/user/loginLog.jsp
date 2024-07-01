@@ -54,8 +54,37 @@
         </div>
     </div>
     <div class="aside"></div>
-    <div class="content"></div>
-    <div class="footer"></div>
+    <div class="content">
+        <div class="content-top">
+            <div class="content-top-title">로그인 로그 기록</div>
+        </div>
+        <div class="content-bottom">
+            <div class="content-bottom-box">
+                <div class="content-bottom-table">
+                    <table class="log-table">
+                        <thead>
+                        <th>아이디</th>
+                        <th>아이피</th>
+                        <th>접속시간</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>sadf</th>
+                            <th>127.0.0.1</th>
+                            <th>2024.12.30 15:30</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-left">
+            copyright@Megastudy
+        </div>
+        <div class="footer-right"></div>
+    </div>
 </div>
 </body>
 </html>
