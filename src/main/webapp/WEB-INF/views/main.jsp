@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>header</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css">
 </head>
 <body>
 <div class="container">
@@ -45,7 +45,6 @@
             </div>
         </div>
     </div>
-    <div class="aside"></div>
     <div class="content"></div>
     <div class="footer">
         <div class="footer-left">
