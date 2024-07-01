@@ -1,0 +1,186 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: grid;
+    grid-template-rows: 1fr 4fr 0.5fr;
+    grid-template-columns: 200px 6fr;
+    grid-template-areas:
+    "header header header header"
+    "aside content content content"
+    "footer footer footer footer";
+    min-height: 100vh;
+    gap: 10px;
+}
+.header{
+    margin-top: 10px;
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-top{
+    display: flex;
+    height: 70%;
+    justify-content: space-between;
+}
+.logo {
+    width: 20%;
+    height: 100%;
+}
+
+.mark {
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-size: 130% 180%;
+    background-image: url('/assets/medivision_logo.png');
+}
+
+.logout-box {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 10%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.logout-img {
+    width: 30px; /* 고정 너비 설정 */
+    height: 30px; /* 고정 높이 설정 */
+    background-position: 50% 50%;
+    background-size: cover;
+    background-image: url('/assets/exit.png');
+    margin-right: 5px; /* 텍스트와 이미지 사이 간격 */
+}
+
+.logout-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 150%;
+}
+.header-menu{
+    height: 30%;
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr 2fr;
+    height: 25%;
+
+    gap: 7px;;
+}
+.menu{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30, 121, 82, 1.0);
+    display: flex;
+    color: rgba(255, 255, 255, 1);
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+.selected,
+.option{
+    cursor: pointer;
+}
+.option:hover{
+    background-color: rgba(30, 121, 82, 0.6);
+}
+.selected{
+    background-color: rgba(30, 121, 82, 0.6);
+}
+.diselected-side-menu{
+    display: flex;
+}
+.side-menu{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    gap: 30px;
+    justify-content: end;
+}
+.side-menu-icon{
+    width: 8%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+}
+.side-menu-icon-chat{
+    cursor: pointer;
+    background-image: url(/assets/chat.png);
+}
+.side-menu-icon-bell{
+    background-image: url(/assets/bell.png);
+    cursor: pointer;
+}
+/* 드롭다운 메뉴 컨테이너 */
+.menu.selected.dropdown {
+    position: relative;
+    background-color: rgba(30, 121, 82, 0.6);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-title{
+    justify-self: center;
+    align-self: center;
+}
+
+/* 드롭다운 콘텐츠 박스 */
+.dropdown-content-box {
+    top: 100%;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* 드롭다운 항목 */
+.dropdown-content {
+    color: black;
+    padding: 10px 13px;
+    text-decoration: none;
+    display: block;
+}
+
+/* 드롭다운 항목에 마우스를 올렸을 때 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* 드롭다운이 열렸을 때 */
+.menu.selected.dropdown:hover .dropdown-content-box {
+    display: block;
+}
+
+/* 드롭다운 메뉴 컨테이너에 마우스를 올렸을 때 */
+.menu.selected.dropdown:hover {
+    background-color: rgba(30, 121, 82, 0.6);
+}
+.dropdown-content-a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 1);
+    display: block;
+    padding: 5px;
+}
+.aside{
+    grid-area: aside;
+    background-color: antiquewhite;
+}
+.content{
+    grid-area: content;
+    background-color: aquamarine;
+}
+.footer{
+    grid-area: footer;
+    background-color: darkgray;
+}
