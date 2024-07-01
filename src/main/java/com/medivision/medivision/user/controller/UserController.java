@@ -1,5 +1,6 @@
 package com.medivision.medivision.user.controller;
 
+import com.medivision.medivision.jwt.JwtProvider;
 import com.medivision.medivision.log.login.domain.service.LoginLogService;
 import com.medivision.medivision.user.domain.Paging;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
@@ -54,7 +55,6 @@ public class UserController {
         return response;
     }
 
-
     @GetMapping("/admin")
     public String userList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
 
@@ -96,6 +96,11 @@ public class UserController {
         if(isCheck)
             return "redirect:/admin";
         return "redirect:/auth/select";
+    }
+    @PostMapping("/test3")
+    public String ad(@AuthenticationPrincipal String code){
+        System.out.println("code: "+code);
+        return "index";
     }
 
 }
