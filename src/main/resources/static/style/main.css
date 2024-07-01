@@ -1,3 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+.container {
+    display: flex;
+    height: calc(100vh - 120px); /* Adjust based on header, tabs, footer height */
+}
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+#search-count {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.sidebar label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.sidebar input, .sidebar select, .sidebar button {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.sidebar .date-picker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .date-picker input {
+    width: 48%;
+}
+.main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.results-section {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.results-section th, .results-section td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.results-section th {
+    background-color: #f2f2f2;
+}
+.thumbnail {
+    width: 250px;
+    margin-left: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+.date-range {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.date-range input {
+    width: 48%;
+}
+.date-range span {
+    margin: 0 2%;
+}
+/*>>>>*/
 *{
     margin: 0;
     padding: 0;

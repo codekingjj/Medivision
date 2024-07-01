@@ -37,17 +37,29 @@ $(document).ready(function() {
             success: function(data) {
                 let tbody = $('.results-section tbody');
                 let countArea = $('#search-count');
+                console.log(data);
                 tbody.empty();
                 countArea.empty();
                 console.log(data);
                 count = '<p>' + data.length + '명의 환자를 찾았습니다.</p>';
                 countArea.append(count);
                 data.forEach(function(item) {
-                    var row = '<tr>' +
+                    if(item.reportstatus === 3){
+                        item.reportstatus = "읽지않음";
+                    }else if(item.reportstatus === 5){
+                        item.reportstatus = "예비판독";
+                    }else if(item.reportstatus === 6){
+                        item.reportstatus = "판독";
+                    }
+                    var row = '<tr id=' +item.studyKey +' class="tr-area" >' +
+                        '<td>' + item.pid + '</td>' +
                         '<td>' + item.pname + '</td>' +
                         '<td>' + item.modality + '</td>' +
                         '<td>' + item.studydesc + '</td>' +
                         '<td>' + item.studydate + '</td>' +
+                        '<td>' + item.reportstatus + '</td>' +
+                        '<td>' + item.seriescnt + '</td>' +
+                        '<td>' + item.imagecnt + '</td>' +
                         '</tr>';
                     tbody.append(row);
                 });
@@ -55,6 +67,35 @@ $(document).ready(function() {
             error: function(error) {
                 console.error('Error fetching data', error);
             }
+
+
         });
+    }
+
+    // 클릭시 studyKey 얻기
+    $('.results-section tbody').on('click', '.tr-area', function(e) {
+        let id = $(this).attr('id');
+        alert(id);
+        getThumbnail(id);
+
+    });
+
+    function getThumbnail(studyKey){
+        $.ajax({
+            url: '/search/',
+            type: 'GET',
+            data: id,
+            success: function (data){
+                let thumbnail = $('.thumbnail');
+                thumbnail.empty();
+                data.forEach(function(item) {
+                    let row = "테스테스테스트";
+                    thumbnail.append(row);
+                });
+            },error: function(error) {
+                console.error('Error fetching data', error);
+            }
+
+        })
     }
 });
