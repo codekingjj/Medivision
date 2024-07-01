@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -155,9 +154,20 @@ public class SearchController {
             result.addAll(temp);
             temp.clear();
         }
+        
+        
+        // 날짜기준 내림차순
+        if(result.size() > 0){
+            result.sort((v1, v2) -> {
+                int date1 = searchService.dateformat(v1.getStudydate());
+                int date2 = searchService.dateformat(v2.getStudydate());
+                return Integer.compare(date2, date1); // descending order
+            });
+        }
 
         return  result;
 
     }
+
 
 }
