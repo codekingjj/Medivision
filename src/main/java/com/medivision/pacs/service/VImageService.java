@@ -9,12 +9,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class service {
+public class VImageService {
 
-    private final VImageRepository vImageRepository;
-
-    public List<VImageEntity> findImage(int studyKey){
-        return  vImageRepository.findByStudyKey(studyKey);
-    }
 
 }
