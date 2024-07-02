@@ -236,7 +236,9 @@
     background-color: rgba(30, 121, 82, 1);
     cursor: pointer;
 }
-
+.aside-selected{
+    background-color: rgba(30, 121, 82, 0.6);
+}
 .aside-content:hover {
     background-color: rgba(30, 121, 82, 0.6);
 }
