@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
@@ -46,12 +47,13 @@ public class UserController {
     }
 
     @PostMapping("/auth/sign-in")
-    public ResponseEntity<? super SignInResponseDto> signin(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword){
+    public ResponseEntity<? super SignInResponseDto> signin(@RequestParam("userId") String userId, @RequestParam("userPassword") String userPassword, HttpServletRequest request){
         SignInRequestDto requestBody = new SignInRequestDto();
+        String ip = request.getRemoteAddr();
         requestBody.setUserId(userId);
         requestBody.setUserPassword(userPassword);
         ResponseEntity<? super  SignInResponseDto> response = userService.signin(requestBody);
-        loginLogService.saveLogin(userId);
+        loginLogService.saveLogin(userId, ip);
         return response;
     }
 
