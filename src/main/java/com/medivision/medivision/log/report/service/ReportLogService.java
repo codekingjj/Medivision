@@ -1,4 +1,4 @@
-package com.medivision.medivision.log.report.domain.service;
+package com.medivision.medivision.log.report.service;
 
 public interface ReportLogService {
 
