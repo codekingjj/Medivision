@@ -1,4 +1,4 @@
-    fetch("http://192.168.30.24:8080/log/login",{
+    fetch("http://192.168.40.97:8080/log/login",{
         method:"POST",
         headers:{
             'Authorization': "Bearer "+localStorage.getItem("jwt")
