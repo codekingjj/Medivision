@@ -3,12 +3,15 @@ package com.medivision.medivision.search.controller;
 import com.medivision.medivision.log.study.domain.service.StudyLogService;
 import com.medivision.medivision.search.domain.service.SearchService;
 import com.medivision.medivision.search.dto.request.SearchRequestDto;
+import com.medivision.pacs.entity.VSeriesEntity;
 import com.medivision.pacs.entity.VStudyEntity;
+import com.medivision.pacs.service.VSeriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -18,11 +21,51 @@ import java.util.*;
 public class SearchController {
 
     private final SearchService searchService;
+    private final VSeriesService vSeriesService;
+
     private final StudyLogService studyLogService;
 
     @GetMapping()
     public String search(){
         return "search/search";
+    }
+
+    @GetMapping("series")
+    @ResponseBody
+    public List<VSeriesEntity> getSeries(int studyKey){
+        List<VSeriesEntity> list = vSeriesService.findStudyKey(studyKey);
+        List<File> fileList = new ArrayList<>();
+        String driver = "Z:\\";
+        for(int i=0; i<list.size(); i++){
+            VSeriesEntity series = list.get(i);
+            String path = series.getPath();
+            String fileName = series.getFName();
+            String realPath = driver + path + fileName;
+            File file = new File(realPath);
+            fileList.add(file);
+        }
+
+
+        return list;
+    }
+
+    @GetMapping("file")
+    @ResponseBody
+    public List<File> getFiles(int studyKey){
+        List<VSeriesEntity> list = vSeriesService.findStudyKey(studyKey);
+        List<File> fileList = new ArrayList<>();
+        String driver = "Z:\\";
+        for(int i=0; i<list.size(); i++){
+            VSeriesEntity series = list.get(i);
+            String path = series.getPath();
+            String fileName = series.getFName();
+            String realPath = driver + path + fileName;
+            File file = new File(realPath);
+            fileList.add(file);
+        }
+
+
+        return fileList;
     }
 
     @GetMapping("findall")
@@ -178,6 +221,7 @@ public class SearchController {
         return  result;
 
     }
+
 
 
 }
