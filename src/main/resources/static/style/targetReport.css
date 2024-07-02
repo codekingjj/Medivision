@@ -1,0 +1,40 @@
+
+body{
+    width: 800px;
+    margin:auto;
+    margin-top: 30px;
+}
+
+pre{
+    font-size: 1.2em;
+}
+
+
+input[type="button"] {
+    margin-right: auto;
+    background-color: dimgrey;
+    color: white;
+    margin-top: 10px;
+    width: 80px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+input[type="button"]:hover{
+    cursor : pointer;
+}
+
+#close{
+    display: flex;
+    width: 800px;
+}
+
+#close-button{
+    margin-left: auto;
+}
+
+#report-title{
+    text-align: center;
+}

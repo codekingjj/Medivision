@@ -58,6 +58,18 @@ public class ReportService {
         return ReportResponse.getReportSuccess(result);
     }
 
+    public ReportResponseDto getTarget(int reportIndex){
+        ReportEntity report = reportRepository.findByReportIndex(reportIndex);
+        if(report == null) return null;
+
+        int writer = report.getWriter();
+        AdminEntity admin = adminRepository.findByUserCode(writer);
+        String writerName = admin.getUserName();
+        System.out.println("writerName : "+writerName);
+        ReportResponseDto target = new ReportResponseDto(report, writerName);
+        return target;
+    }
+
     public ResponseEntity<? super ReportResponse> createReport(ReportRequestDto reportDto){
         int writer = reportDto.getWriter();
         AdminEntity admin = adminRepository.findByUserCode(writer);
@@ -85,12 +97,14 @@ public class ReportService {
 
     private boolean checkSpareReport(ReportRequestDto reportRequestDto){
         int studyKey = reportRequestDto.getStudyKey();
+        int writer = reportRequestDto.getWriter();
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
         for(ReportEntity reportEntity : list){
             String typeDecode = reportEntity.getTypeDecode();
             if("예비판독".equals(typeDecode)){
                 return false;
-            }
+            }else if(reportEntity.getWriter() == writer)
+                return false;
         }
 
         return true;
@@ -98,6 +112,7 @@ public class ReportService {
 
     private boolean checkReportList(ReportRequestDto reportRequestDto){
         int studyKey = reportRequestDto.getStudyKey();
+        int writer = reportRequestDto.getWriter();
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
 
         int cnt = 0;
@@ -105,7 +120,8 @@ public class ReportService {
             String typeDecode = reportEntity.getTypeDecode();
             if("판독".equals(typeDecode)){
                 cnt ++;
-            }
+            }else if(reportEntity.getWriter() == writer)
+                return false;
         }
 
         if(cnt == 2)return false;
