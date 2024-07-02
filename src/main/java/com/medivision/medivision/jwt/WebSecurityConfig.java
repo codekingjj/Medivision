@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                 .antMatchers("/","/main/**","/admin/**","/auth/**","/viewer/**","/test","/test232","/search/**","/style/**","/assets/**", "/js/**",
                         "/static/**",
                         "/script/**","/reportPage","/patientBookmark/**",
-                        "/report/{**}","/reports/{**}","/report/targetReport","/report")
+                        "/report/{**}","/reports/{**}","/report/targetReport**","/report")
                 .permitAll() //매칭에 따라서 작업 여부
                 .antMatchers(HttpMethod.GET,"/board/**").permitAll()
                 .anyRequest().authenticated().and()
