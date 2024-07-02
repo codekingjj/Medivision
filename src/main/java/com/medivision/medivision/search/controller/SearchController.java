@@ -1,12 +1,15 @@
 package com.medivision.medivision.search.controller;
 
+import com.medivision.medivision.log.study.domain.service.StudyLogService;
 import com.medivision.medivision.search.domain.service.SearchService;
 import com.medivision.medivision.search.dto.request.SearchRequestDto;
 import com.medivision.pacs.entity.VStudyEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -15,6 +18,7 @@ import java.util.*;
 public class SearchController {
 
     private final SearchService searchService;
+    private final StudyLogService studyLogService;
 
     @GetMapping()
     public String search(){
@@ -29,7 +33,13 @@ public class SearchController {
 
     @GetMapping("detail")
     @ResponseBody
-    public List<VStudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto){
+    public List<VStudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto, @AuthenticationPrincipal String userCode, HttpServletRequest request){
+
+        // study 열람시 로그 찍기 로직
+        String ip = request.getRemoteAddr();
+        int studyKey = searchRequestDto.getStudyKey();
+        studyLogService.saveStudyLog(userCode,studyKey,ip);
+
         List<VStudyEntity> result = new ArrayList<>();
         List<VStudyEntity> temp = new ArrayList<>();
 
