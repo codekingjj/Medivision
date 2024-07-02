@@ -26,9 +26,10 @@
         justify-content: center;
 
         min-width: 100%;
-        min-height: 80%;
+        height: 80%;
     }
     .content-bottom-box{
+        overflow-y: auto;
         min-width: 95%;
         min-height: 90%;
         border: 2px solid rgba(0, 0, 0, 0.6);
