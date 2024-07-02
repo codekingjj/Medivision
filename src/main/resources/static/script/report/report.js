@@ -1,11 +1,10 @@
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
     // const studyKey = window.opener.studyKey;
-    const studyKey = 1
+    const studyKey = 1;
+
     let decodeType ="";
     let reportData = null;
-
-    let reportIndex = [];
     getReport()
 
     function getReport(){
@@ -20,16 +19,14 @@ $(document).ready(function() {
             console.log(res);
             console.log(data);
             let num = 1;
-            reportIndex = [];
             data.forEach(function(report){
                 console.log(report);
-
-                reportIndex.push(report.reportIndex);
                 const tr = `tr${num}`;
 
                 const trE = document.querySelector(`#${tr}`);
                 console.log(trE);
                 trE.replaceChildren();
+                trE.id = report.reportIndex;
 
                 const td1 = document.createElement('td');
                 td1.className = tr;
@@ -58,7 +55,6 @@ $(document).ready(function() {
         });
     }
 
-
     function timestamp(dates){
         const regDate = new Date(dates);
 
@@ -74,25 +70,51 @@ $(document).ready(function() {
         return result;
     }
 
+    let pop;
+
+    window.onunload = function() { pop.close(); }
+
+    function popup(index) {
+
+        var url = `/report/targetReport?index=${index}`;
+        var name = "targetReport";
+        var option = "width=800, height=500, left=100, top=50, location=no";
+
+        if(pop != null) pop.close;
+
+        pop = window.open(url, name, option);
+        console.log(pop);
+    }
+
+    $('#content-container').keyup( e => {
+        const textarea = e.target;
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+
+    $('#content-container').keydown( e => {
+        const textarea = e.target;
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+
+    $("#close-button").click(e =>{
+        window.close();
+    });
 
     $("table").click(e =>{
         console.log(e.target);
-
-        let report = null;
+        const index = e.target.parentNode.id;
 
         if("tr1" === e.target.id || "tr1" === e.target.className) report = 0;
         else if ("tr2" === e.target.id || "tr2" === e.target.className) report = 1;
         else if ("tr3" === e.target.id || "tr3" === e.target.className) report = 2;
 
-        if(report == null) return;
-        console.log(report);
-        reportData = reportIndex.at(`${report}`);
-        console.log(reportData);
-        if(reportData != null) {
-            popup();
-            sendMessage(reportData);
-        }
-    })
+        if(index == null) return;
+        console.log(index);
+
+        popup(index);
+    });
 
     $("form").click(e=>{
         if("예비판독" === e.target.value) decodeType = "예비판독";
@@ -126,7 +148,6 @@ $(document).ready(function() {
             return;
         }
 
-
         const req={
             "studyKey" : studyKey,
             "finding" : finding,
@@ -139,13 +160,18 @@ $(document).ready(function() {
         const token = localStorage.getItem("jwt")
 
         $.ajax({
-            "url" : "/report",
+            "url" : "/createReport",
             "method" : 'POST',
             "headers": {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },"data": JSON.stringify(req)
         }).then(res => {
+            if("SR"===res.code || "RF" === res.code){
+                alert("이미 작성했거나 해당 판독이 완료된 상태입니다.");
+                return;
+            }
+
             if("SU" === res.code){
                 $('#finding').val("");
                 $('#conclusion').val("");
@@ -155,42 +181,6 @@ $(document).ready(function() {
                 getReport();
             }
         });
-    });
-
-
-
-    let pop;
-
-    window.onunload = function() { pop.close(); }
-
-    function popup() {
-        var url = `/report/targetReport`;
-        var name = "targetReport";
-        var option = "width=800, height=500, left=100, top=50" //, location=no
-        pop = window.open(url, name, option);
-    }
-
-
-
-    // 2. 팝업창이 정상적으로 로드된 후 메세지 송신(부모창 A에게 메세지 송신)
-    function sendMessage(index) {
-        pop.postMessage(JSON.stringify({index: index}), window);
-    }
-
-    $('#content-container').keyup( e => {
-        const textarea = e.target;
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-    });
-
-    $('#content-container').keydown( e => {
-        const textarea = e.target;
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-    });
-
-    $("#close-button").click(e =>{
-        window.close();
     });
 
 });
