@@ -20,7 +20,10 @@ function onsubmitForm(){
         }).then(res => res.json())
             .then(response  => {
                 localStorage.setItem("jwt", response.token);
-                window.location.href = "/admin";
+                if(response.code === "SU")
+                    window.location.href = "/admin";
+                else
+                    alert("아이디 비밀번호를 확인해주세요");
             });
     }
 }
