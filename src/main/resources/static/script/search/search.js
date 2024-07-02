@@ -33,6 +33,9 @@ $(document).ready(function() {
         $.ajax({
             url: '/search/detail',
             type: 'GET',
+            headers:{
+                'Authorization': "Bearer "+localStorage.getItem("jwt")
+            },
             data: formData, // 폼 데이터를 전송
             success: function(data) {
                 let tbody = $('.results-section tbody');

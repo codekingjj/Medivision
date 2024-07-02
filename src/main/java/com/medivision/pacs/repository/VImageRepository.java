@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VImageRepository   extends JpaRepository<VImageRepository, Integer> {
+public interface VImageRepository   extends JpaRepository<VImageEntity, Integer> {
 
     List<VImageEntity> findByStudyKey(int studyKey);
 

@@ -22,12 +22,11 @@
         border-bottom: 2px solid black;
     }
     .content-bottom{
-        overflow-y: auto;
         display: flex;
         justify-content: center;
 
         min-width: 100%;
-        height: 80%;
+        min-height: 80%;
     }
     .content-bottom-box{
         min-width: 95%;
@@ -60,14 +59,6 @@
         height: auto;
         border-bottom: 2px solid black;
     }
-    .content-bottom{
-        overflow-y: auto;
-        display: flex;
-        justify-content: center;
-
-        min-width: 100%;
-        height: 80%;
-    }
     .content-bottom-box{
         width: 100%;
         height: 80vh;
@@ -89,7 +80,6 @@
     height: 80%;
 }
 .log-table{
-    border: 1px solid black;
 
 }
 .log-table thead{
@@ -97,10 +87,24 @@
 }
 .log-table th{
     font-size: 20px;
+    height: 40px;
 }
 .log-table th:first-child{
-    width: 100px;
+    width: 300px;
 }
 .log-table th{
-    width: 200px;
+    width: 500px;
+}
+.log-table tr{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 500;
+    height: 25px;
+}
+.log-table tr:nth-child(2n){
+    background-color: rgba(0, 0, 0, 0.03);
+}
+.log-table tr:nth-child(2n+1){
+    background-color: rgba(0, 0, 0, 0.05);
 }
