@@ -31,7 +31,7 @@
             <div class="menu selected dropdown">
                 <div class="dropdown-title">로그 기록 확인</div>
                 <div class="dropdown-content-box">
-                    <div class="dropdown-content"><a class="dropdown-content-a" href="#">로그인 로그 기록</a></div>
+                    <div class="dropdown-content"><a class="dropdown-content-a" onclick="">로그인 로그 기록</a></div>
                     <div class="dropdown-content"><a class="dropdown-content-a" href="#">환자 차트 열람 로그 기록</a></div>
                     <div class="dropdown-content"><a class="dropdown-content-a" href="#">리포트 로그 기록</a></div>
                 </div>

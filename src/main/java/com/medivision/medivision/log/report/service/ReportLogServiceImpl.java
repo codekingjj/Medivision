@@ -1,4 +1,4 @@
-package com.medivision.medivision.log.report.domain.service;
+package com.medivision.medivision.log.report.service;
 
 import com.medivision.medivision.log.report.domain.ReportLogEntity;
 import com.medivision.medivision.report.domain.service.ReportEntity;

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class VStudyEntity {
 
     @Id
-    private int StudyKey;
+    private int studyKey;
     private String pid;
     private String pname;
     private String modality;
