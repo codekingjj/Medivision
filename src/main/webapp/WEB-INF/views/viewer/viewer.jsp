@@ -29,6 +29,7 @@
 <div id="content"></div>
 <input id="file" type="file" accept="application/dicom">
 
+    <button id="invertButton">Invert Colors</button>
 </body>
 <script type="module" src="static/dist/bundle.js"></script>
 </html>

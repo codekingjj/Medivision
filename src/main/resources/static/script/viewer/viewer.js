@@ -1,7 +1,7 @@
 import * as cornerstone from '@cornerstonejs/core';
 import * as cornerstoneDICOMImageLoader from '@cornerstonejs/dicom-image-loader';
 import * as dicomParser from 'dicom-parser';
-import { init as csToolsInit } from "@cornerstonejs/tools";
+import {init as csToolsInit, SegmentationDisplayTool} from "@cornerstonejs/tools";
 import * as cornerstoneTools from "@cornerstonejs/tools";
 
 // 뷰 포트 생성
@@ -9,11 +9,15 @@ const content = document.getElementById('content');
 const element = document.createElement('div');console.log("진짜 뷰어");
 // 툴 정의
 const {
+    //도구 -> 돋보기
     MagnifyTool,
     TrackballRotateTool,
+    //도구 -> 확대, 축소
     ZoomTool,
     ToolGroupManager,
     Enums: csToolsEnums,
+    PanTool,
+    WindowLevelTool,
 } = cornerstoneTools;
 
 const { MouseBindings } = csToolsEnums;
@@ -29,7 +33,7 @@ const input = document.getElementById("file");
 input.addEventListener("change", (e) => {
     console.log("진짜뷰어");
     const files = e.target.files;
-    
+
     const reader = new FileReader();
     reader.onload = (file) => {
         const data = file.target.result;
@@ -82,15 +86,22 @@ const setTools = (viewportId, renderingEngineId) => {
     cornerstoneTools.addTool(MagnifyTool);
     cornerstoneTools.addTool(TrackballRotateTool);
     cornerstoneTools.addTool(ZoomTool);
+    cornerstoneTools.addTool(PanTool);
+    cornerstoneTools.addTool(WindowLevelTool);
+    // cornerstoneTools.addTool(SegmentationDisplayTool);
 
     const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
 
-    toolGroup.addTool(MagnifyTool.toolName, { cursor: 'move' });
+    toolGroup.addTool(MagnifyTool.toolName, { cursor: '' });
     toolGroup.addTool(TrackballRotateTool.toolName, { cursor: 'crosshair' });
     toolGroup.addTool(ZoomTool.toolName, { cursor: 'zoom-in' });
+    // toolGroup.addTool(SegmentationDisplayTool.toolName, {cursor: 'abc'});
+    // toolGroup.addTool(AnnotationDisplayTool.toolName, {cursor:'asd'});
+    toolGroup.addTool(PanTool.toolName, {cursor:'move'});
+    toolGroup.addTool(WindowLevelTool.toolName, {cursor:'light'});
 
     // 툴 활성화
-    toolGroup.setToolActive(MagnifyTool.toolName, {
+    toolGroup.setToolActive(WindowLevelTool.toolName, {
         bindings: [{ mouseButton: MouseBindings.Primary }],
     });
 
