@@ -1,33 +1,33 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>TargetReport</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/script/report/targetReport.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/targetReport.css">
+    <script src="${pageContext.request.contextPath}/script/report/targetReport.js"></script>
 </head>
 <body>
-<div id="content-container">
-    <div>
-        <h1 id="report-title"> 보고서</h1>
-    </div>
-    <div>
-        <h3>진단의 : </h3>
-        <h3 id="writer"></h3>
-    </div>
-    <div>
-        <h3>진단 시간 : </h3>
-        <h3 id="reg-date"></h3>
-    </div>
+<div id="document">
+        <div id="report" class="report">
+            <h1 id="report-title">${report.typeDecode} 보고서</h1>
+        </div>
+        <div>
+            <h3>진단의 : ${report.writerName}</h3>
+        </div>
+        <div>
+            <h3>진단 시간 : ${report.regDate}</h3>
+        </div>
 
-    <div>[Finding]</div>
-    <textarea id="finding" readonly></textarea>
-    <div>[Conclusion]</div>
-    <textarea id="conclusion" readonly></textarea>
-    <div>[Recommend]</div>
-    <textarea id="recommend" readonly></textarea>
-    <div>[comment]</div>
-    <textarea id="comment" readonly></textarea>
+        <div>[Finding]</div>
+        <pre><c:out value="${report.finding}" ></c:out></pre>
+        <div>[Conclusion]</div>
+        <pre><c:out value="${report.conclusion}" ></c:out></pre>
+        <div>[Recommend]</div>
+        <pre><c:out value="${report.recommend}" ></c:out></pre>
+        <div>[comment]</div>
+        <pre><c:out value="${report.comment}" ></c:out></pre>
 </div>
 
 <div id="close">
