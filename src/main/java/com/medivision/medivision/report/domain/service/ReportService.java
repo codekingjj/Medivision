@@ -58,6 +58,18 @@ public class ReportService {
         return ReportResponse.getReportSuccess(result);
     }
 
+    public ReportResponseDto getTarget(int reportIndex){
+        ReportEntity report = reportRepository.findByReportIndex(reportIndex);
+        if(report == null) return null;
+
+        int writer = report.getWriter();
+        AdminEntity admin = adminRepository.findByUserCode(writer);
+        String writerName = admin.getUserName();
+        System.out.println("writerName : "+writerName);
+        ReportResponseDto target = new ReportResponseDto(report, writerName);
+        return target;
+    }
+
     public ResponseEntity<? super ReportResponse> createReport(ReportRequestDto reportDto){
         int writer = reportDto.getWriter();
         AdminEntity admin = adminRepository.findByUserCode(writer);
