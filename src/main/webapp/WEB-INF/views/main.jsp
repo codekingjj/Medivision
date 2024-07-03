@@ -9,6 +9,7 @@
     <title>header</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
+    <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
 </head>
 <body>
 <div class="container">
@@ -20,7 +21,7 @@
             <div class="logout-box">
                 <div class="logout-img">
                 </div>
-                <div class="logout-text">
+                <div class="logout-text" onclick="">
                     로그아웃
                 </div>
             </div>
