@@ -8,6 +8,7 @@ import oracle.sql.TIMESTAMP;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,5 +24,5 @@ public class AlarmEntity {
     private String content;
     private boolean isCheck;
     @CreatedDate
-    private TIMESTAMP regDate;
+    private LocalDateTime regDate;
 }
