@@ -18,27 +18,11 @@
                     <th id="th-2">판독의</th>
                     <th id="th-3">코멘트</th>
                     <th id="th-4">판독 시간</th>
+                    <th id="th-5">수정</th>
                 </tr>
             </thead>
             <tbody id="report-list">
-                <tr id="tr1">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="tr2">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="tr3">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+
             </tbody>
         </table>
     </div>
