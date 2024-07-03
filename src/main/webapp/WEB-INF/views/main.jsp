@@ -43,7 +43,7 @@
                 <div class="side-menu">
                     <div class="side-menu-icon side-menu-icon-chat"></div>
                     <div class="side-menu-icon side-menu-icon-bell">
-                        <div class="nav-btn" id="notification"><span class="note-num">3</span></div>
+                        <div class="nav-btn" id="notification"></div>
                     </div>
                     <div class="alarm-box">
                         <div class="alarm-header">알림</div>
