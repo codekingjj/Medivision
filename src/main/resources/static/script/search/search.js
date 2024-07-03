@@ -1,3 +1,7 @@
+import * as cornerstone from '@cornerstonejs/core'
+import * as cornerstoneDICOMImageLoader from '@cornerstonejs/dicom-image-loader'
+import * as dicomParser from 'dicom-parser'
+
 $(document).ready(function() {
 
     let count = "";
@@ -33,9 +37,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/search/detail',
             type: 'GET',
-            headers:{
-                'Authorization': "Bearer "+localStorage.getItem("jwt")
-            },
+
             data: formData, // 폼 데이터를 전송
             success: function(data) {
                 let tbody = $('.results-section tbody');
@@ -79,107 +81,81 @@ $(document).ready(function() {
     $('.results-section tbody').on('click', '.tr-area', function(e) {
         let id = $(this).attr('id');
         alert(id);
-        getThumbnail(id);
-
     });
 
-    function getThumbnail(studyKey){
-        $.ajax({
-            url: '/search/',
-            type: 'GET',
-            data: id,
-            success: function (data){
-                let thumbnail = $('.thumbnail');
-                thumbnail.empty();
-                data.forEach(function(item) {
-                    let row = "테스테스테스트";
-                    thumbnail.append(row);
-                });
-            },error: function(error) {
-                console.error('Error fetching data', error);
-            }
-
-        })
-    }
-
-
-    import * as cornerstone from '@cornerstonejs/core'
-    import * as cornerstoneDICOMImageLoader from '@cornerstonejs/dicom-image-loader'
-    import * as dicomParser from 'dicom-parser'
-
-    const input = document.getElementById("file");
-
-// 뷰 포트 생성
-    const content = document.getElementById('content');
-    const element = document.createElement('div');
-    element.style.width = '500px';
-    element.style.height = '500px';
-
-    content.appendChild(element);
-
-// 파일 리딩
-    input.addEventListener("change", e => {
-        // 파일이 변화하면
-        // 파일을 읽고 -> 버퍼 (바이너리 데이터를 가져와)
-        // ImageId를 생성 (dicomweb://)
-        // 이미지 렌더링을 위한 render 메소드 완성
-
-        const files = e.target.files;
-
-        const reader = new FileReader();
-        reader.onload = (file) => {
-            const data = file.target.result;
-            render(data);
-        }
-        reader.readAsArrayBuffer(files[0]);
-    })
-
-    const render = (arrayBuffer) => {
-        // Get Cornerstone imageIds and fetch metadata into RAM
-        const imageId = `dicomweb:${URL.createObjectURL(new Blob([arrayBuffer], {type : 'application/dicom'}))}`;
-        console.log('imageId : ', imageId);
-
-        const imageIds = [imageId];
-
-        const renderingEngineId = 'myRenderingEngine';
-        const viewportId = 'CT_AXIAL_STACK';
-        const renderingEngine = new cornerstone.RenderingEngine(renderingEngineId);
-
-        const viewportInput = {
-            viewportId,
-            element,
-            type: cornerstone.Enums.ViewportType.STACK,
-        };
-
-        renderingEngine.enableElement(viewportInput);
-
-        const viewport = renderingEngine.getViewport(viewportInput.viewportId);
-
-        viewport.setStack(imageIds, 0);
-
-        viewport.render();
-    }
-
-    const init = async () => {
-        await cornerstone.init();
-
-        cornerstoneDICOMImageLoader.external.cornerstone = cornerstone;
-        cornerstoneDICOMImageLoader.external.dicomParser = dicomParser;
-
-        var config = {
-            maxWebWorkers: navigator.hardwareConcurrency || 1,
-            startWebWorkersOnDemand: true,
-            taskConfiguration: {
-                decodeTask: {
-                    initializeCodecsOnStartup: false,
-                },
-                sleepTask: {
-                    sleepTime: 3000,
-                },
-            },
-        };
-        cornerstoneDICOMImageLoader.webWorkerManager.initialize(config);
-    }
-
-    init();
+    //     const input = document.getElementById("file");
+    //
+    // // 뷰 포트 생성
+    //     const content = document.getElementById('content');
+    //     const element = document.createElement('div');
+    //     element.style.width = '500px';
+    //     element.style.height = '500px';
+    //
+    //     content.appendChild(element);
+    //
+    // // 파일 리딩
+    //     input.addEventListener("change", e => {
+    //         // 파일이 변화하면
+    //         // 파일을 읽고 -> 버퍼 (바이너리 데이터를 가져와)
+    //         // ImageId를 생성 (dicomweb://)
+    //         // 이미지 렌더링을 위한 render 메소드 완성
+    //
+    //         const files = e.target.files;
+    //
+    //         const reader = new FileReader();
+    //         reader.onload = (file) => {
+    //             const data = file.target.result;
+    //             render(data);
+    //         }
+    //         reader.readAsArrayBuffer(files[0]);
+    //     })
+    //
+    //     const render = (arrayBuffer) => {
+    //         // Get Cornerstone imageIds and fetch metadata into RAM
+    //         const imageId = `dicomweb:${URL.createObjectURL(new Blob([arrayBuffer], {type : 'application/dicom'}))}`;
+    //         console.log('imageId : ', imageId);
+    //
+    //         const imageIds = [imageId];
+    //
+    //         const renderingEngineId = 'myRenderingEngine';
+    //         const viewportId = 'CT_AXIAL_STACK';
+    //         const renderingEngine = new cornerstone.RenderingEngine(renderingEngineId);
+    //
+    //         const viewportInput = {
+    //             viewportId,
+    //             element,
+    //             type: cornerstone.Enums.ViewportType.STACK,
+    //         };
+    //
+    //         renderingEngine.enableElement(viewportInput);
+    //
+    //         const viewport = renderingEngine.getViewport(viewportInput.viewportId);
+    //
+    //         viewport.setStack(imageIds, 0);
+    //
+    //         viewport.render();
+    //     }
+    //
+    //     const init = async () => {
+    //         await cornerstone.init();
+    //
+    //         cornerstoneDICOMImageLoader.external.cornerstone = cornerstone;
+    //         cornerstoneDICOMImageLoader.external.dicomParser = dicomParser;
+    //
+    //         var config = {
+    //             maxWebWorkers: navigator.hardwareConcurrency || 1,
+    //             startWebWorkersOnDemand: true,
+    //             taskConfiguration: {
+    //                 decodeTask: {
+    //                     initializeCodecsOnStartup: false,
+    //                 },
+    //                 sleepTask: {
+    //                     sleepTime: 3000,
+    //                 },
+    //             },
+    //         };
+    //         cornerstoneDICOMImageLoader.webWorkerManager.initialize(config);
+    //     }
+    //
+    //     init();
 });

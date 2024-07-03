@@ -81,7 +81,7 @@ public class SearchController {
         // study 열람시 로그 찍기 로직
         String ip = request.getRemoteAddr();
         int studyKey = searchRequestDto.getStudyKey();
-        studyLogService.saveStudyLog(userCode,studyKey,ip);
+//        studyLogService.saveStudyLog(userCode,studyKey,ip);
 
         List<VStudyEntity> result = new ArrayList<>();
         List<VStudyEntity> temp = new ArrayList<>();
