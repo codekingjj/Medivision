@@ -20,7 +20,11 @@ table{
     width : 40%
 }
 #th-4{
-    width: 30%;
+    width: 25%;
+}
+
+#th-5{
+    width : 5%;
 }
 
 th{
@@ -38,7 +42,8 @@ td{
 tr{
     border : 1px solid black;
 }
-tr:hover{
+
+tr:hover >td{
     background-color: #6BB092;
 }
 
@@ -113,6 +118,25 @@ thead:hover{
 
 #close-button{
     margin-left: 240px;
+}
+
+.update{
+    width: 30px;
+    height: 20px;
+    font-size: 1.6em;
+    border : none;
+    border-radius: 10px;
+    padding-bottom: 30px;
+}
+
+.update:hover{
+    cursor:pointer;
+    color: #1E7952;
+    background-color: white;
+}
+
+.update-button:hover + td{
+    background-color: white;
 }
 
 
