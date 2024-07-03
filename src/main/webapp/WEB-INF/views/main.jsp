@@ -7,7 +7,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>header</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
 </head>
 <body>
 <div class="container">
@@ -31,7 +32,7 @@
             <div class="menu selected dropdown">
                 <div class="dropdown-title">로그 기록 확인</div>
                 <div class="dropdown-content-box">
-                    <div class="dropdown-content"><a class="dropdown-content-a" onclick="">로그인 로그 기록</a></div>
+                    <div class="dropdown-content"><a class="dropdown-content-a" href="#">로그인 로그 기록</a></div>
                     <div class="dropdown-content"><a class="dropdown-content-a" href="#">환자 차트 열람 로그 기록</a></div>
                     <div class="dropdown-content"><a class="dropdown-content-a" href="#">리포트 로그 기록</a></div>
                 </div>
@@ -40,18 +41,25 @@
             <div class="menu diselected-side-menu">
                 <div class="side-menu">
                     <div class="side-menu-icon side-menu-icon-chat"></div>
-                    <div class="side-menu-icon side-menu-icon-bell"></div>
+                    <div class="side-menu-icon side-menu-icon-bell">
+                        <div class="nav-btn" id="notification"><span class="note-num">3</span></div>
+                    </div>
+                    <div class="alarm-box">
+                        <div class="alarm-header">알림</div>
+                        <div class="alarm-content">
+                            <p>알림 내용1알림 내용1알림 내용1알림 내용1알림</p>
+                            <p>알림 내용2</p>
+                            <p>알림 내용3</p>
+                            <p>알림 내용2</p>
+                            <p>알림 내용3</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="content"></div>
-    <div class="footer">
-        <div class="footer-left">
-            copyright@Megastudy
-        </div>
-        <div class="footer-right"></div>
-    </div>
+    <div class="footer"></div>
 </div>
 </body>
 </html>
