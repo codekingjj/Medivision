@@ -1,0 +1,70 @@
+@keyframes blink-effect {
+    50% {
+        opacity: 0;
+    }
+}
+.alarm-box {
+    position: absolute;
+    top: 170px;
+    right: 0px;
+    width: 400px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+.note-num {
+    position: absolute;
+    top: 0;
+    right: -10px;
+    z-index: 3;
+    height: 20px;
+    width: 30px;
+    line-height: 20px;
+    text-align: center;
+    background-color: red;
+    border-radius: 15px;
+    display: inline-block;
+    font-size: 13px;
+}
+#notification {
+    position: relative;
+}
+.side-menu-icon-bell:hover ~ .alarm-box,
+.alarm-box:hover {
+    opacity: 1;
+    visibility: visible;
+}
+.alarm-box.show {
+    display: block;
+}
+.alarm-header {
+    background-color: rgba(30, 121, 82, 0.6);
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+}
+.alarm-content {
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.alarm-content p {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
