@@ -59,7 +59,12 @@ public class AlarmServiceImpl implements AlarmService{
         List<AlarmEntity> list = alarmRepository.findByUserCode(userCodeNumber);
         System.out.println("list: " + list);
         if (list == null) return ResponseDto.databaseError();
-        return AlarmReponseDto.success(list);
+        int count = 0;
+        for(AlarmEntity alarm : list){
+            if(!alarm.isCheck())
+                count++;
+        }
+        return AlarmReponseDto.success(list, count);
     }
 
 }

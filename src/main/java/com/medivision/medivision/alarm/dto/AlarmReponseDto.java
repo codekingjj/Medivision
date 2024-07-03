@@ -18,13 +18,16 @@ public class AlarmReponseDto extends ResponseDto {
 
     private List<AlarmEntity> alarmList;
 
-    public AlarmReponseDto(List<AlarmEntity> alarmList) {
+    private int check;
+
+    public AlarmReponseDto(List<AlarmEntity> alarmList, int check) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         this.alarmList = alarmList;
+        this.check = check;
     }
 
-    public static ResponseEntity<AlarmReponseDto> success(List<AlarmEntity> alarmList){
-        AlarmReponseDto response = new AlarmReponseDto(alarmList);
+    public static ResponseEntity<AlarmReponseDto> success(List<AlarmEntity> alarmList, int check){
+        AlarmReponseDto response = new AlarmReponseDto(alarmList, check);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
