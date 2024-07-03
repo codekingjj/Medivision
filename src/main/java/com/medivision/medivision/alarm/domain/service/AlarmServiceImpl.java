@@ -1,7 +1,9 @@
 package com.medivision.medivision.alarm.domain.service;
 
+import com.medivision.common.ResponseDto;
 import com.medivision.medivision.alarm.domain.AlarmEntity;
 import com.medivision.medivision.alarm.domain.AlarmRepository;
+import com.medivision.medivision.alarm.dto.AlarmReponseDto;
 import com.medivision.medivision.chat.dto.ChatRequestDto;
 import com.medivision.medivision.chat.room.domain.ChatRoom;
 import com.medivision.medivision.chat.room.domain.ChatRoomRepository;
@@ -13,6 +15,7 @@ import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.medivision.user.domain.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,4 +50,16 @@ public class AlarmServiceImpl implements AlarmService{
             alarmRepository.save(alarm);
         }
     }
+
+    @Override
+    public ResponseEntity<? super AlarmReponseDto> getAlarmList(String userCode) {
+        int userCodeNumber = Integer.parseInt(userCode);
+        System.out.println("codeTemp: " + userCodeNumber);
+
+        List<AlarmEntity> list = alarmRepository.findByUserCode(userCodeNumber);
+        System.out.println("list: " + list);
+        if (list == null) return ResponseDto.databaseError();
+        return AlarmReponseDto.success(list);
+    }
+
 }
