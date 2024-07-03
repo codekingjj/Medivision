@@ -17,7 +17,16 @@ function displayAlarm(data){
     content.innerHTML="";
     data.forEach(alarm =>{
         const row = document.createElement('p');
+        if(data.check)
+            row.className="check";
+        else
+            row.className="no-check";
         row.innerHTML= `${alarm.regDate} | ${alarm.content}`;
+
+        row.onclick = function() {
+            handleAlarmClick(alarm.alarmIndex);
+        };
+
         content.appendChild(row);
     })
 }
@@ -31,4 +40,8 @@ function displayAlarmCount(data){
         count.innerHTML=`${data}`;
         content.appendChild(count);
     }
+}
+function handleAlarmClick(index) {
+    console.log(`Alarm index: ${index}`);
+    // 여기에 원하는 로직을 추가할 수 있습니다.
 }
