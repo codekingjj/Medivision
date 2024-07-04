@@ -2,13 +2,16 @@ const path = require("path");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = {
-    entry: './script/viewer/viewer.js',      // 시작 파일의 경로 명세
+    entry: {
+        viewer: './script/viewer/viewer.js',     // 기존 엔트리 포인트
+        search: './script/search/search.js'      // 새로운 엔트리 포인트
+    },
     output: {
-        filename: 'bundle.js',              // 출력 파일의 이름
-        path: path.resolve(__dirname, 'dist')// 출력 디렉토리
+        filename: '[name].bundle.js',            // 각각의 번들에 대해 파일 이름 지정
+        path: path.resolve(__dirname, 'dist')    // 출력 디렉토리
     },
     resolve: {
-        modules: ['node_modules'],             // 모듈 검색 경로
+        modules: ['node_modules'],               // 모듈 검색 경로
         extensions: ['.ts', '.js', 'json', '.wasm'],
         fallback: {
             "fs": false,
@@ -21,7 +24,7 @@ module.exports = {
         type: 'filesystem',
         cacheDirectory: path.resolve(__dirname, '.webpack_cache'),
     },
-    mode: 'development',                     // 개발 모드
+    mode: 'development',                         // 개발 모드
     module: {
         rules: [
             {

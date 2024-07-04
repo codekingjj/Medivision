@@ -3,6 +3,7 @@ package com.medivision.medivision.search.controller;
 import com.medivision.medivision.log.study.domain.service.StudyLogService;
 import com.medivision.medivision.search.domain.service.SearchService;
 import com.medivision.medivision.search.dto.request.SearchRequestDto;
+import com.medivision.medivision.search.dto.response.FileResponse;
 import com.medivision.pacs.entity.VSeriesEntity;
 import com.medivision.pacs.entity.VStudyEntity;
 import com.medivision.pacs.service.VSeriesService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
 
 @Controller
@@ -51,22 +54,38 @@ public class SearchController {
 
     @GetMapping("file")
     @ResponseBody
-    public List<File> getFiles(int studyKey){
+    public List<FileResponse> getFiles(int studyKey) {
+        System.out.println(studyKey);
         List<VSeriesEntity> list = vSeriesService.findStudyKey(studyKey);
-        List<File> fileList = new ArrayList<>();
+        List<FileResponse> fileList = new ArrayList<>();
         String driver = "Z:\\";
-        for(int i=0; i<list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             VSeriesEntity series = list.get(i);
             String path = series.getPath();
             String fileName = series.getFName();
             String realPath = driver + path + fileName;
             File file = new File(realPath);
-            fileList.add(file);
-        }
 
+            // 파일을 Base64로 인코딩
+            try {
+                FileResponse fileResponse = new FileResponse();
+                fileResponse.setFileName(fileName);
+                fileResponse.setFileType(Files.probeContentType(file.toPath()));
+                fileResponse.setBase64Content(encodeFileToBase64(file));
+                fileList.add(fileResponse);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return fileList;
     }
+
+    private String encodeFileToBase64(File file) throws IOException {
+        byte[] fileContent = Files.readAllBytes(file.toPath());
+        return Base64.getEncoder().encodeToString(fileContent);
+    }
+
 
     @GetMapping("findall")
     @ResponseBody
@@ -81,7 +100,7 @@ public class SearchController {
         // study 열람시 로그 찍기 로직
         String ip = request.getRemoteAddr();
         int studyKey = searchRequestDto.getStudyKey();
-        studyLogService.saveStudyLog(userCode,studyKey,ip);
+//        studyLogService.saveStudyLog(userCode,studyKey,ip);
 
         List<VStudyEntity> result = new ArrayList<>();
         List<VStudyEntity> temp = new ArrayList<>();

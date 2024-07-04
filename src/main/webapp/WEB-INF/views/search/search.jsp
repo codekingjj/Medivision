@@ -3,8 +3,8 @@
 <head>
     <title>검색</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="script/search/search.js"></script>
-    <link href="style/header.css" rel="stylesheet">
+    <script type="module" src="${pageContext.request.contextPath}/static/dist/search.bundle.js"></script>
+    <link href="style/content.css" rel="stylesheet">
     <link href="style/search.css" rel="stylesheet">
 
 </head>
@@ -23,15 +23,24 @@
                 </div>
             </div>
         </div>
-        <div class="header-bottom">
+        <div class="header-menu">
             <div class="menu diselected"></div>
-            <div class="menu selected">차트 검색</div>
+            <div class="menu option">차트 검색</div>
             <div class="menu option">담당 환자 설정</div>
-            <div class="menu option">로그 기록 확인</div>
+            <div class="menu selected dropdown">
+                <div class="dropdown-title">로그 기록 확인</div>
+                <div class="dropdown-content-box">
+                    <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/login'">로그인 로그 기록</a></div>
+                    <div class="dropdown-content"><a class="dropdown-content-a" href="#">환자 차트 열람 로그 기록</a></div>
+                    <div class="dropdown-content"><a class="dropdown-content-a" href="#">리포트 로그 기록</a></div>
+                </div>
+            </div>
             <div class="menu option">마이 페이지</div>
-            <div class="menu diselected side-menu">
-                <div class="side-menu-icon side-menu-icon-chat"></div>
-                <div class="side-menu-icon side-menu-icon-bell"></div>
+            <div class="menu diselected-side-menu">
+                <div class="side-menu">
+                    <div class="side-menu-icon side-menu-icon-chat"></div>
+                    <div class="side-menu-icon side-menu-icon-bell"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -53,7 +62,6 @@
                     <option value="3">읽지않음</option>
                     <option value="5">예비판독</option>
                     <option value="6">판독</option>
-                    <!-- Add other options here -->
                 </select>
 
                 <label for="modality">장비</label>
@@ -102,6 +110,10 @@
                 </div>
                 <button type="submit">검색</button>
             </form>
+            <button id="0" class="search-button">전체</button>
+            <button id="1" class="search-button">1일</button>
+            <button id="3" class="search-button">3일</button>
+            <button id="7" class="search-button">1주일</button>
         </div>
         <div class="main">
             <table class="results-section">
@@ -113,16 +125,16 @@
                     <th>검사설명</th>
                     <th>검사일시</th>
                     <th>판  독</th>
-                    <th>시리즈 갯수</th>
-                    <th>이미지 갯수</th>
+                    <th>시리즈</th>
+                    <th>이미지</th>
                 </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
         </div>
-        <div class="thumbnail">
-            썸네일
+
+        <div id="thumbnail" class="thumbnail">
         </div>
     </div>
 </main>
