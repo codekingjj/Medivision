@@ -111,6 +111,10 @@
                 </div>
                 <button type="submit">검색</button>
             </form>
+            <button id="0" class="search-button">전체</button>
+            <button id="1" class="search-button">1일</button>
+            <button id="3" class="search-button">3일</button>
+            <button id="7" class="search-button">1주일</button>
         </div>
         <div class="main">
             <table class="results-section">
@@ -122,16 +126,16 @@
                     <th>검사설명</th>
                     <th>검사일시</th>
                     <th>판  독</th>
-                    <th>시리즈 갯수</th>
-                    <th>이미지 갯수</th>
+                    <th>시리즈</th>
+                    <th>이미지</th>
                 </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
         </div>
-        <div class="thumbnail">
-            썸네일
+
+        <div id="thumbnail" class="thumbnail">
         </div>
     </div>
 </main>
