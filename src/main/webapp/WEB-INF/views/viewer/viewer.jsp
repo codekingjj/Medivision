@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +31,16 @@
 <input id="file" type="file" accept="application/dicom">
 
     <button id="invertButton">Invert Colors</button>
+
+    <c:forEach var="series" items="${seriesArray}">
+        <tr>
+            <td>studyKey : ${series.studyKey}</td>
+            <td>seriesKey : ${series.seriesKey}</td>
+            <td>imageKey : ${series.imageKey}</td>
+            <td>path : ${series.path}</td>
+            <td>fname : ${series.fname}</td>
+        </tr>
+    </c:forEach>
 </body>
 <script type="module" src="static/dist/bundle.js"></script>
 </html>
