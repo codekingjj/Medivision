@@ -62,7 +62,6 @@
                     <option value="3">읽지않음</option>
                     <option value="5">예비판독</option>
                     <option value="6">판독</option>
-                    <!-- Add other options here -->
                 </select>
 
                 <label for="modality">장비</label>
