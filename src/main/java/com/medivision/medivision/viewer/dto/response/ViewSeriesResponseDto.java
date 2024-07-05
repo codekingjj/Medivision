@@ -20,7 +20,7 @@ public class ViewSeriesResponseDto {
     private int imageCnt;
     private String path;
     private String fName;
-    private List<VImageEntity> imageList;
+    private List<ViewImageResponseDto> imageList;
 
     public ViewSeriesResponseDto(VSeriesEntity vSeriesEntity) {
         this.studyKey = vSeriesEntity.getStudyKey();

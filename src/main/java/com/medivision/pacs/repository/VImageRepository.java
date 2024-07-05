@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface VImageRepository extends JpaRepository<VImageEntity, Integer> {
 
-    List<VImageEntity> findBySeriesKey(int seriesKey);
+    List<VImageEntity> findBySeriesKeyAndStudyKey(int seriesKey, int studyKey);
 
 }
