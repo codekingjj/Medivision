@@ -1,0 +1,70 @@
+.content{
+    flex: 1;
+}
+.content-top{
+    min-width: 100%;
+    min-height: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-top-title{
+    width: 105px;
+    color: rgba(0, 0, 0, 1);
+
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 140%;
+
+    border-bottom: 2px solid black;
+}
+.content-bottom{
+    display: flex;
+    justify-content: center;
+}
+
+/*mypage table*/
+#mypage-table{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 50px;
+}
+#mypage-table tr:first-child td:first-child{
+    width: 100px;
+}
+.mypage-type{
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    background-color: rgba(30, 121, 82, 0.2);
+}
+.mypage-content{
+    width: 150px;
+    border-bottom: 1px solid black;
+}
+.profile-file-button {
+    position: relative;
+    overflow: hidden;
+}
+.btn-upload {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77,77,77);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        background: rgb(77,77,77);
+        color: #fff;
+    }
+}
+
+#file {
+    display: none;
+}
+.blink{
+    height: 40px;
+}
