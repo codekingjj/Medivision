@@ -1,5 +1,6 @@
 package com.medivision.medivision.chat.chat.controller;
 
+import com.medivision.medivision.alarm.domain.service.AlarmService;
 import com.medivision.medivision.chat.chat.domain.Chat;
 import com.medivision.medivision.chat.chat.domain.ChatService;
 import com.medivision.medivision.chat.chat.dto.ChatListResponseDto;
@@ -30,6 +31,7 @@ import java.util.List;
 public class ChatController {
     private final ChatService chatService;
     private final AdminRepository adminRepository;
+    private final AlarmService alarmService;
 
     @MessageMapping("/chat")
     @SendTo("/chatroom/{roomId}")
@@ -41,7 +43,7 @@ public class ChatController {
         chatResponseDto.setSenderUserName(admin.getUserName());
 
         chatService.save(chat);
-
+        alarmService.saveChat(chat);
         return chatResponseDto; // return value goes to @SendTo() URL
     }
 
