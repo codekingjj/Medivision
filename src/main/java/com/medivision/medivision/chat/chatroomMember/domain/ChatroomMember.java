@@ -1,16 +1,17 @@
-package com.medivision.medivision.chat.roomMember.dto;
+package com.medivision.medivision.chat.chatroomMember.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Getter
-@Setter
 @NoArgsConstructor
-public class ChatRoomMemberRequestDto {
+@Entity
+@IdClass(ChatroomMemberId.class)
+@Table(name = "chat_room_members", schema = "chat")
+public class ChatroomMember {
     @Id
     private int roomId;
 
