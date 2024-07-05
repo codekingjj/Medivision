@@ -6,27 +6,24 @@
 @media (min-width: 1024px) {
     .container {
         display: grid;
-        grid-template-rows: 1fr 4fr 0.5fr;
+        grid-template-rows: 160px 1fr 100px;
         grid-template-columns: 200px 6fr;
         grid-template-areas:
         "header header header header"
         "aside content content content"
         "footer footer footer footer";
         min-height: 100vh;
-        gap: 10px;
     }
     .header {
         margin-top: 10px;
         grid-area: header;
         display: flex;
         flex-direction: column;
-        gap: 10px;
     }
     .header-menu {
-        min-height: 30%;
         display: grid;
         grid-template-columns: 200px 1fr 1fr 1fr 1fr 2fr;
-        height: 25%;
+        height: 40px;
         gap: 7px;
     }
     .header-top {
@@ -34,8 +31,8 @@
         justify-content: space-between;
     }
     .logo {
-        min-width: 20%;
-        min-height: 10vh;
+        width: 20%;
+        height: 10vh;
     }
     .logout-box {
         display: flex;
@@ -62,9 +59,6 @@
     .menu.selected.dropdown {
         background-color: rgba(30, 121, 82, 0.6);
     }
-    .content {
-        grid-area: content;
-    }
 
     .mark {
         min-width: 100%;
@@ -75,6 +69,15 @@
     }
     .diselected-mobile{
         display: none;
+    }
+    .content{
+        grid-area: content;
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        height: fit-content;
     }
 }
 
@@ -132,8 +135,6 @@
 }
 
 .menu {
-    min-width: 100%;
-    min-height: 100%;
     background-color: rgba(30, 121, 82, 1.0);
     display: flex;
     color: rgba(255, 255, 255, 1);
@@ -231,14 +232,12 @@
     display: flex;
     align-items: center;
     color: white;
-    height: 7%;
+    height: 5vh;
     min-width: 100%;
     background-color: rgba(30, 121, 82, 1);
     cursor: pointer;
 }
-.aside-selected{
-    background-color: rgba(30, 121, 82, 0.6);
-}
+
 .aside-content:hover {
     background-color: rgba(30, 121, 82, 0.6);
 }
@@ -259,4 +258,7 @@
 }
 .footer-right {
     min-width: 50%;
+}
+.aside-selected{
+    background-color: rgba(30, 121, 82, 0.6);
 }
