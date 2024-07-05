@@ -2,13 +2,12 @@
 <html>
 <head>
     <title>검색</title>
+    <link href="style/main/main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script/main/main.js"></script>
-    <link href="style/main.css" rel="stylesheet">
-
 </head>
 <body>
-<header>
+<div class="container">
     <div class="header">
         <div class="header-top">
             <div class="logo">
@@ -43,27 +42,29 @@
             </div>
         </div>
     </div>
-</header>
-<main>
-    <div class="container">
-    <div>
-        <form id="search-form2">
-            <label for="pid">환자 아이디</label>
-            <input type="text" id="pid" name="pid">
 
-            <label for="pname">환자이름</label>
-            <input type="text" id="pname" name="pname">
-
-            <label for="reportstatus">판독상태</label>
-            <select id="reportstatus" name="reportstatus">
-                <option value="-1">선택</option>
-                <option value="3">읽지않음</option>
-                <option value="5">예비판독</option>
-                <option value="6">판독</option>
-            </select>
-        </form>
-    </div>
-        <div class="main">
+    <div class="content">
+        <div class="search">
+            <form class="search-form" id="search-form">
+                <input type="text" id="pid" name="pid" placeholder="환자 아이디">
+                <input type="text" id="pname" name="pname" placeholder="환자 이름">
+                <div class="select-area">
+                    <select name="reportstatus" id="reportstatus">
+                        <option value="-1">선택</option>
+                        <option value="3">읽지않음</option>
+                        <option value="5">예비판독</option>
+                        <option value="6">판독</option>
+                    </select>
+                </div>
+                <div class="button-area">
+                    <button id="search" class="search-button">검색</button>
+                    <button id="all-search" class="search-button">전체</button>
+                    <button id="three-days" class="search-button">3일</button>
+                    <button id="week" class="search-button">7일</button>
+                </div>
+            </form>
+        </div>
+        <div class="result">
             <table class="results-section">
                 <thead>
                 <tr>
@@ -73,8 +74,8 @@
                     <th>검사설명</th>
                     <th>검사일시</th>
                     <th>판  독</th>
-                    <th>시리즈 갯수</th>
-                    <th>이미지 갯수</th>
+                    <th>시리즈</th>
+                    <th>이미지</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -82,6 +83,12 @@
             </table>
         </div>
     </div>
-</main>
+    <div class="footer">
+        <div class="footer-left">
+            copyright@Megastudy
+        </div>
+        <div class="footer-right"></div>
+    </div>
+</div>
 </body>
 </html>
