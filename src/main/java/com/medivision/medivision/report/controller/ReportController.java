@@ -18,8 +18,15 @@ public class ReportController {
     private final ReportService reportService;
 
     @GetMapping("/reports/{studykey}")
-    public ResponseEntity<? super ReportResponse> reports(@PathVariable("studykey") String studyKey) {
-        return reportService.getReportList(Integer.parseInt(studyKey));
+    public ResponseEntity<? super ReportResponse> reports(@PathVariable("studykey") String studyKey,@AuthenticationPrincipal String code) {
+        int studykey = Integer.parseInt(studyKey);
+        int userCode = Integer.parseInt(code);
+        ReportRequestDto reportDto = new ReportRequestDto();
+        reportDto.setStudyKey(studykey);
+        reportDto.setWriter(userCode);
+
+        ResponseEntity<? super ReportResponse> response = reportService.getReportList(reportDto);
+        return response;
     }
 
 //    @GetMapping("/report/{reportIndex}")
@@ -45,4 +52,18 @@ public class ReportController {
         model.addAttribute("report", reportResponseDto);
         return "report/targetReport";
     }
+
+    @GetMapping ("/report/update")
+    public String updatePage(@RequestParam String index, Model model){
+        ReportResponseDto reportResponseDto = reportService.getTarget(Integer.parseInt(index));
+        model.addAttribute("report",reportResponseDto);
+        return "report/update";
+    }
+
+//    @PatchMapping("/reprot/update")
+//    @ResponseBody
+//    public ResponseEntity<? super ReportResponse> updateReport(@RequestBody ReportRequestDto reportDto, @AuthenticationPrincipal String code){
+//
+//    }
+
 }
