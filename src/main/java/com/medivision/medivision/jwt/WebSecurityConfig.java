@@ -34,9 +34,10 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/","/index","/main/**","/admin/**","/auth/**","/viewer/**","/test","/test232","/search/**","/style/**","/assets/**", "/js/**",
-                        "/static/**",
+                        "/static/**","/**",
                         "/script/**","/reportPage","/patientBookmark/**",
-                        "/report/{**}","/reports/{**}","/report/targetReport**","/report","/log/**","/test3")
+                        "/report/{**}","/reports/{**}","/report/targetReport**","/report","/log/**","/test3"
+                        ,"/alarm/**")
                 .permitAll() //매칭에 따라서 작업 여부
                 .antMatchers(HttpMethod.GET,"/board/**").permitAll()
                 .anyRequest().authenticated().and()

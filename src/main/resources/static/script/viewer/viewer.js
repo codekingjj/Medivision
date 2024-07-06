@@ -16,6 +16,7 @@ const {
     ZoomTool,
     ToolGroupManager,
     Enums: csToolsEnums,
+    //사진 이동
     PanTool,
     WindowLevelTool,
 } = cornerstoneTools;

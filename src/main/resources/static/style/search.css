@@ -81,3 +81,13 @@ body {
     cursor: pointer;
     background-color: #6BB092;
 }
+
+.search-button{
+    font-size: 12px;
+    width: 455px;
+    height: 45px;
+    border: 1px solid black;
+    background-color: rgb(209, 209, 209);
+    border-radius: 25px;
+    cursor: pointer;
+}
