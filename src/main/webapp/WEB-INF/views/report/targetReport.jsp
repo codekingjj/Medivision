@@ -10,24 +10,43 @@
 </head>
 <body>
 <div id="document">
-        <div id="report" class="report">
-            <h1 id="report-title">${report.typeDecode} 보고서</h1>
-        </div>
-        <div>
-            <h3>진단의 : ${report.writerName}</h3>
-        </div>
-        <div>
-            <h3>진단 시간 : ${report.regDate}</h3>
-        </div>
+    <div id="report" class="report">
+        <table>
+            <thead>
+            <tr>
+                <th colspan="2" id="report-title" ><c:out value="${report.typeDecode}" /> 보고서</th>
+            </tr>
+            <tr></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="name">진단의</td>
+                <td id="writerName"><textarea  readonly><c:out value="${report.writerName}" /></textarea></td>
+            </tr>
+            <tr>
+                <td class="name">진단시간</td>
+                <td id="regDate"><textarea readonly><c:out value="${report.regDate}" /></textarea></td>
+            </tr>
+            <tr>
+                <td class="name">Finding</td>
+                <td id="finding"><textarea readonly><c:out value="${report.finding}" /></textarea></td>
+            </tr>
+            <tr>
+                <td class="name">Conclusion</td>
+                <td id="conclusion"><textarea readonly><c:out value="${report.conclusion}" /></textarea></td>
+            </tr>
+            <tr>
+                <td class="name">Recommend</td>
+                <td id="recommend"><textarea readonly><c:out value="${report.recommend}" /></textarea></td>
+            </tr>
+            <tr>
+                <td class="name">Comment</td>
+                <td id="comment"><textarea readonly><c:out value="${report.comment}" /></textarea></td>
+            </tr>
+            </tbody>
+        </table>
 
-        <div>[Finding]</div>
-        <pre><c:out value="${report.finding}" ></c:out></pre>
-        <div>[Conclusion]</div>
-        <pre><c:out value="${report.conclusion}" ></c:out></pre>
-        <div>[Recommend]</div>
-        <pre><c:out value="${report.recommend}" ></c:out></pre>
-        <div>[comment]</div>
-        <pre><c:out value="${report.comment}" ></c:out></pre>
+    </div>
 </div>
 
 <div id="close">
