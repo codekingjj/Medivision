@@ -6,7 +6,9 @@ import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
+import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
+import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.pacs.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,13 @@ public class ReportService {
     private final StudyRepository studyRepository;
     private final AdminRepository adminRepository;
     private final DecodeRepository decodeRepository;
+    private final UserRepository userRepository;
 
-    public ResponseEntity<? super ReportResponse> getReportList(int studyKey){
+    public ResponseEntity<? super ReportResponse> getReportList(ReportRequestDto reportDto){
+        int userCode = reportDto.getWriter();
+        String userName = getUsername(userCode);
+
+        int studyKey = reportDto.getStudyKey();
         Long studykey = Long.valueOf(studyKey);
         boolean isExist = studyRepository.existsByStudykey(studykey);
         if(!isExist) return ReportResponse.getListFail(); //수정 메소드 들어가서
@@ -40,7 +47,12 @@ public class ReportService {
             result.add(report);
         }
 
-        return ReportResponse.getListSuccess(result);
+        return ReportResponse.getListSuccess(result,userName);
+    }
+
+    public String getUsername(int userCode){
+        AdminEntity admin = adminRepository.findByUserCode(userCode);
+        return admin.getUserName();
     }
 
     public ResponseEntity<? super ReportResponse> getReport(int reportIndex){
@@ -118,10 +130,13 @@ public class ReportService {
         int cnt = 0;
         for(ReportEntity reportEntity : list){
             String typeDecode = reportEntity.getTypeDecode();
+
+            if(reportEntity.getWriter() == writer)
+                return false;
+
             if("판독".equals(typeDecode)){
                 cnt ++;
-            }else if(reportEntity.getWriter() == writer)
-                return false;
+            }
         }
 
         if(cnt == 2)return false;
