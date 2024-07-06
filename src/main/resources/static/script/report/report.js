@@ -39,6 +39,8 @@ function remaindTime(reportTime) {
     }
 }
 
+const token = localStorage.getItem("jwt");
+
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
     // const studyKey = window.opener.studyKey;
@@ -54,6 +56,7 @@ $(document).ready(function() {
             "method" : 'GET',
             "headers": {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             }
         }).then(res => {
             const data = res.result;
@@ -83,7 +86,7 @@ $(document).ready(function() {
 
                 const td5 = document.createElement("td");
                 td5.className = "update-button";
-                if(remaindTime(report.regDate)){
+                if(remaindTime(report.regDate) && res.userName === report.writerName){
                     const update = document.createElement("button");
                     update.className = "update";
                     update.innerText = "✎";
@@ -115,14 +118,10 @@ $(document).ready(function() {
         return result;
     }
 
-    var pops = [];
+    let pop;
 
-    window.onunload = function() {
-        pops.forEach(function(pop){
-            pop.close();
-        });
-        pops = [];
-    }
+    window.onunload = function() {pops.close();}
+    // window.opener.onunload = function() {window.close();}
 
     function popup(index) {
 
@@ -131,7 +130,7 @@ $(document).ready(function() {
         var option = "width=800, height=500, left=100, top=50, location=no";
 
         pop = window.open(url, name, option);
-        pops.add(pop);
+        console.log(pop);
     }
 
     $('#content-container').keyup( e => {
@@ -151,13 +150,8 @@ $(document).ready(function() {
     });
 
     $("tbody").click(e =>{
-        if("typeDecode" !== e.target.id || "writerName" !== e.target.id || "comment" !== e.target.id ||"regDate" !== e.target.id)
-        console.log(e.target);
+        if("update" === e.target.className) return;
         const index = e.target.parentNode.id;
-
-        if("tr1" === e.target.id || "tr1" === e.target.className) report = 0;
-        else if ("tr2" === e.target.id || "tr2" === e.target.className) report = 1;
-        else if ("tr3" === e.target.id || "tr3" === e.target.className) report = 2;
 
         if(index == null) return;
         console.log(index);
@@ -206,8 +200,6 @@ $(document).ready(function() {
             "typeDecode" : decodeType
         }
 
-        const token = localStorage.getItem("jwt")
-
         $.ajax({
             "url" : "/createReport",
             "method" : 'POST',
@@ -227,7 +219,7 @@ $(document).ready(function() {
                 $('#recommend').val("");
                 $('#comment').val("");
 
-                getReport();
+                window.close();
             }
         });
     });
