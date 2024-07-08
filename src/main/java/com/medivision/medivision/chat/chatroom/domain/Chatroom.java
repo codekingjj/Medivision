@@ -3,6 +3,8 @@ package com.medivision.medivision.chat.chatroom.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,5 +20,16 @@ public class Chatroom {
     private int roomId;
 
     private String name;
+
+    @CreationTimestamp
     private Timestamp createDate;
+
+    public Chatroom(int roomId, String name) {
+        this.roomId = roomId;
+        this.name = name;
+    }
+
+    public Chatroom(String name) {
+        this.name = name;
+    }
 }
