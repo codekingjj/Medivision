@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,36 @@ public class MainController {
     public List<VStudyEntity> setting() {
         return mainService.findAll();
     }
+
+    @GetMapping("date")
+    @ResponseBody
+    public List<VStudyEntity> dateSearch(String date){
+        LocalDateTime now = LocalDateTime.now();
+        List<VStudyEntity> list = mainService.findAll();
+        List<VStudyEntity> result = new ArrayList<>();
+        if(date.equals("three-days")){
+            String threeDaysAgo = LocalDate.now().minusDays(3).toString().replace("-", "");
+            for(VStudyEntity vStudyEntity : list){
+                int studydate = Integer.parseInt(vStudyEntity.getStudydate());
+                if(studydate >= Integer.parseInt(threeDaysAgo)){
+                    result.add(vStudyEntity);
+                }
+            }
+        }else if (date.equals("week")) {
+            String week = LocalDate.now().minusDays(7).toString().replace("-", "");
+            for(VStudyEntity vStudyEntity : list){
+                int studydate = Integer.parseInt(vStudyEntity.getStudydate());
+                if(studydate >= Integer.parseInt(week)){
+                    result.add(vStudyEntity);
+                }
+            }
+        }else if (date.equals("all")) {
+            result = list;
+        }
+
+        return result;
+    }
+
 
     @GetMapping("search")
     @ResponseBody
@@ -120,5 +152,7 @@ public class MainController {
         return  result;
 
     }
+
+
 
 }
