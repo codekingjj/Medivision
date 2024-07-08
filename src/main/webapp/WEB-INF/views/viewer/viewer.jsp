@@ -27,7 +27,7 @@
 
 
 
-<div id="content"></div>
+<div id="dicomImage"></div>
 <input id="file" type="file" accept="application/dicom">
 
 <%--    <button id="invertButton">Invert Colors</button>--%>
