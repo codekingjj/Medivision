@@ -10,8 +10,18 @@ import java.util.List;
 public class ChatroomService {
     private final ChatroomRepository chatroomRepository;
 
-    public List<Chatroom> findAll() {
-        return chatroomRepository.findAll();
+    public Chatroom findByRoomId(int roomId) {
+        return chatroomRepository.findByRoomId(roomId);
+    }
+
+    public Chatroom save(Chatroom chatroom) {
+        Chatroom savedChatroom = chatroomRepository.save(chatroom);
+
+        return savedChatroom;
+    }
+
+    public void deleteByRoomId(int roomId) {
+        chatroomRepository.deleteByRoomId(roomId);
     }
 
 //    public boolean existByRoomIdAndUserCode(int roomId, int userCode) {

@@ -1,9 +1,12 @@
 package com.medivision.medivision.chat.chatroomMember.domain;
 
+import com.medivision.medivision.chat.chatroomMember.dto.ChatroomMemberRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter
@@ -18,6 +21,21 @@ public class ChatroomMember {
     @Id
     private int userCode;
 
+    @CreationTimestamp
     private Timestamp lastVisitedDate;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private Timestamp createDate;
+
+    public ChatroomMember(int roomId, int userCode) {
+        this.roomId = roomId;
+        this.userCode = userCode;
+    }
+
+    public ChatroomMember(ChatroomMemberRequestDto chatroomMemberRequestDto) {
+        this.roomId = chatroomMemberRequestDto.getRoomId();
+        this.userCode = chatroomMemberRequestDto.getUserCode();
+        this.lastVisitedDate = chatroomMemberRequestDto.getLastVisitedDate();
+    }
 }

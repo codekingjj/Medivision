@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,23 +21,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/chatUserSearch")
+@RequestMapping("/chat/userSearch")
 @RequiredArgsConstructor
 public class ChatUserSearchController {
     private final AdminRepository adminRepository;
 
     @GetMapping("")
     public ModelAndView userSearch() {
-        ModelAndView mav = new ModelAndView("chatUserSearch");
+        ModelAndView mav = new ModelAndView("/chat/chatUserSearch");
 
         return mav;
     }
 
     @PostMapping("")
-    public ResponseEntity<ChatUserSearchListResponseDto> chatroomList(@RequestBody ChatUserSearchRequestDto chatUserSearchDto) {
+    public ResponseEntity<ChatUserSearchListResponseDto> chatroomList(@RequestBody ChatUserSearchRequestDto chatUserSearchDto, @AuthenticationPrincipal String userCode) {
         Pageable pageable = PageRequest.of(chatUserSearchDto.getPageNumber(), ChatUserSearchPage.ITEM_SIZE);
 
-        Page<AdminEntity> users = adminRepository.findAllByUserNameContaining(pageable, chatUserSearchDto.getSearchQuery());
+        Page<AdminEntity> users = adminRepository.findAllByUserNameContainingAndUserCodeNot(
+                pageable, chatUserSearchDto.getSearchQuery(), Integer.parseInt(userCode));
+
         List<ChatUserSearchResponseDto> chatUserSearchResponseDtoList = new ArrayList<>();
 
         for (AdminEntity user : users) {
@@ -47,10 +50,6 @@ public class ChatUserSearchController {
         ChatUserSearchListResponseDto chatUserSearchListDto = new ChatUserSearchListResponseDto();
         chatUserSearchListDto.setChatUserSearchDtoList(chatUserSearchResponseDtoList);
         chatUserSearchListDto.setLastPage(users.isLast());
-
-        System.out.println("pageNum: " + chatUserSearchDto.getPageNumber());
-        System.out.println("search query: " + chatUserSearchDto.getSearchQuery());
-        System.out.println(chatUserSearchListDto.getChatUserSearchDtoList().size());
 
         return new ResponseEntity<>(chatUserSearchListDto, HttpStatus.OK);
     }

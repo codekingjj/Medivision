@@ -22,4 +22,12 @@ public class ChatService {
 
         return chatRepository.findByRoomIdOrderByCreateDateDesc(roomId, pageable);
     }
+
+    public Chat findLatestChatByRoomId(int roomId) {
+        return chatRepository.findFirstByRoomIdOrderByCreateDateDesc(roomId);
+    }
+
+    public boolean existsByRoomId(int roomId) {
+        return chatRepository.existsByRoomId(roomId);
+    }
 }

@@ -8,19 +8,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js" integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="${pageContext.request.contextPath}/script/chat/chatroom/main.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/chatroom/main.js" type="module"></script>
 <body>
     <div class="root">
         <div class="chat-header">
             <div>
-                <button class="btn-chatroom-exit" onclick="exitChatroom()">나가기</button>
+                <button class="btn-chatroom-to-chatroom-list" id="btnChatroomToChatroomList">뒤로가기</button>
+                <button class="btn-chatroom-leave" id="btnChatroomLeave">나가기</button>
             </div>
         </div>
         <div class="chat-content">
             <div class="chat-list-container" id="chatListContainer"></div>
             <div class="chat-input-container">
                 <input type="text" id="inputMessage" />
-                <button class="btn-message-send" onclick="sendMessage()">></button>
+                <button class="btn-message-send" id="btnMessageSend">></button>
             </div>
         </div>
     </div>
