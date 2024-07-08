@@ -1,5 +1,6 @@
 package com.medivision.medivision.chat.chat.domain;
 
+import com.medivision.medivision.chat.chat.dto.ChatRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -22,4 +23,11 @@ public class Chat {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    public Chat(ChatRequestDto chatRequestDto) {
+        this.roomId = chatRequestDto.getRoomId();
+        this.message = chatRequestDto.getMessage();
+        this.senderUserCode = chatRequestDto.getSenderUserCode();
+        this.createDate = chatRequestDto.getCreateDate();
+    }
 }
