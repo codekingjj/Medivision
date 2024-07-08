@@ -12,21 +12,21 @@ import java.util.List;
 @Getter
 public class ReportResponse extends ResponseDto {
     private List<ReportResponseDto> result;
-    private String userName;
+    private int userCode;
 
     public ReportResponse(List<ReportResponseDto> result) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         this.result = result;
     }
 
-    public ReportResponse(List<ReportResponseDto> result,String userName) {
+    public ReportResponse(List<ReportResponseDto> result, int userCode) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         this.result = result;
-        this.userName = userName;
+        this.userCode = userCode;
     }
 
-    public static ResponseEntity<ReportResponse> getListSuccess(List<ReportResponseDto> list, String userName){
-        ReportResponse result = new ReportResponse(list,userName);
+    public static ResponseEntity<ReportResponse> getListSuccess(List<ReportResponseDto> list, int userCode){
+        ReportResponse result = new ReportResponse(list,userCode);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

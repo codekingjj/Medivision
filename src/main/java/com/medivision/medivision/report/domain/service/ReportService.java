@@ -6,7 +6,6 @@ import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
-import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.pacs.repository.StudyRepository;
@@ -29,7 +28,6 @@ public class ReportService {
 
     public ResponseEntity<? super ReportResponse> getReportList(ReportRequestDto reportDto){
         int userCode = reportDto.getWriter();
-        String userName = getUsername(userCode);
 
         int studyKey = reportDto.getStudyKey();
         Long studykey = Long.valueOf(studyKey);
@@ -47,7 +45,7 @@ public class ReportService {
             result.add(report);
         }
 
-        return ReportResponse.getListSuccess(result,userName);
+        return ReportResponse.getListSuccess(result,userCode);
     }
 
     public String getUsername(int userCode){
