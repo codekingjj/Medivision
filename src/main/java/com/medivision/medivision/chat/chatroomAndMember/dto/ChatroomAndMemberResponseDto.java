@@ -16,8 +16,11 @@ import java.util.List;
 public class ChatroomAndMemberResponseDto {
     private int roomId;
     private String name;
+    private String latestMessage;
+    private Timestamp latestMessageSendDate;
     private Timestamp lastVisitedDate;
     private List<AdminEntity> members;
+    private int numOfUnreadMessages;
 
     public ChatroomAndMemberResponseDto(ChatroomAndMember chatroomAndMember) {
         this.roomId = chatroomAndMember.getRoomId();

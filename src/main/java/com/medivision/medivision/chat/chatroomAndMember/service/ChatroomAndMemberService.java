@@ -12,6 +12,10 @@ import java.util.List;
 public class ChatroomAndMemberService {
     private final ChatroomAndMemberRepository chatroomAndMemberRepository;
 
+    public void save(ChatroomAndMember chatroomAndMember) {
+        chatroomAndMemberRepository.save(chatroomAndMember);
+    }
+
     public List<ChatroomAndMember> findAllByUserCode(int userCode) {
         return chatroomAndMemberRepository.findDistinctByUserCode(userCode);
     }
