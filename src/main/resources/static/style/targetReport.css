@@ -1,17 +1,70 @@
-
 body{
-    width: 800px;
+    min-width: 700px;
+    width: 80vw;
     margin:auto;
     margin-top: 30px;
 }
 
-pre{
-    font-size: 1.2em;
+textarea{
+    width : 100%;
+    border: none;
+    resize: none;
+    font-size: 0.8em;
+    word-break: break-all;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+table{
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    font-size: 0.8em;
+    text-align: left;
+}
+
+thead{
+    margin-bottom : 20px
+}
+
+th{
+    font-size: 2.3em;
+}
+
+tbody{
 }
 
 
+#writerName,#comment,#conclusion,#finding,#recommend,#regDate{
+    width : 85%;
+    padding: 10px;
+
+    border-bottom : 1px solid dimgrey;
+    border-right : 1px solid dimgrey;
+}
+
+#writerName{
+    border-top : 1px solid dimgrey;
+}
+
+td.name{
+    background-color: #6BB092;
+    border-right : 1px solid #6BB092;
+    text-align: center;
+    border: 1px solid white;
+}
+
+tbody tr:last-child td.name {
+    border-bottom: 1px solid #6BB092;
+}
+
+tbody tr:first-child  td.name{
+    border-top : 1px solid #6BB092;
+}
+
 input[type="button"] {
-    margin-right: auto;
     background-color: dimgrey;
     color: white;
     margin-top: 10px;
@@ -19,7 +72,7 @@ input[type="button"] {
     height: 40px;
     border : none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 input[type="button"]:hover{
@@ -27,12 +80,7 @@ input[type="button"]:hover{
 }
 
 #close{
-    display: flex;
-    width: 800px;
-}
-
-#close-button{
-    margin-left: auto;
+    text-align: center;
 }
 
 #report-title{

@@ -49,6 +49,9 @@ $(document).ready(function() {
     getReport()
 
     function getReport(){
+        const tbody = document.getElementById('report-list');
+        tbody.replaceChildren();
+
         $.ajax({
             "url" : `/reports/${studyKey}`,
             "method" : 'GET',
@@ -59,6 +62,8 @@ $(document).ready(function() {
             const data = res.result;
             console.log(res);
             console.log(data);
+
+            let num = 0;
 
             data.forEach(function(report){
                 const trE = document.createElement("tr");
@@ -95,8 +100,15 @@ $(document).ready(function() {
                 trE.append(td3);
                 trE.append(td4);
                 trE.append(td5);
-                $("tbody").append(trE);
+                tbody.append(trE);
+
+                if("판독" === report.typeDecode) num ++;
             });
+
+            if(num == 2){
+                const form = document.getElementById('report-form');
+                form.replaceChildren();
+            }
         });
     }
 
@@ -115,14 +127,9 @@ $(document).ready(function() {
         return result;
     }
 
-    var pops = [];
+    let pop;
 
-    window.onunload = function() {
-        pops.forEach(function(pop){
-            pop.close();
-        });
-        pops = [];
-    }
+    window.onunload = function() {pops.close();}
 
     function popup(index) {
 
@@ -131,7 +138,6 @@ $(document).ready(function() {
         var option = "width=800, height=500, left=100, top=50, location=no";
 
         pop = window.open(url, name, option);
-        pops.add(pop);
     }
 
     $('#content-container').keyup( e => {
@@ -151,13 +157,8 @@ $(document).ready(function() {
     });
 
     $("tbody").click(e =>{
-        if("typeDecode" !== e.target.id || "writerName" !== e.target.id || "comment" !== e.target.id ||"regDate" !== e.target.id)
-        console.log(e.target);
+        if("update" === e.target.className) return;
         const index = e.target.parentNode.id;
-
-        if("tr1" === e.target.id || "tr1" === e.target.className) report = 0;
-        else if ("tr2" === e.target.id || "tr2" === e.target.className) report = 1;
-        else if ("tr3" === e.target.id || "tr3" === e.target.className) report = 2;
 
         if(index == null) return;
         console.log(index);
