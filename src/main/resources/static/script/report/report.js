@@ -39,8 +39,6 @@ function remaindTime(reportTime) {
     }
 }
 
-const token = localStorage.getItem("jwt");
-
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
     // const studyKey = window.opener.studyKey;
@@ -51,19 +49,21 @@ $(document).ready(function() {
     getReport()
 
     function getReport(){
+        const tbody = document.getElementById('report-list');
+        tbody.replaceChildren();
+
         $.ajax({
             "url" : `/reports/${studyKey}`,
             "method" : 'GET',
             "headers": {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
             }
         }).then(res => {
             const data = res.result;
             console.log(res);
             console.log(data);
+
             let num = 0;
-            $("tbody").replaceChildren();
 
             data.forEach(function(report){
                 const trE = document.createElement("tr");
@@ -88,7 +88,7 @@ $(document).ready(function() {
 
                 const td5 = document.createElement("td");
                 td5.className = "update-button";
-                if(remaindTime(report.regDate) && res.userCode == report.writer){
+                if(remaindTime(report.regDate)){
                     const update = document.createElement("button");
                     update.className = "update";
                     update.innerText = "✎";
@@ -100,13 +100,14 @@ $(document).ready(function() {
                 trE.append(td3);
                 trE.append(td4);
                 trE.append(td5);
-                $("tbody").append(trE);
+                tbody.append(trE);
 
                 if("판독" === report.typeDecode) num ++;
             });
 
             if(num == 2){
-                $("#report-form").replaceChildren();
+                const form = document.getElementById('report-form');
+                form.replaceChildren();
             }
         });
     }
@@ -129,7 +130,6 @@ $(document).ready(function() {
     let pop;
 
     window.onunload = function() {pops.close();}
-    // window.opener.onunload = function() {window.close();}
 
     function popup(index) {
 
@@ -138,7 +138,6 @@ $(document).ready(function() {
         var option = "width=800, height=500, left=100, top=50, location=no";
 
         pop = window.open(url, name, option);
-        console.log(pop);
     }
 
     $('#content-container').keyup( e => {
@@ -207,6 +206,8 @@ $(document).ready(function() {
             "comment" : comment,
             "typeDecode" : decodeType
         }
+
+        const token = localStorage.getItem("jwt")
 
         $.ajax({
             "url" : "/createReport",
