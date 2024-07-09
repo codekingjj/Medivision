@@ -3,10 +3,12 @@ import * as cornerstoneDICOMImageLoader from '@cornerstonejs/dicom-image-loader'
 import * as dicomParser from 'dicom-parser';
 import {init as csToolsInit, SegmentationDisplayTool} from "@cornerstonejs/tools";
 import * as cornerstoneTools from "@cornerstonejs/tools";
+import Fetch from "../chat/utils/Fetch";
+import StompManager from "../chat/chatroom/StompManager";
 
 // 뷰 포트 생성
 const content = document.getElementById('content');
-const element = document.createElement('div');console.log("진짜 뷰어");
+const element = document.createElement('dicomImage');console.log("진짜 뷰어");
 // 툴 정의
 const {
     //도구 -> 돋보기
@@ -23,60 +25,136 @@ const {
 
 const { MouseBindings } = csToolsEnums;
 
-element.oncontextmenu = (e) => e.preventDefault();
-element.style.width = '500px';
-element.style.height = '500px';
-content.appendChild(element);
+window.onload = () => {
+    loadData();
+};
 
-// 파일 리딩
-const input = document.getElementById("file");
+async function loadData() {
+   let Data = await fetchData();
+   console.log(Data);
+    let num =0;
+   for (let data of Data) {
+       let byteCharacters = atob(data.fileList[1].base64Content);
+       let byteNumbers = new Array(byteCharacters.length);
+       for(let i = 0 ; i < byteCharacters.length; i++) {
+           byteNumbers[i] = byteCharacters.charCodeAt(i);
+       }
+       let byteArray = new Uint8Array(byteNumbers);
+       let blob = new Blob([byteArray], {type: data.fileType});
+       const url = URL.createObjectURL(blob);
+       const imageId = `dicomweb:${url}`;
 
-input.addEventListener("change", (e) => {
-    console.log("진짜뷰어");
-    const files = e.target.files;
+       render(imageId, num);
+       num++;
 
-    const reader = new FileReader();
-    reader.onload = (file) => {
-        const data = file.target.result;
-        render(data);
-    };
-    reader.readAsArrayBuffer(files[0]);
-});
+   }
+    // error: function(error) {
+    //     console.error('파일을 가져오는 중 오류 발생', error);
+    // }
+}
 
-const render = async (arrayBuffer) => {
-    const imageId = `dicomweb:${URL.createObjectURL(new Blob([arrayBuffer], { type: 'application/dicom' }))}`;
+const render = (imageId, index) => {
+    const element = document.createElement('div');
+    element.style.width = '150px';
+    element.style.height = '150px';
+    element.style.marginBottom = '10px';
+    element.id = `dicomImage${index}`;
 
-    const imageIds = [imageId];
+    content.appendChild(element);
 
-    const renderingEngineId = 'myRenderingEngine';
-    const viewportId = 'CT_AXIAL_STACK';
-
-    // 1. 툴을 먼저 셋
-    try {
-        setTools(viewportId, renderingEngineId);
-    }catch (exception) {
-        console.log(exception)
-    }
-
+    const renderingEngineId = `myRenderingEngine${index}`;
+    const viewportId = `CT_AXIAL_STACK${index}`;
     const renderingEngine = new cornerstone.RenderingEngine(renderingEngineId);
 
-    const viewportInput = {
+    const viewportInput ={
         viewportId,
         element,
         type: cornerstone.Enums.ViewportType.STACK,
-    };
+    }
 
     renderingEngine.enableElement(viewportInput);
+
     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
 
-    await viewport.setStack(imageIds, 0);
-
-    // 2.이미지가 로드된 후에 툴 설정을 수행
-    // setTools(viewportId, renderingEngineId);
-
-    // 뷰포트 리랜더링
+    viewport.setStack([imageId], 0);
     viewport.render();
-};
+}
+
+
+async function fetchData() {
+    const studyKey = $("#studyKey").val();
+    console.log(studyKey);
+    return await fetch(`/viewer/get/${studyKey}`, {
+                method: "GET",
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    return data;
+                })
+                .catch(err => {
+                    window.location.href = "/auth/sign-in";
+                });
+
+
+
+}
+
+// element.oncontextmenu = (e) => e.preventDefault();
+// element.style.width = '500px';
+// element.style.height = '500px';
+// content.appendChild(element);
+
+// 파일 리딩
+// const input = document.getElementById("file");
+//
+// input.addEventListener("change", (e) => {
+//     console.log("진짜뷰어");
+//     const files = e.target.files;
+//
+//     const reader = new FileReader();
+//     reader.onload = (file) => {
+//         const data = file.target.result;
+//         render(data);
+//     };
+//     reader.readAsArrayBuffer(files[0]);
+// });
+//
+// const render = async (arrayBuffer) => {
+//     const imageId = `dicomweb:${URL.createObjectURL(new Blob([arrayBuffer], { type: 'application/dicom' }))}`;
+//
+//     const imageIds = [imageId];
+//
+//     const renderingEngineId = 'myRenderingEngine';
+//     const viewportId = 'CT_AXIAL_STACK';
+
+    // 1. 툴을 먼저 셋
+//     try {
+//         setTools(viewportId, renderingEngineId);
+//     }catch (exception) {
+//         console.log(exception)
+//     }
+//
+//     const renderingEngine = new cornerstone.RenderingEngine(renderingEngineId);
+//
+//     const viewportInput = {
+//         viewportId,
+//         element,
+//         type: cornerstone.Enums.ViewportType.STACK,
+//     };
+//
+//     renderingEngine.enableElement(viewportInput);
+//     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
+//
+//     await viewport.setStack(imageIds, 0);
+//
+//     // 2.이미지가 로드된 후에 툴 설정을 수행
+//     // setTools(viewportId, renderingEngineId);
+//
+//     // 뷰포트 리랜더링
+//     viewport.render();
+// };
 
 const setTools = (viewportId, renderingEngineId) => {
     // 툴 추가
@@ -119,7 +197,6 @@ const setTools = (viewportId, renderingEngineId) => {
 
 const init = async () => {
     await cornerstone.init();
-    console.log("진짜뷰어");
     cornerstoneDICOMImageLoader.external.cornerstone = cornerstone;
     cornerstoneDICOMImageLoader.external.dicomParser = dicomParser;
 

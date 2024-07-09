@@ -110,10 +110,6 @@
                 </div>
                 <button type="submit">검색</button>
             </form>
-            <button id="0" class="search-button">전체</button>
-            <button id="1" class="search-button">1일</button>
-            <button id="3" class="search-button">3일</button>
-            <button id="7" class="search-button">1주일</button>
         </div>
         <div class="main">
             <table class="results-section">

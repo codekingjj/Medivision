@@ -110,7 +110,7 @@ class ChatroomElement {
 
         roomNameElement.innerHTML = roomName;
 
-        headerElement.classList.add("chatroom-container-header");
+        headerElement.classList.add("chatroom-header-container");
         headerElement.append(roomNameElement);
         headerElement.append(newMessageCounterElement);
 

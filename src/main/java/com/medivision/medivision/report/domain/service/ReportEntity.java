@@ -38,4 +38,12 @@ public class ReportEntity extends Timestamps {
         this.recommend = reportRequestDto.getRecommend();
         this.typeDecode = reportRequestDto.getTypeDecode();
     }
+
+    public void update(ReportRequestDto reportDto){
+        this.comment = reportDto.getComment();
+        this.finding = reportDto.getFinding();
+        this.conclusion = reportDto.getConclusion();
+        this.recommend = reportDto.getRecommend();
+        this.typeDecode = reportDto.getTypeDecode();
+    }
 }
