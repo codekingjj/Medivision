@@ -12,6 +12,8 @@ import java.util.List;
 public interface PatientBookmarkRepository extends JpaRepository<PatientBookmark, Integer> {
     List<PatientBookmark> findByUserCode(int userCode);
 
+    PatientBookmark findByUserCodeAndPid(int userCode, String pid);
+
     @Modifying
     //@Query("DELETE pb.* FROM patient_bookmarks pb WHERE pb.pid IN ?1")
     void deleteByPidIn(List<String> pids);

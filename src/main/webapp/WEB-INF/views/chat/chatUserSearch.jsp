@@ -19,7 +19,7 @@
         </div>
         <div class="chatroom-list-header-side-container">
             <div>
-                <button id="btnChatTabClose">></button>
+<%--                <button id="btnChatTabClose">></button>--%>
             </div>
         </div>
     </header>

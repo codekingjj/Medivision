@@ -73,6 +73,8 @@ $(document).ready(function() {
                         item.reportstatus = "판독";
                     }
                     var row = '<tr id=' + item.studyKey + ' class="tr-area" >' +
+                        // 담당 환자 추가를 위한 체크박스
+                        '<td class="td-patientBookmark-checkbox-container">' + `<input type="checkbox" class="checkbox-patientBookmark" id=${item.pid} />` + '</td>' +
                         '<td>' + item.pid + '</td>' +
                         '<td>' + item.pname + '</td>' +
                         '<td>' + item.modality + '</td>' +
@@ -92,7 +94,7 @@ $(document).ready(function() {
     }
 
     // 클릭시 studyKey 얻기
-    $('.results-section tbody').on('click', '.tr-area', function(e) {
+    $('.results-section tbody').on('dblclick', '.tr-area', function(e) {
         let id = $(this).attr('id');
         alert(id);
         content.innerHTML = '<p>썸네일</p>';

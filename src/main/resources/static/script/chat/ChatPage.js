@@ -12,7 +12,7 @@ class ChatPage {
 }
 
 window.onload = () => {
-   $("#btnChatOpen").on("click", () => {
+   $("#btnChatPageOpen").on("click", () => {
        ChatPage.popup();
    });
 }
