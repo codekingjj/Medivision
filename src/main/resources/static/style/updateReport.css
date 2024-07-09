@@ -37,7 +37,7 @@ tbody{
 }
 
 
-#writerName,#comment,#conclusion,#finding,#recommend,#regDate{
+#writerName,.comment,.conclusion,.finding,.recommend,.regDate,#decode{
     width : 85%;
     padding: 10px;
 
@@ -54,6 +54,9 @@ td.name{
     border-right : 1px solid #6BB092;
     text-align: center;
     border: 1px solid white;
+}
+tr{
+    font-size: 1em;
 }
 
 tbody tr:last-child td.name {
@@ -75,6 +78,18 @@ input[type="button"] {
     font-size: 1em;
 }
 
+input[type="submit"]{
+    background-color: #1E7952;
+    color: white;
+    margin-top: 10px;
+    width: 80px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="submit"],
 input[type="button"]:hover{
     cursor : pointer;
 }

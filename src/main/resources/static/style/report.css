@@ -82,6 +82,11 @@ input[type="button"]{
     font-size: 1.2em;
 }
 
+#close{
+    text-align: center;
+    display: none;
+}
+
 #spare-report{
     margin-right: 5px;
 }
