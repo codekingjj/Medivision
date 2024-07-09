@@ -9,6 +9,7 @@
     <title>header</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
     <script src="${pageContext.request.contextPath}/script/log/loginLog.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/ChatPage.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -41,7 +42,7 @@
             <div class="menu option">마이 페이지</div>
             <div class="menu diselected-side-menu">
                 <div class="side-menu">
-                    <div class="side-menu-icon side-menu-icon-chat" onclick="location.href='/chatroom'"></div>
+                    <div class="side-menu-icon side-menu-icon-chat" id="btnChatPgeOpen"></div>
                     <div class="side-menu-icon side-menu-icon-bell"></div>
                 </div>
             </div>
