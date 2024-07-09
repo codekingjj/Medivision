@@ -343,8 +343,12 @@ select option {
     font-size: 14px;
 }
 
+.button-area{
+    margin-top: 8px;
+}
+
 /* 검색 버튼 */
-.search-button {
+.search-button, .search-submit {
     margin-left: 5px;
     width: 35px;
     height: 35px;
@@ -357,7 +361,7 @@ select option {
     transition: background-color 0.3s ease; /* 배경색 전환 효과 */
 }
 
-.search-button:hover {
+.search-button:hover, search-submit {
     background-color: #aaaaaa; /* 버튼 호버 시 배경색 */
 }
 
