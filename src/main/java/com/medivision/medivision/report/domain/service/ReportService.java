@@ -7,6 +7,7 @@ import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
+import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.pacs.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,12 @@ public class ReportService {
     private final StudyRepository studyRepository;
     private final AdminRepository adminRepository;
     private final DecodeRepository decodeRepository;
+    private final UserRepository userRepository;
 
-    public ResponseEntity<? super ReportResponse> getReportList(int studyKey){
+    public ResponseEntity<? super ReportResponse> getReportList(ReportRequestDto reportDto){
+        int userCode = reportDto.getWriter();
+
+        int studyKey = reportDto.getStudyKey();
         Long studykey = Long.valueOf(studyKey);
         boolean isExist = studyRepository.existsByStudykey(studykey);
         if(!isExist) return ReportResponse.getListFail(); //수정 메소드 들어가서
@@ -40,7 +45,12 @@ public class ReportService {
             result.add(report);
         }
 
-        return ReportResponse.getListSuccess(result);
+        return ReportResponse.getListSuccess(result,userCode);
+    }
+
+    public String getUsername(int userCode){
+        AdminEntity admin = adminRepository.findByUserCode(userCode);
+        return admin.getUserName();
     }
 
     public ResponseEntity<? super ReportResponse> getReport(int reportIndex){
@@ -118,15 +128,80 @@ public class ReportService {
         int cnt = 0;
         for(ReportEntity reportEntity : list){
             String typeDecode = reportEntity.getTypeDecode();
+
+            if(reportEntity.getWriter() == writer)
+                return false;
+
             if("판독".equals(typeDecode)){
                 cnt ++;
-            }else if(reportEntity.getWriter() == writer)
-                return false;
+            }
         }
 
         if(cnt == 2)return false;
 
         return true;
+    }
+
+    private boolean  checkUpdateSpareReport(ReportRequestDto reportDto){
+        int studyKey = reportDto.getStudyKey();
+        int writer = reportDto.getWriter();
+
+        List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+        for(ReportEntity reportEntity : list) {
+            String typeDecode = reportEntity.getTypeDecode();
+            if("예비판독".equals(typeDecode) && writer != reportEntity.getWriter()){
+                return false;
+            }
+            else if("판독".equals(typeDecode) && writer != reportEntity.getWriter())
+                return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkUpdateReport(ReportRequestDto reportDto){
+        int studyKey = reportDto.getStudyKey();
+        int writer = reportDto.getWriter();
+
+        List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+        int cnt = 0;
+        for(ReportEntity reportEntity : list) {
+            String typeDecode = reportEntity.getTypeDecode();
+            if("판독".equals(typeDecode) && writer != reportEntity.getWriter())
+                cnt++;
+        }
+
+        if(cnt == 2) return false;
+
+        return true;
+    }
+
+    public ResponseEntity<? super ReportResponse>  updateReport(ReportRequestDto reportDto, int index){
+        ReportEntity report = reportRepository.findByReportIndex(index);
+        if(!report.getTypeDecode().equals(reportDto.getTypeDecode())){
+            boolean isValid = true;
+            if("예비판독".equals(reportDto.getTypeDecode())){
+                isValid = checkUpdateSpareReport(reportDto);
+            }else{
+                isValid = checkUpdateReport(reportDto);
+            }
+
+            if(!isValid) return ReportResponse.updateFail();
+            report.update(reportDto);
+            reportRepository.save(report);
+            int studyKey = reportDto.getStudyKey();
+            DecodeEntity decode = decodeRepository.findByStudyKey(studyKey);
+
+            String decodeStatus =report.getTypeDecode()+" 완료";
+            decode = new DecodeEntity(decode.getStudyKey(),decodeStatus);
+            decodeRepository.save(decode);
+        }
+        else{
+            report.update(reportDto);
+            reportRepository.save(report);
+        }
+
+        return ReportResponse.updateSuccess();
     }
 
 }

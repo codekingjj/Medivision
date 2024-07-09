@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>뷰어</title>
 
 </head>
 <body>
+<input type="hidden" id="studyKey" value="${studyKey}">
     <header>
         <nav>
             <ul>
@@ -27,7 +29,7 @@
 
 
 
-<div id="content"></div>
+<div id="dicomImage"></div>
 <input id="file" type="file" accept="application/dicom">
 
 <%--    <button id="invertButton">Invert Colors</button>--%>
@@ -68,4 +70,5 @@
     </c:forEach>
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/viewer/reportPopup.jse"></script>
 </html>

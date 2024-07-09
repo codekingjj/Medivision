@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class FileResponse {
+    private int imageKey;
     private String fileName;
     private String fileType;
     private String base64Content;

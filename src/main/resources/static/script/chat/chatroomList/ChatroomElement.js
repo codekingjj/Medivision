@@ -1,3 +1,5 @@
+import DateConverter from "../utils/DateConverter.js";
+
 class ChatroomElement {
     static getChatrooms(chatrooms) {
         const chatroomContainerList = chatrooms.map(chatroom => {
@@ -18,29 +20,119 @@ class ChatroomElement {
         return chatroomContainer;
     }
 
-    static #create(chatroom) {
-        const { roomId, name, members, lastVisitedDate } = chatroom;
+    static update(messageData) {
+        const { roomId, message, createDate } = messageData;
 
-        const chatroomContainer = this.#createChatroomContainer(roomId);
+        this.#updateLatestMessage(roomId, message);
+        this.#updateLatestMessageDate(roomId, createDate);
+        this.#updateNewMessageCounter(roomId);
+    }
 
-        const content = document.createElement("span");
-        const header = document.createElement("span");
-        const memberElement = document.createElement("span");
+    static #updateNewMessageCounter(roomId) {
+        const elementId = this.#getNewMessageCounterElementId(roomId);
 
-        header.innerHTML = `${name} (ID: ${roomId})`;
+        if ($(`#${elementId}`).hasClass("hidden"))
+            $(`#${elementId}`).removeClass("hidden");
 
-        for (let i = 0; i < members.length; i++) {
-            const member = members[i];
+        const currentCountString = $(`#${elementId}`).html();
+        let newCount = 1;
 
-            memberElement.innerHTML += member.userName;
-
-            if (i + 1 < members.length)
-                memberElement.innerHTML += ", ";
+        if (currentCountString !== "") {
+            newCount = parseInt(currentCountString) + 1;
         }
 
-        chatroomContainer.append(header);
-        chatroomContainer.append(content);
-        chatroomContainer.append(memberElement);
+        $(`#${elementId}`).html(newCount);
+    }
+
+    static #updateLatestMessage(roomId, message) {
+        const elementId = this.#getLatestMessageElementId(roomId);
+
+        $(`#${elementId}`).html(message);
+    }
+
+    static #updateLatestMessageDate(roomId, createDate) {
+        const elementId = this.#getLatestMessageDateElementId(roomId);
+
+        $(`#${elementId}`).html(DateConverter.getDateFromTimestamp(createDate));
+    }
+
+    static #getLatestMessageElementId(roomId) {
+        return `latestMessage_${roomId}`;
+    }
+
+    static #getLatestMessageDateElementId(roomId) {
+        return `latestMessageDate_${roomId}`;
+    }
+
+    static #getNewMessageCounterElementId(roomId) {
+        return `newMessageCounter_${roomId}`;
+    }
+
+    static #createLatestMessageElement(roomId, latestMessage) {
+        const latestMessageElement = document.createElement("span");
+
+        latestMessageElement.classList.add("message");
+        latestMessageElement.id = this.#getLatestMessageElementId(roomId);
+        latestMessageElement.innerHTML = latestMessage;
+
+        return latestMessageElement;
+    }
+
+    static #createLatestMessageDateElement(roomId, latestMessageSendDate) {
+        const latestMessageDateElement = document.createElement("span");
+
+        latestMessageDateElement.id = this.#getLatestMessageDateElementId(roomId);
+        latestMessageDateElement.innerHTML = DateConverter.getDateFromTimestamp(latestMessageSendDate);
+
+        return latestMessageDateElement;
+    }
+
+    static #createNewMessageCounterElement(roomId, numOfUnreadMessages) {
+        const element= document.createElement("span");
+
+        element.classList.add("new-message-counter");
+        element.id = this.#getNewMessageCounterElementId(roomId);
+
+        if (numOfUnreadMessages > 0) {
+           element.innerHTML = numOfUnreadMessages;
+        } else {
+            element.classList.add("hidden");
+        }
+
+        return element;
+    }
+
+    static #createHeaderElement(roomId, roomName, numOfUnreadMessages) {
+        const headerElement = document.createElement("div");
+
+        const roomNameElement = document.createElement("span");
+        const newMessageCounterElement= this.#createNewMessageCounterElement(roomId, numOfUnreadMessages);
+
+        roomNameElement.innerHTML = roomName;
+
+        headerElement.classList.add("chatroom-header-container");
+        headerElement.append(roomNameElement);
+        headerElement.append(newMessageCounterElement);
+
+        return headerElement;
+    }
+
+    static #create(chatroomData) {
+        const { roomId, name, latestMessage, latestMessageSendDate, numOfUnreadMessages } = chatroomData;
+
+        const chatroomContainer = this.#createChatroomContainer(roomId);
+        const contentContainer = document.createElement("div");
+        const headerElement = this.#createHeaderElement(roomId, name, numOfUnreadMessages);
+        const latestMessageElement = this.#createLatestMessageElement(roomId, latestMessage, latestMessageSendDate);
+        const latestMessageDateElement = this.#createLatestMessageDateElement(roomId, latestMessageSendDate);
+
+        contentContainer.classList.add("chatroom-content-container");
+
+        contentContainer.append(latestMessageElement);
+        contentContainer.append(latestMessageDateElement);
+
+        chatroomContainer.append(headerElement);
+        chatroomContainer.append(contentContainer);
 
         return chatroomContainer;
     }

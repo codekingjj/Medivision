@@ -9,5 +9,9 @@ import java.util.List;
 
 @Repository
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
-    public Page<Chat> findByRoomIdOrderByCreateDateDesc(int roomId, Pageable pageable);
+    Page<Chat> findByRoomIdOrderByCreateDateDesc(int roomId, Pageable pageable);
+
+    Chat findFirstByRoomIdOrderByCreateDateDesc(int roomId);
+
+    boolean existsByRoomId(int roomId);
 }

@@ -14,6 +14,7 @@ public class ChatResponseDto {
     private String senderUserName;
 
     private String message;
+    private boolean isSystemMessage;
     private Timestamp createDate;
 
     public ChatResponseDto(Chat chat) {

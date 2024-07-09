@@ -1,16 +1,50 @@
+import Fetch from "../utils/Fetch.js";
 import UserElement from "./UserElement.js";
+import RedirectPage from "../common/RedirectPage.js";
 
-let isLastPage = false;
 let pageNumber = 0;
+let userCode;
 
 window.onload = () => {
-    populateUserList();
+    init();
 
     //$("#chatListContainer").on("scroll", (e) => handleChatListScroll(e));
-    $("#btnUserSearch").on("click", (e) => {
-        populateUserList();
-    })
 };
+
+async function init() {
+    userCode = await Fetch.getUserCode();
+    populateUserList();
+    loadEventListeners();
+}
+
+function clearUserList() {
+    $(".user-list-container").empty();
+}
+
+function searchUser() {
+    clearUserList();
+    pageNumber = 0;
+    populateUserList();
+}
+
+function loadEventListeners() {
+    $("#btnToChatroomList").on("click", () => RedirectPage.toChatroomList());
+
+    $("#btnUserSearch").on("click", (e) => {
+        searchUser();
+    });
+
+    $("#inputUserSearch").on("keyup", (e) => {
+        if (e.key !== "Enter")
+            return;
+
+        searchUser();
+    });
+
+    $("#btnNextPage").on("click", (e) => {
+        populateUserList();
+    });
+}
 
 async function populateUserList() {
     const data = await fetchUserList();
@@ -18,10 +52,16 @@ async function populateUserList() {
 
     const { chatUserSearchDtoList, lastPage } = data;
 
-    const userElements = UserElement.getUsers(chatUserSearchDtoList);
+    const userElements = UserElement.getUsers(userCode, chatUserSearchDtoList);
 
     for (const userElement of userElements)
         $(".user-list-container").append(userElement);
+
+    if (lastPage) {
+        $("#btnNextPage").hide();
+    } else {
+        $("#btnNextPage").show();
+    }
 }
 
 async function fetchUserList() {
@@ -32,7 +72,7 @@ async function fetchUserList() {
         "searchQuery": searchQuery,
     };
 
-    const data = await fetch("/chatUserSearch", {
+    const data = await fetch("/chat/userSearch", {
         method: "POST",
         headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -46,7 +86,9 @@ async function fetchUserList() {
         .then(data => {
             return data;
         })
-        .catch(err => err);
+        .catch(err => {
+            console.log(err)
+        });
 
     return data;
 }

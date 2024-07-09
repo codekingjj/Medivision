@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 5px;
+}
+
+.chatroom-list-header {
+    padding: 10px;
+    gap: 10px;
+    background-color: #00673B;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatroom-list-header-side-container {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.chatroom-list-header-side-container > div {
+    display: inline-block;
+}
+
+.chatroom-list-header-side-container > div > * {
+    width: 100%;
+    height: 100%;
+}
+
+.chatroom-list-header-side-container > div:hover {
+    background-color: rgb(35, 135, 35);
+}
+
+.chatroom-list-header-side-container.middle {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    background-color: #E8E8E8;
+    gap: 10px;
+}
+
+.user-list-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: #E8E8E8;
+    padding: 10px;
+    gap: 10px;
+}
+
+.user-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.user-container:hover {
+    background-color: #d1d1d1;
+}
+
+.user-container span {
+    color: #686868;
+}
+
+#inputUserSearch {
+    width: 100%;
+    border: 1px solid rgb(71, 139, 97);
+    border-radius: 5px;
+    text-align: right;
+    outline: none;
+}
+
+#inputUserSearch:focus {
+    border: 3px solid rgb(71, 139, 97);
+}
+
+#btnUserSearch {
+    color: gray;
+    background-color: white;
+    border: none;
+    white-space: nowrap;
+}
+
+#btnToChatroomList {
+    background-color: white;
+}
+
+#btnNextPage {
+    padding: 10px;
+    background-color: #00673B;
+    color: #FFFFFF;
+    border-radius: 10px;
+}

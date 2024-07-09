@@ -53,3 +53,24 @@
 .chatroom-container span {
     color: #686868;
 }
+
+.chatroom-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatroom-content-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-message-counter {
+    background-color: #ffbd44;
+    padding: 10px 15px;
+    border-radius: 50%;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}

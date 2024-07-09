@@ -10,4 +10,5 @@ import java.util.List;
 public interface ChatroomAndMemberRepository extends JpaRepository<ChatroomAndMember, ChatroomAndMemberId> {
     public List<ChatroomAndMember> findDistinctByUserCode(int userCode);
     List<ChatroomMember> findByRoomId(int roomId);
+    List<ChatroomAndMember> findDistinctByUserCode(int userCode);
 }
