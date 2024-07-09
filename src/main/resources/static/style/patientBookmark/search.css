@@ -1,0 +1,5 @@
+.table-th-patientBookmark,
+.td-patientBookmark-checkbox-container,
+#btnAddCheckedStudiesToPatientBookmark {
+    display: none;
+}
