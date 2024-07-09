@@ -60,4 +60,14 @@ public class ReportResponse extends ResponseDto {
         return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
     }
 
+    public static ResponseEntity<ResponseDto> updateFail(){
+        ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_FULL, ResponseMessage.REPORT_ALREADY_FULL);
+        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
+    }
+
+    public static ResponseEntity<ResponseDto> updateSuccess(){
+        ResponseDto result = new ResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
 }
