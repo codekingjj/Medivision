@@ -1,5 +1,6 @@
 package com.medivision.medivision.chat.chat.controller;
 
+import com.medivision.medivision.alarm.domain.service.AlarmService;
 import com.medivision.config.websocket.StompClient;
 import com.medivision.medivision.chat.chat.domain.Chat;
 import com.medivision.medivision.chat.chat.domain.ChatService;
@@ -37,6 +38,7 @@ import java.util.List;
 public class ChatController {
     private final ChatService chatService;
     private final AdminRepository adminRepository;
+    private final AlarmService alarmService;
 
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
@@ -53,6 +55,9 @@ public class ChatController {
 
         chatResponseDto.setSenderUserName(admin.getUserName());
 
+        chatService.save(chat);
+        alarmService.saveChat(chat);
+        return chatResponseDto; // return value goes to @SendTo() URL
         if (chatRequestDto.isSystemMessage()) {
             final String LEAVE_MESSAGE = admin.getUserName() + "님이 방을 나갔습니다";
             chatResponseDto.setSystemMessage(true);
