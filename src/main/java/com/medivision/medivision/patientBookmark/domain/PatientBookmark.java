@@ -3,6 +3,7 @@ package com.medivision.medivision.patientBookmark.domain;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -21,6 +22,8 @@ public class PatientBookmark {
     @Column(name = "pid")
     private String pid;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private Timestamp createdDate;
 
     public PatientBookmark(PatientBookmarkRequestDto patientBookmarkResponseDto) {
