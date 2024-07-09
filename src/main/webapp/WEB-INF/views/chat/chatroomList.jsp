@@ -15,7 +15,7 @@
             <div onclick="location.href = '/chat/userSearch'">+</div>
         </div>
         <div class="chatroom-list-header-side-container">
-            <div>></div>
+            <div onclick="location.href = '/index'">></div>
         </div>
     </header>
     <div class="chatroom-list-container"></div>
