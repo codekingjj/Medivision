@@ -1,5 +1,4 @@
 function remaindTime(reportTime) {
-
     // 현재 시간을 구한다.
     var reportDate = new Date(reportTime);
     // 마감 기간을 가져온다.
@@ -51,12 +50,14 @@ $(document).ready(function() {
     function getReport(){
         const tbody = document.getElementById('report-list');
         tbody.replaceChildren();
+        const token = localStorage.getItem("jwt");
 
         $.ajax({
             "url" : `/reports/${studyKey}`,
             "method" : 'GET',
             "headers": {
                 "Content-Type": "application/json",
+                "Authorization" : `Bearer ${token}`
             }
         }).then(res => {
             const data = res.result;
@@ -108,6 +109,9 @@ $(document).ready(function() {
             if(num == 2){
                 const form = document.getElementById('report-form');
                 form.replaceChildren();
+
+                const close = document.getElementById('close');
+                close.style.display = "block";
             }
         });
     }
@@ -207,14 +211,13 @@ $(document).ready(function() {
             "typeDecode" : decodeType
         }
 
-        const token = localStorage.getItem("jwt")
-
+        const token = localStorage.getItem("jwt");
         $.ajax({
             "url" : "/createReport",
             "method" : 'POST',
             "headers": {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                "Authorization" : `Bearer ${token}`
             },"data": JSON.stringify(req)
         }).then(res => {
             if("SR"===res.code || "RF" === res.code){
