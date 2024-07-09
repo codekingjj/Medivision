@@ -4,9 +4,10 @@
     <title>검색</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" src="${pageContext.request.contextPath}/static/dist/search.bundle.js"></script>
+    <script src="${pageContext.request.contextPath}/static/script/patientBookmark/search.js"></script>
     <link href="style/content.css" rel="stylesheet">
     <link href="style/search.css" rel="stylesheet">
-
+    <link href="style/patientBookmark/search.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -110,15 +111,18 @@
                 </div>
                 <button type="submit">검색</button>
             </form>
-            <button id="0" class="search-button">전체</button>
-            <button id="1" class="search-button">1일</button>
-            <button id="3" class="search-button">3일</button>
-            <button id="7" class="search-button">1주일</button>
+<%--            <button id="0" class="search-button">전체</button>--%>
+<%--            <button id="1" class="search-button">1일</button>--%>
+<%--            <button id="3" class="search-button">3일</button>--%>
+<%--            <button id="7" class="search-button">1주일</button>--%>
+                <button id="btnToggleAddPatientBookmarkCheckboxes">담당 환자 추가</button>
+                <button id="btnAddCheckedStudiesToPatientBookmark">선택한 환자 추가</button>
         </div>
         <div class="main">
             <table class="results-section">
                 <thead>
                 <tr>
+                    <th class="table-th-patientBookmark">담당 환자 추가</th>
                     <th>환자 번호</th>
                     <th>환자 이름</th>
                     <th>검사 장비</th>
