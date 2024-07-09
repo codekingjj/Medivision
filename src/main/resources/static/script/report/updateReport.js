@@ -56,8 +56,7 @@ $(document).ready(function(){
                 sec = '0' + sec;
             }
             // return days + '일 ' + hour + '시간 ' + min + '분 ' + sec + '초';
-            console.log(days);
-            if(days < 1) return true;
+            if(hour < 1) return true;
 
             return false;
         } else {
@@ -134,7 +133,11 @@ $(document).ready(function(){
             if ("SU" === res.code) {
                 alert("수정을 완료했습니다.");
                 window.close();
-            }else{
+            }else if("NU" === res.code){
+                alert("해당 보고서를 작성한 유저가 아닙니다.");
+                window.close();
+            }
+            else{
                 alert("해당 판독으로 수정이 불가합니다.");
             }
         });
