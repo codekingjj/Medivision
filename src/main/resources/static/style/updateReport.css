@@ -1,0 +1,103 @@
+body{
+    min-width: 700px;
+    width: 80vw;
+    margin:auto;
+    margin-top: 30px;
+}
+
+textarea{
+    width : 100%;
+    border: none;
+    resize: none;
+    font-size: 1em;
+    word-break: break-all;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+table{
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    font-size: 1em;
+    text-align: left;
+}
+
+thead{
+    margin-bottom : 20px
+}
+
+th{
+    font-size: 2.3em;
+}
+
+tbody{
+}
+
+
+#writerName,.comment,.conclusion,.finding,.recommend,.regDate,#decode{
+    width : 85%;
+    padding: 10px;
+
+    border-bottom : 1px solid dimgrey;
+    border-right : 1px solid dimgrey;
+}
+
+#writerName{
+    border-top : 1px solid dimgrey;
+}
+
+td.name{
+    background-color: #6BB092;
+    border-right : 1px solid #6BB092;
+    text-align: center;
+    border: 1px solid white;
+}
+tr{
+    font-size: 1em;
+}
+
+tbody tr:last-child td.name {
+    border-bottom: 1px solid #6BB092;
+}
+
+tbody tr:first-child  td.name{
+    border-top : 1px solid #6BB092;
+}
+
+input[type="button"] {
+    background-color: dimgrey;
+    color: white;
+    margin-top: 10px;
+    width: 80px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="submit"]{
+    background-color: #1E7952;
+    color: white;
+    margin-top: 10px;
+    width: 80px;
+    height: 40px;
+    border : none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="submit"],
+input[type="button"]:hover{
+    cursor : pointer;
+}
+
+#close{
+    text-align: center;
+}
+
+#report-title{
+    text-align: center;
+}
