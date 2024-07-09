@@ -62,6 +62,8 @@ $(document).ready(function() {
             const data = res.result;
             console.log(res);
             console.log(data);
+            let num = 0;
+            $("tbody").replaceChildren();
 
             data.forEach(function(report){
                 const trE = document.createElement("tr");
@@ -99,7 +101,13 @@ $(document).ready(function() {
                 trE.append(td4);
                 trE.append(td5);
                 $("tbody").append(trE);
+
+                if("판독" === report.typeDecode) num ++;
             });
+
+            if(num == 2){
+                $("#report-form").replaceChildren();
+            }
         });
     }
 
@@ -219,7 +227,7 @@ $(document).ready(function() {
                 $('#recommend').val("");
                 $('#comment').val("");
 
-                window.close();
+                getReport();
             }
         });
     });
