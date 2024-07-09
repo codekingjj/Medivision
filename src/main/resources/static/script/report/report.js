@@ -40,8 +40,7 @@ function remaindTime(reportTime) {
 
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
-    // const studyKey = window.opener.studyKey;
-    const studyKey = 1;
+    const studyKey = opener.document.getElementById('studyKey');
 
     let decodeType ="";
     let reportData = null;
