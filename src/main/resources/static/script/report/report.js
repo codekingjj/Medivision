@@ -30,7 +30,7 @@ function remaindTime(reportTime) {
         }
         // return days + '일 ' + hour + '시간 ' + min + '분 ' + sec + '초';
 
-        if(days < 1) return true;
+        if(hour < 1) return true;
 
         return false;
     } else {
