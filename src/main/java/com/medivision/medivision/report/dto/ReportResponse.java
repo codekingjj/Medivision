@@ -12,14 +12,21 @@ import java.util.List;
 @Getter
 public class ReportResponse extends ResponseDto {
     private List<ReportResponseDto> result;
+    private int userCode;
 
     public ReportResponse(List<ReportResponseDto> result) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
         this.result = result;
     }
 
-    public static ResponseEntity<ReportResponse> getListSuccess(List<ReportResponseDto> list){
-        ReportResponse result = new ReportResponse(list);
+    public ReportResponse(List<ReportResponseDto> result, int userCode) {
+        super(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
+        this.result = result;
+        this.userCode = userCode;
+    }
+
+    public static ResponseEntity<ReportResponse> getListSuccess(List<ReportResponseDto> list, int userCode){
+        ReportResponse result = new ReportResponse(list,userCode);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
@@ -51,6 +58,21 @@ public class ReportResponse extends ResponseDto {
     public static ResponseEntity<ResponseDto> createReportFail(){
         ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_FULL, ResponseMessage.REPORT_ALREADY_FULL);
         return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
+    }
+
+    public static ResponseEntity<ResponseDto> updateFail(){
+        ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_FULL, ResponseMessage.REPORT_ALREADY_FULL);
+        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
+    }
+
+    public static ResponseEntity<ResponseDto> updateSuccess(){
+        ResponseDto result = new ResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCES);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    public static ResponseEntity<ResponseDto> differentUser(){
+        ResponseDto result = new ResponseDto(ResponseCode.NOT_EXISTED_USER, ResponseMessage.NOT_EXISTED_USER);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
 }

@@ -56,13 +56,13 @@
                         <option value="6">판독</option>
                     </select>
                 </div>
-                <div class="button-area">
-                    <button id="search" class="search-button">검색</button>
-                    <button id="all-search" class="search-button">전체</button>
-                    <button id="three-days" class="search-button">3일</button>
-                    <button id="week" class="search-button">7일</button>
-                </div>
             </form>
+            <div class="button-area">
+                <button id="search" class="search-submit">검색</button>
+                <button id="all-search" class="search-button" value="all">전체</button>
+                <button id="three-days" class="search-button" value="three-days">3일</button>
+                <button id="week" class="search-button" value="week">7일</button>
+            </div>
         </div>
         <div class="result">
             <table class="results-section">

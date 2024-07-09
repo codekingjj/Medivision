@@ -1,4 +1,4 @@
-fetch("http://192.168.40.97:8080/alarm",{
+fetch("http://192.168.40.97:8081/alarm",{
     method:"GET",
     headers:{
         'Authorization': "Bearer "+localStorage.getItem("jwt")
@@ -45,3 +45,26 @@ function handleAlarmClick(index) {
     console.log(`Alarm index: ${index}`);
     // 여기에 원하는 로직을 추가할 수 있습니다.
 }
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    var modalText = document.getElementById("modal-text");
+
+    document.querySelectorAll(".alarm-content p").forEach(function(p) {
+        p.addEventListener("click", function() {
+            alert("여기");
+            modalText.innerHTML = this.innerHTML;
+            modal.style.display = "block";
+        });
+    });
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});

@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/report.css">
     <script src="${pageContext.request.contextPath}/script/report/report.js"></script>
+    <script src="${pageContext.request.contextPath}/script/report/report-update.js"></script>
 </head>
 <body>
 <div id="container">
@@ -49,6 +50,9 @@
                 <input id="close-button" type="button" value="닫기" />
             </div>
         </form>
+    </div>
+    <div id="close">
+        <input type="button" value="닫기" onclick="window.close()"/>
     </div>
 </div>
 
