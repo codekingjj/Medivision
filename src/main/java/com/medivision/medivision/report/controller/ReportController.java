@@ -60,10 +60,11 @@ public class ReportController {
         return "report/update";
     }
 
-//    @PatchMapping("/reprot/update")
-//    @ResponseBody
-//    public ResponseEntity<? super ReportResponse> updateReport(@RequestBody ReportRequestDto reportDto, @AuthenticationPrincipal String code){
-//
-//    }
+    @PatchMapping("/report/update/{index}")
+    @ResponseBody
+    public ResponseEntity<? super ReportResponse> updateReport(@PathVariable("index") String index, @RequestBody ReportRequestDto reportDto, @AuthenticationPrincipal String code){
+        reportDto.setWriter(Integer.parseInt(code));
+        return null;
+    }
 
 }
