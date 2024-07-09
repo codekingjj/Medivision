@@ -9,6 +9,7 @@
 
 </head>
 <body>
+<input type="hidden" id="studyKey" value="${studyKey}">
     <header>
         <nav>
             <ul>

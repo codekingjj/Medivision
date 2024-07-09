@@ -32,11 +32,15 @@ import java.util.List;
 public class ViewerController {
     private final ViewerService viewerService;
 
-    @GetMapping()
-        public String viewer() {return "viewer/viewer";}
-
-
     @GetMapping("/{studyKey}")
+        public ModelAndView viewer(@PathVariable int studyKey) {
+        ModelAndView modelAndView = new ModelAndView("viewer/viewer");
+        modelAndView.addObject("studyKey", studyKey);
+        return modelAndView;
+    }
+
+
+    @GetMapping("/get/{studyKey}")
     public ResponseEntity<List<SeriesKeyAndFileResponseDto>> findImage(@PathVariable int studyKey) {
         System.out.println(studyKey);
         List<SeriesKeyAndFileResponseDto> fileList = new ArrayList<>();
