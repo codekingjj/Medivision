@@ -178,6 +178,7 @@ public class ReportService {
 
     public ResponseEntity<? super ReportResponse>  updateReport(ReportRequestDto reportDto, int index){
         ReportEntity report = reportRepository.findByReportIndex(index);
+        if(report.getWriter() != reportDto.getWriter()) return ReportResponse.differentUser();
         if(!report.getTypeDecode().equals(reportDto.getTypeDecode())){
             boolean isValid = true;
             if("예비판독".equals(reportDto.getTypeDecode())){
