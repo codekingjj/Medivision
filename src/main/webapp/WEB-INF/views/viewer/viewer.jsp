@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <title>뷰어</title>
 
 </head>
@@ -57,5 +57,4 @@
 </div>
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/static/viewer/reportPopup.jse"></script>
 </html>
