@@ -1,6 +1,10 @@
 $(document).ready(function () {
     let pop = null;
     window.onunload = function() { pop.close(); }
+    const url = window.location.pathname.split('/');
+    const studyKey = url.at(2);
+    console.log(studyKey);
+    $('#studykey').val(studyKey);
 
     function popup() {
         var url = `/reportPage`;
