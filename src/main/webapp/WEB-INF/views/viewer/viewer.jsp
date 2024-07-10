@@ -12,6 +12,7 @@
 
 </head>
 <body>
+<input type="hidden" id="studyKey" value="${studyKey}">
 <div class="container">
     <div class="header">
         <div class="header-top">

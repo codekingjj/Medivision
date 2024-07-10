@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,59 +36,75 @@ public class ViewerController {
     @GetMapping("/{studyKey}")
         public ModelAndView viewer(@PathVariable int studyKey) {
         ModelAndView modelAndView = new ModelAndView("viewer/viewer");
+        System.out.println(studyKey);
         modelAndView.addObject("studyKey", studyKey);
         return modelAndView;
     }
 
 
+//    @GetMapping("/get/{studyKey}/{seriesKey}")
+
+
+    @GetMapping("/get/{studyKey}/{seriesKey}")
+    public ResponseEntity<List<VImageEntity>> findImages(@PathVariable int studyKey, @PathVariable int seriesKey) {
+        List<VImageEntity> imageEntityList = viewerService.findImagesBySeriesKeyAndStudyKey(studyKey, seriesKey);
+        return new ResponseEntity<>(imageEntityList, HttpStatus.OK);
+    }
+
     @GetMapping("/get/{studyKey}")
-    public ResponseEntity<List<SeriesKeyAndFileResponseDto>> findImage(@PathVariable int studyKey) {
-        System.out.println(studyKey);
-        List<SeriesKeyAndFileResponseDto> fileList = new ArrayList<>();
-        ModelAndView mav = new ModelAndView("viewer/viewer");
+    public ResponseEntity<List<Integer>> findSeriesKey(@PathVariable int studyKey) {
+        List<Integer> seriesKey = new ArrayList<>();
         List<VSeriesEntity> seriesList = viewerService.findSeriesByStudyKey(studyKey);
-        System.out.println("사이즈  : " + seriesList.size());
-//        List<List<FileResponse>> fileList = new ArrayList<>();
-        String driver = "Z:\\";
-        for(VSeriesEntity vSeriesEntity : seriesList) {
-            SeriesKeyAndFileResponseDto seriesKeyAndFileResponseDto = new SeriesKeyAndFileResponseDto();
-            seriesKeyAndFileResponseDto.setSeriesKey(vSeriesEntity.getSeriesKey());
-            ViewSeriesResponseDto viewSeriesResponseDto = new ViewSeriesResponseDto(vSeriesEntity);
-            List<VImageEntity> imageList = viewerService.findImagesBySeriesKeyAndStudyKey(vSeriesEntity.getSeriesKey(), studyKey);
-            List<FileResponse> childFileList = new ArrayList<>();
-            System.out.println(imageList.size());
-            System.out.println("시리즈 키 : " + vSeriesEntity.getSeriesKey());
-            for(VImageEntity imageEntity : imageList) {
-                System.out.println("ImageKey : " + imageEntity.getImageKey());
-                System.out.println("Path : " + imageEntity.getPath());
-
-                System.out.println("Fname : " + imageEntity.getFname());
-                System.out.println("studyKey : " + imageEntity.getStudyKey());
-                System.out.println("seriesKey : " + imageEntity.getSeriesKey());
-            }
-            for(VImageEntity vImageEntity : imageList) {
-
-                ViewImageResponseDto viewImageResponseDto = new ViewImageResponseDto(vImageEntity);
-                String totalPath = vImageEntity.getPath() + vImageEntity.getFname();
-                viewImageResponseDto.setTotalPath(totalPath);
-                String realPath = driver + totalPath;
-                File file = new File(realPath);
-                try {
-                    FileResponse fileResponse = new FileResponse();
-                    fileResponse.setImageKey(vImageEntity.getImageKey());
-                    fileResponse.setFileName(vImageEntity.getFname());
-                    fileResponse.setFileType(Files.probeContentType(file.toPath()));
-                    fileResponse.setBase64Content(encodeFileToBase64(file));
-                    childFileList.add(fileResponse);
-                }catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            seriesKeyAndFileResponseDto.setFileList(childFileList);
-            fileList.add(seriesKeyAndFileResponseDto);
+        for (VSeriesEntity series : seriesList) {
+            seriesKey.add(series.getSeriesKey());
         }
-        mav.addObject("fileArray", fileList);
-        return new ResponseEntity<>(fileList, HttpStatus.OK);
+        return new ResponseEntity<>(seriesKey, HttpStatus.OK);
+//        System.out.println(studyKey);
+//        List<SeriesKeyAndFileResponseDto> fileList = new ArrayList<>();
+//        ModelAndView mav = new ModelAndView("viewer/viewer");
+
+//        System.out.println("사이즈  : " + seriesList.size());
+////        List<List<FileResponse>> fileList = new ArrayList<>();
+//        String driver = "Z:\\";
+//        for(VSeriesEntity vSeriesEntity : seriesList) {
+//            SeriesKeyAndFileResponseDto seriesKeyAndFileResponseDto = new SeriesKeyAndFileResponseDto();
+//            seriesKeyAndFileResponseDto.setSeriesKey(vSeriesEntity.getSeriesKey());
+//            ViewSeriesResponseDto viewSeriesResponseDto = new ViewSeriesResponseDto(vSeriesEntity);
+//            List<VImageEntity> imageList = viewerService.findImagesBySeriesKeyAndStudyKey(vSeriesEntity.getSeriesKey(), studyKey);
+//            List<FileResponse> childFileList = new ArrayList<>();
+//            System.out.println(imageList.size());
+//            System.out.println("시리즈 키 : " + vSeriesEntity.getSeriesKey());
+//            for(VImageEntity imageEntity : imageList) {
+//                System.out.println("ImageKey : " + imageEntity.getImageKey());
+//                System.out.println("Path : " + imageEntity.getPath());
+//
+//                System.out.println("Fname : " + imageEntity.getFname());
+//                System.out.println("studyKey : " + imageEntity.getStudyKey());
+//                System.out.println("seriesKey : " + imageEntity.getSeriesKey());
+//            }
+//            for(VImageEntity vImageEntity : imageList) {
+//
+//                ViewImageResponseDto viewImageResponseDto = new ViewImageResponseDto(vImageEntity);
+//                String totalPath = vImageEntity.getPath() + vImageEntity.getFname();
+//                viewImageResponseDto.setTotalPath(totalPath);
+//                String realPath = driver + totalPath;
+//                File file = new File(realPath);
+//                try {
+//                    FileResponse fileResponse = new FileResponse();
+//                    fileResponse.setImageKey(vImageEntity.getImageKey());
+//                    fileResponse.setFileName(vImageEntity.getFname());
+//                    fileResponse.setFileType(Files.probeContentType(file.toPath()));
+//                    fileResponse.setBase64Content(encodeFileToBase64(file));
+//                    childFileList.add(fileResponse);
+//                }catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            seriesKeyAndFileResponseDto.setFileList(childFileList);
+//            fileList.add(seriesKeyAndFileResponseDto);
+//        }
+//        mav.addObject("fileArray", fileList);
+//        return new ResponseEntity<>(fileList, HttpStatus.OK);
     }
 
     private String encodeFileToBase64(File file) throws IOException {
