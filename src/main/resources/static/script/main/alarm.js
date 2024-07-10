@@ -1,4 +1,4 @@
-fetch("http://192.168.40.97:8081/alarm",{
+fetch("/alarm",{
     method:"GET",
     headers:{
         'Authorization': "Bearer "+localStorage.getItem("jwt")
@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelectorAll(".alarm-content p").forEach(function(p) {
         p.addEventListener("click", function() {
-            alert("여기");
             modalText.innerHTML = this.innerHTML;
             modal.style.display = "block";
         });

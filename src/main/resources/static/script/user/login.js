@@ -21,7 +21,7 @@ function onsubmitForm(){
             .then(response  => {
                 localStorage.setItem("jwt", response.token);
                 if(response.code === "SU")
-                    window.location.href = "/index";
+                    window.location.href = "/main";
                 else
                     alert("아이디 비밀번호를 확인해주세요");
             });

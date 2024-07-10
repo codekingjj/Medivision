@@ -50,6 +50,10 @@
     </div>
     <div class="aside"><button id="report">리포트</button></div>
 
+    <div class="content">
+        <input type="hidden" id="studykey" value=""></div>
+
+    </div>
     <div class="footer">
         <div class="footer-left">
             copyright@Megastudy
