@@ -13,7 +13,7 @@ import java.util.List;
 public interface VImageRepository extends JpaRepository<VImageEntity, Integer> {
 
     @Query(nativeQuery = true, value = "select i.* from pacsplus.v_imagetab i where i.serieskey = :seriesKey AND i.studykey = :studyKey")
-    List<VImageEntity> getImage(@Param("seriesKey") int seriesKey, @Param("studyKey") int studyKey);
+    List<VImageEntity> getImage(@Param("studyKey") int studyKey, @Param("seriesKey") int seriesKey);
 
 
 

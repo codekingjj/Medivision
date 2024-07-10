@@ -7,10 +7,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
+
     <title>뷰어</title>
 
 </head>
 <body>
+<input type="hidden" id="studyKey" value="${studyKey}">
 <div class="container">
     <div class="header">
         <div class="header-top">
@@ -27,8 +29,8 @@
         </div>
         <div class="header-menu">
             <div class="menu diselected"></div>
-            <div class="menu option">차트 검색</div>
-            <div class="menu option">담당 환자 설정</div>
+            <div class="menu option" onclick="location.href='/search'">차트 검색</div>
+            <div class="menu option" onclick="location.href='/patientBookmark'">담당 환자 설정</div>
             <div class="menu selected dropdown">
                 <div class="dropdown-title">로그 기록 확인</div>
                 <div class="dropdown-content-box">
@@ -46,8 +48,8 @@
             </div>
         </div>
     </div>
-    <div class="aside"></div>
-    <div class="content"></div>
+    <div class="aside"><button id="report">리포트</button></div>
+
     <div class="footer">
         <div class="footer-left">
             copyright@Megastudy
@@ -57,4 +59,5 @@
 </div>
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
+
 </html>

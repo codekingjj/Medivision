@@ -8,7 +8,7 @@ import StompManager from "../chat/chatroom/StompManager";
 
 // 뷰 포트 생성
 const content = document.getElementById('content');
-const element = document.createElement('dicomImage');console.log("진짜 뷰어");
+const element = document.createElement('dicomImage');
 // 툴 정의
 const {
     //도구 -> 돋보기
@@ -30,22 +30,27 @@ window.onload = () => {
 };
 
 async function loadData() {
-   let Data = await fetchData();
-   console.log(Data);
+    const studyKey = $("#studyKey").val();
+   let seriesKeys = await fetchSeriesKeys(studyKey);
+   console.log(seriesKeys);
     let num =0;
-   for (let data of Data) {
-       let byteCharacters = atob(data.fileList[1].base64Content);
-       let byteNumbers = new Array(byteCharacters.length);
-       for(let i = 0 ; i < byteCharacters.length; i++) {
-           byteNumbers[i] = byteCharacters.charCodeAt(i);
-       }
-       let byteArray = new Uint8Array(byteNumbers);
-       let blob = new Blob([byteArray], {type: data.fileType});
-       const url = URL.createObjectURL(blob);
-       const imageId = `dicomweb:${url}`;
-
-       render(imageId, num);
-       num++;
+   for (let seriesKey of seriesKeys) {
+       let images = fetchImages(seriesKey, studyKey);
+       let byteCharacters = new Array(data.fileList.length);
+       // for(let i = 0; i <data.length; i++) {
+       //     byteCharacters[i] = atob(data.fileList[i].base64Content)
+       // }
+       // let byteNumbers = new Array(byteCharacters.length);
+       // for(let i = 0 ; i < byteCharacters.length; i++) {
+       //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+       // }
+       // let byteArray = new Uint8Array(byteNumbers);
+       // let blob = new Blob([byteArray], {type: data.fileType});
+       // const url = URL.createObjectURL(blob);
+       // const imageId = `dicomweb:${url}`;
+       //
+       // render(imageId, num);
+       // num++;
 
    }
     // error: function(error) {
@@ -53,8 +58,7 @@ async function loadData() {
     // }
 }
 
-const render = (imageId, index) => {
-    const element = document.createElement('div');
+ const render = (imageId, index) => {
     element.style.width = '150px';
     element.style.height = '150px';
     element.style.marginBottom = '10px';
@@ -76,13 +80,13 @@ const render = (imageId, index) => {
 
     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
 
-    viewport.setStack([imageId], 0);
+    viewport.setStack([imageId], 30);
     viewport.render();
 }
 
 
-async function fetchData() {
-    const studyKey = $("#studyKey").val();
+
+async function fetchSeriesKeys(studyKey) {
     console.log(studyKey);
     return await fetch(`/viewer/get/${studyKey}`, {
                 method: "GET",
@@ -96,6 +100,25 @@ async function fetchData() {
                 .catch(err => {
                     window.location.href = "/auth/sign-in";
                 });
+
+
+
+}
+
+async function fetchImages(seriesKey, studyKey) {
+
+    return await fetch(`/viewer/get/${studyKey}/${seriesKey}`, {
+        method: "GET",
+    })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            window.location.href = "/auth/sign-in";
+        });
 
 
 
