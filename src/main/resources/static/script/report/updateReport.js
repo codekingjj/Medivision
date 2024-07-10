@@ -56,7 +56,7 @@ $(document).ready(function(){
                 sec = '0' + sec;
             }
             // return days + '일 ' + hour + '시간 ' + min + '분 ' + sec + '초';
-            if(hour < 1) return true;
+            if(days == 0 &&hour < 1) return true;
 
             return false;
         } else {
