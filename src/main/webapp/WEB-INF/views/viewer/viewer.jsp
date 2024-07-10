@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
+
     <title>뷰어</title>
 
 </head>
@@ -46,8 +47,12 @@
             </div>
         </div>
     </div>
-    <div class="aside"></div>
-    <div class="content"></div>
+    <div class="aside"><button id="report">리포트</button></div>
+
+    <div class="content">
+        <input type="hidden" id="studykey" value=""></div>
+
+    </div>
     <div class="footer">
         <div class="footer-left">
             copyright@Megastudy
@@ -57,4 +62,5 @@
 </div>
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
+
 </html>
