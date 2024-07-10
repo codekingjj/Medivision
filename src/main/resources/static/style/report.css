@@ -1,5 +1,5 @@
 body{
-    width: 800px;
+    width: 700px;
     margin:auto;
     margin-top: 30px;
 }
@@ -29,7 +29,7 @@ table{
 
 th{
     height: 30px;
-    background-color : #00673B;
+    background-color : rgba(30, 121, 82, 1.0);
     color : white;
 }
 
@@ -44,7 +44,7 @@ tr{
 }
 
 tr:hover >td{
-    background-color: #6BB092;
+    background-color: rgba(30, 121, 82, 0.6);
 }
 
 div#content-container{
@@ -75,11 +75,11 @@ a{
 input[type="submit"],
 input[type="button"]{
     margin-top: 10px;
-    width: 80px;
-    height: 40px;
+    width: 70px;
+    height: 30px;
     border : none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 #close{
@@ -108,7 +108,7 @@ thead:hover{
 }
 
 #report{
-    background-color: #1E7952;
+    background-color: rgba(30, 121, 82, 1.0);
     color:white;
     border: none;
 }
@@ -122,7 +122,7 @@ thead:hover{
 }
 
 #close-button{
-    margin-left: 240px;
+    margin-left: 170px;
 }
 
 .update{
@@ -136,7 +136,7 @@ thead:hover{
 
 .update:hover{
     cursor:pointer;
-    color: #1E7952;
+    color:  rgba(30, 121, 82, 0.1);
     background-color: white;
 }
 
