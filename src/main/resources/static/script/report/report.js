@@ -30,7 +30,7 @@ function remaindTime(reportTime) {
         }
         // return days + '일 ' + hour + '시간 ' + min + '분 ' + sec + '초';
 
-        if(hour < 1) return true;
+        if(days==0 &&hour < 1) return true;
 
         return false;
     } else {
@@ -40,7 +40,10 @@ function remaindTime(reportTime) {
 
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
-    const studyKey = opener.document.getElementById('studyKey');
+    const study = opener.document.getElementById('studykey');
+    const studyKey = study.value;
+    console.log(study);
+    console.log(studyKey);
 
     let decodeType ="";
     let reportData = null;
@@ -50,7 +53,7 @@ $(document).ready(function() {
         const tbody = document.getElementById('report-list');
         tbody.replaceChildren();
         const token = localStorage.getItem("jwt");
-
+        console.log(studyKey);
         $.ajax({
             "url" : `/reports/${studyKey}`,
             "method" : 'GET',
@@ -198,6 +201,7 @@ $(document).ready(function() {
             return;
         }else if(localStorage.getItem("jwt") == null){
             alert("유저가 없습니다.");
+            window.close();
             return;
         }
 
