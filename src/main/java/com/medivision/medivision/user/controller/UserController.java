@@ -75,7 +75,10 @@ public class UserController {
         model.addAttribute("pageNum", pageNum);
         return "user/userList";
     }
-
+    @GetMapping("/")
+    public String authSelect1(){
+        return"user/select";
+    }
     @GetMapping("/auth/select")
     public String authSelect(){
         return"user/select";

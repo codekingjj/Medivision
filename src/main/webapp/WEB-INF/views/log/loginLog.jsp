@@ -25,15 +25,15 @@
       <div class="logout-box">
         <div class="logout-img">
         </div>
-        <div class="logout-text" onclick="">
+        <div class="logout-text" onclick="location.href='/auth/select'">
           로그아웃
         </div>
       </div>
     </div>
     <div class="header-menu">
       <div class="menu diselected"></div>
-      <div class="menu option">차트 검색</div>
-      <div class="menu option">담당 환자 설정</div>
+      <div class="menu option" onclick="location.href='/search'">차트 검색</div>
+      <div class="menu option" onclick="location.href='/patientBookmark'">담당 환자 설정</div>
       <div class="menu selected dropdown">
         <div class="dropdown-title">로그 기록 확인</div>
         <div class="dropdown-content-box">
@@ -45,7 +45,7 @@
       <div class="menu option">마이 페이지</div>
       <div class="menu diselected-side-menu">
         <div class="side-menu">
-          <div class="side-menu-icon side-menu-icon-chat"></div>
+          <div class="side-menu-icon side-menu-icon-chat" onclick="location.href='/chatroom'"></div>
           <div class="side-menu-icon side-menu-icon-bell">
             <div class="nav-btn" id="notification"></div>
           </div>

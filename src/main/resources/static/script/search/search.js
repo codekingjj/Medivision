@@ -94,9 +94,8 @@ $(document).ready(function() {
     }
 
     // 클릭시 studyKey 얻기
-    $('.results-section tbody').on('dblclick', '.tr-area', function(e) {
+    $('.results-section tbody').on('click', '.tr-area', function(e) {
         let id = $(this).attr('id');
-        alert(id);
         content.innerHTML = '<p>썸네일</p>';
         $.ajax({
             url: '/search/file',
@@ -154,5 +153,8 @@ $(document).ready(function() {
             viewport.render();
         }
     });
-
+    $('.results-section tbody').on('dblclick', '.tr-area', function(e) {
+        let id = $(this).attr('id');
+        window.location.href=`viewer/${id}`;
+    });
 });

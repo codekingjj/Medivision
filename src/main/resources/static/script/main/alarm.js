@@ -1,4 +1,4 @@
-fetch("http://192.168.40.97:8081/alarm",{
+fetch("/alarm",{
     method:"GET",
     headers:{
         'Authorization': "Bearer "+localStorage.getItem("jwt")
