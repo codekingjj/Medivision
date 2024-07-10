@@ -45,6 +45,8 @@ $(document).ready(function() {
     document.getElementById('endDate').value = new Date().toISOString().substring(0, 10);
 
     $('#search-form').submit(function(event) {
+        $("#btnToggleAddPatientBookmarkCheckboxes").html("담당 환자 추가");
+        $("#btnAddCheckedStudiesToPatientBookmark").hide();
         event.preventDefault();
         fetchData();
     });

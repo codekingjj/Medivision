@@ -2,17 +2,24 @@
     box-sizing: border-box;
 }
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .root {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .chat-header {
-    padding: 5px;
     position: sticky;
-    background-color: #ffffff;
+    background-color: rgba(30, 121, 82, 1.0);;
     top: 0;
+}
+
+.chat-header > div {
+    padding: 10px;
 }
 
 .chat-content {
