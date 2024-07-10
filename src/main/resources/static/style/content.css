@@ -142,7 +142,9 @@
     font-size: 20px;
     font-weight: 500;
 }
-
+.selected {
+    background-color: rgba(30, 121, 82, 0.6);
+}
 .selected,
 .option {
     cursor: pointer;

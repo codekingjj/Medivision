@@ -13,7 +13,6 @@
 
 .chatroom-list-header-side-container {
     display: inline-flex;
-
     gap: 10px;
 }
 
@@ -23,6 +22,10 @@
     padding: 10px;
     display: inline-block;
     cursor: pointer;
+}
+
+.chatroom-list-header-side-container > div:hover {
+    background-color: rgb(35, 135, 35);
 }
 
 .chatroom-list-container {

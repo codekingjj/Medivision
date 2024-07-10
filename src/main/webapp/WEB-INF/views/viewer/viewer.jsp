@@ -28,8 +28,8 @@
         </div>
         <div class="header-menu">
             <div class="menu diselected"></div>
-            <div class="menu option">차트 검색</div>
-            <div class="menu option">담당 환자 설정</div>
+            <div class="menu option" onclick="location.href='/search'">차트 검색</div>
+            <div class="menu option" onclick="location.href='/patientBookmark'">담당 환자 설정</div>
             <div class="menu selected dropdown">
                 <div class="dropdown-title">로그 기록 확인</div>
                 <div class="dropdown-content-box">
