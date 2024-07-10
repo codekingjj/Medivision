@@ -40,8 +40,11 @@ function addCheckedStudiesToPatientBookmark() {
         body: JSON.stringify(bodyData)
     })
     .then(response => {
-        if (response.ok)
-            window.location.href = "/patientBookmark";
+        $("#btnToggleAddPatientBookmarkCheckboxes").html("담당 환자 추가");
+
+        $(".table-th-patientBookmark").hide();
+        $(".td-patientBookmark-checkbox-container").hide();
+        $("#btnAddCheckedStudiesToPatientBookmark").hide();
     })
     .catch(err => {
         window.location.href = "/auth/sign-in";
