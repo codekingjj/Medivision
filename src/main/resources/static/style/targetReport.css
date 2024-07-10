@@ -50,18 +50,18 @@ tbody{
 }
 
 td.name{
-    background-color: #6BB092;
-    border-right : 1px solid #6BB092;
+    background-color: rgba(30, 121, 82, 0.6);
+    border-right : 1px solid rgba(30, 121, 82, 0.6);
     text-align: center;
     border: 1px solid white;
 }
 
 tbody tr:last-child td.name {
-    border-bottom: 1px solid #6BB092;
+    border-bottom: 1px solid rgba(30, 121, 82, 0.6);
 }
 
 tbody tr:first-child  td.name{
-    border-top : 1px solid #6BB092;
+    border-top : 1px solid rgba(30, 121, 82, 0.6);
 }
 
 input[type="button"] {
