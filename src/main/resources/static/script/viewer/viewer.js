@@ -33,24 +33,22 @@ async function loadData() {
     const studyKey = $("#studyKey").val();
    let seriesKeys = await fetchSeriesKeys(studyKey);
    console.log(seriesKeys);
-    let num =0;
    for (let seriesKey of seriesKeys) {
        let images = fetchImages(seriesKey, studyKey);
-       let byteCharacters = new Array(data.fileList.length);
-       // for(let i = 0; i <data.length; i++) {
-       //     byteCharacters[i] = atob(data.fileList[i].base64Content)
-       // }
-       // let byteNumbers = new Array(byteCharacters.length);
-       // for(let i = 0 ; i < byteCharacters.length; i++) {
-       //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-       // }
-       // let byteArray = new Uint8Array(byteNumbers);
-       // let blob = new Blob([byteArray], {type: data.fileType});
-       // const url = URL.createObjectURL(blob);
-       // const imageId = `dicomweb:${url}`;
-       //
-       // render(imageId, num);
-       // num++;
+       let byteCharacters = new Array(images.length);
+       for(let i = 0; i <images.length; i++) {
+           byteCharacters[i] = atob(images[i])
+       }
+       let byteNumbers = new Array(byteCharacters.length);
+       for(let i = 0 ; i < byteCharacters.length; i++) {
+           byteNumbers[i] = byteCharacters.charCodeAt(i);
+       }
+       let byteArray = new Uint8Array(byteNumbers);
+       let blob = new Blob([byteArray]);
+       const url = URL.createObjectURL(blob);
+       const imageId = `dicomimage:${num}`;
+
+       render(imageId);
 
    }
     // error: function(error) {
@@ -80,7 +78,7 @@ async function loadData() {
 
     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
 
-    viewport.setStack([imageId], 30);
+    viewport.setStack([imageId], 0);
     viewport.render();
 }
 
