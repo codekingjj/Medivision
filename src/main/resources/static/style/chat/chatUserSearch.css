@@ -6,16 +6,17 @@
 
 button {
     border-radius: 5px;
+    padding: 10px;
     border: none;
     cursor: pointer;
     outline: none;
-    padding: 5px;
+    color: #ffffff;
 }
 
 .chatroom-list-header {
     padding: 10px;
     gap: 10px;
-    background-color: #00673B;
+    background-color: rgba(30, 121, 82, 1.0);;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -91,19 +92,19 @@ button {
 }
 
 #btnUserSearch {
-    color: gray;
-    background-color: white;
+    padding: 10px;
+    background-color: #6BB092;
     border: none;
     white-space: nowrap;
 }
 
 #btnToChatroomList {
-    background-color: white;
+    background-color: #6BB092;
 }
 
 #btnNextPage {
     padding: 10px;
-    background-color: #00673B;
+    background-color: rgba(30, 121, 82, 1.0);;
     color: #FFFFFF;
     border-radius: 10px;
 }
