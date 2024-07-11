@@ -18,15 +18,16 @@ public class StudyLogServiceImpl implements StudyLogService{
     private final StudyLogRepository studyLogRepository;
 
     @Override
-    public void saveStudyLog(String userCode, int studyKey, String ip) {
+    public void saveStudyLog(String userCode, String studyKey, String ip) {
         int userCodeNumber = Integer.parseInt(userCode);
+        int studyKeyInt = Integer.parseInt(studyKey);
         UserEntity user = userRepository.findByUserCode(userCodeNumber);
         String userId = user.getUserId();
         LocalDateTime now = LocalDateTime.now();
 
         StudyLogEntity studyLogEntity = new StudyLogEntity();
         studyLogEntity.setUserId(userId);
-        studyLogEntity.setStudyKey(studyKey);
+        studyLogEntity.setStudyKey(studyKeyInt);
         studyLogEntity.setClientIp(ip);
         studyLogEntity.setOpenDate(now);
 
