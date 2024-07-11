@@ -3,8 +3,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
+
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
 
@@ -48,10 +50,41 @@
             </div>
         </div>
     </div>
-    <div class="aside"><button id="report">리포트</button></div>
+    <div class="aside">
+        <button id="report">리포트</button>
+        <div>
+            <button id="" class="tool_button">이전</button>
+            <button id="" class="tool_button">다음</button>
+        </div>
+        <div>
+            <button id="workList" class="tool_button">워크리스트</button>
+            <button id="" class="tool_button">기본툴</button>
+        </div>
+        <div>
+            <button id="" class="tool_button">윈도우 레벨</button>
+            <button id="" class="tool_button">흑백 반전</button>
+        </div>
+        <div>
+            <button id="move" class="tool_button">이동</button>
+            <button id="" class="tool_button">스크롤 루프</button>
+        </div>
+        <div>
+            <button id="" class="tool_button">1시리즈</button>
+            <button id="" class="tool_button">비교검사</button>
+        </div>
+        <div>
+            <button id="" class="tool_button">플레이 플립</button>
+            <button id="" class="tool_button"></button>
+        </div>
+        <div>
+            <button id="" class="tool_button">주석</button>
+            <button id="" class="tool_button">도구</button>
+        </div>
+
+
+    </div>
 
     <div class="content">
-        <input type="hidden" id="studykey" value=""></div>
 
     </div>
     <div class="footer">
@@ -63,5 +96,6 @@
 </div>
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/tools.bundle.js"></script>
 
 </html>

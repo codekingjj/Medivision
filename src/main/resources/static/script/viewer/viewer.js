@@ -1,54 +1,88 @@
 import * as cornerstone from '@cornerstonejs/core';
 import * as cornerstoneDICOMImageLoader from '@cornerstonejs/dicom-image-loader';
 import * as dicomParser from 'dicom-parser';
-import {init as csToolsInit, SegmentationDisplayTool} from "@cornerstonejs/tools";
-import * as cornerstoneTools from "@cornerstonejs/tools";
+// import {init as csToolsInit, SegmentationDisplayTool} from "@cornerstonejs/tools";
+// import * as cornerstoneTools from "@cornerstonejs/tools";
 import Fetch from "../chat/utils/Fetch";
 import StompManager from "../chat/chatroom/StompManager";
 
-// 뷰 포트 생성
-const content = document.getElementById('content');
-const element = document.createElement('dicomImage');
-// 툴 정의
-const {
-    //도구 -> 돋보기
-    MagnifyTool,
-    TrackballRotateTool,
-    //도구 -> 확대, 축소
-    ZoomTool,
-    ToolGroupManager,
-    Enums: csToolsEnums,
-    //사진 이동
-    PanTool,
-    WindowLevelTool,
-} = cornerstoneTools;
+import {setTools} from "./tools";
 
-const { MouseBindings } = csToolsEnums;
+export let viewportIds = [];
+export let renderingEngineIds = [];
+
+// 뷰 포트 생성
+const content = $(".content");
+// let imageListContainer = null;
+// window.onload = () => {
+//     imageListContainer = $("<div>", {
+//         class : 'imageListContainer'
+//     });
+//    content.appendChild(imageListContainer);
+// }
+
+// 툴 정의
+// const {
+//     //도구 -> 돋보기
+//     MagnifyTool,
+//     TrackballRotateTool,
+//     //도구 -> 확대, 축소
+//     ZoomTool,
+//     ToolGroupManager,
+//     Enums: csToolsEnums,
+//     //사진 이동
+//     PanTool,
+//     WindowLevelTool,
+// } = cornerstoneTools;
+//
+// const { MouseBindings } = csToolsEnums;
 
 window.onload = () => {
     loadData();
 };
 
 async function loadData() {
+    viewportIds = [];
+    renderingEngineIds = [];
+    let num = 0;
     const studyKey = $("#studyKey").val();
    let seriesKeys = await fetchSeriesKeys(studyKey);
    console.log(seriesKeys);
    for (let seriesKey of seriesKeys) {
-       let images = fetchImages(seriesKey, studyKey);
-       let byteCharacters = new Array(images.length);
-       for(let i = 0; i <images.length; i++) {
-           byteCharacters[i] = atob(images[i])
-       }
-       let byteNumbers = new Array(byteCharacters.length);
-       for(let i = 0 ; i < byteCharacters.length; i++) {
-           byteNumbers[i] = byteCharacters.charCodeAt(i);
-       }
-       let byteArray = new Uint8Array(byteNumbers);
-       let blob = new Blob([byteArray]);
-       const url = URL.createObjectURL(blob);
-       const imageId = `dicomimage:${num}`;
 
-       render(imageId);
+       let images = await fetchImages(seriesKey, studyKey);
+
+       const imageIds = [];
+       console.log(images)
+       images.forEach((base64) => {
+           const binary = atob(base64);
+           const arraybuffer = Uint8Array.from(binary, c => c.charCodeAt(0));
+           const imageId = `dicomweb:${URL.createObjectURL(new Blob([arraybuffer], {type: 'application/dicom'}))}`;
+           imageIds.push(imageId);
+       })
+       // let byteCharacters = new Array(images.length);
+       // for(let i = 0; i <images.length; i++) {
+       //     byteCharacters[i] = atob(images[i])
+       // }
+       //
+       // let byteCharacters = images.map(image => {
+       //     return atob(image)
+       // })
+
+
+       // console.log(byteCharacters);
+       // let byteNumbers = new Array(byteCharacters.length);
+       // for(let i = 0 ; i < byteCharacters.length; i++) {
+       //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+       // }
+       // let byteArray = new Uint8Array(byteCharacters);
+       // let blob = new Blob([byteArray], { type: byteCharacters });
+       // console.log(blob);
+       // const url = URL.createObjectURL(blob);
+       // const imageId = `dicomimage:${url}`;
+       // console.log(imageId);
+       render(imageIds, num);
+       num ++;
 
    }
     // error: function(error) {
@@ -56,16 +90,32 @@ async function loadData() {
     // }
 }
 
- const render = (imageId, index) => {
-    element.style.width = '150px';
-    element.style.height = '150px';
-    element.style.marginBottom = '10px';
-    element.id = `dicomImage${index}`;
 
-    content.appendChild(element);
+ const render = (imageIds, index) => {
+    const element = document.createElement('dicomImage');
+    element.style.width = '100%';
+    element.style.height = '100%';
+    element.style.marginBottom = '10px';
+    element.classList.add("dicomImage");
+    //element.id = `dicomImage${index}`;
+
+
+    content.append(element);
 
     const renderingEngineId = `myRenderingEngine${index}`;
     const viewportId = `CT_AXIAL_STACK${index}`;
+
+
+    try {
+        setTools(viewportId, renderingEngineId);
+    }catch (exception) {
+        console.log(exception)
+    }
+
+    element.id = `${renderingEngineId}_${viewportId}`;
+
+    renderingEngineIds.push(renderingEngineId);
+    viewportIds.push(viewportId);
     const renderingEngine = new cornerstone.RenderingEngine(renderingEngineId);
 
     const viewportInput ={
@@ -73,12 +123,12 @@ async function loadData() {
         element,
         type: cornerstone.Enums.ViewportType.STACK,
     }
-
+    console.log(viewportInput);
     renderingEngine.enableElement(viewportInput);
 
     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
 
-    viewport.setStack([imageId], 0);
+    viewport.setStack(imageIds, 0);
     viewport.render();
 }
 
@@ -177,44 +227,44 @@ async function fetchImages(seriesKey, studyKey) {
 //     viewport.render();
 // };
 
-const setTools = (viewportId, renderingEngineId) => {
-    // 툴 추가
-    csToolsInit();
-
-    const toolGroupId = 'NAVIGATION_TOOL_GROUP_ID';
-
-    cornerstoneTools.addTool(MagnifyTool);
-    cornerstoneTools.addTool(TrackballRotateTool);
-    cornerstoneTools.addTool(ZoomTool);
-    cornerstoneTools.addTool(PanTool);
-    cornerstoneTools.addTool(WindowLevelTool);
-    // cornerstoneTools.addTool(SegmentationDisplayTool);
-
-    const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
-
-    toolGroup.addTool(MagnifyTool.toolName, { cursor: '' });
-    toolGroup.addTool(TrackballRotateTool.toolName, { cursor: 'crosshair' });
-    toolGroup.addTool(ZoomTool.toolName, { cursor: 'zoom-in' });
-    // toolGroup.addTool(SegmentationDisplayTool.toolName, {cursor: 'abc'});
-    // toolGroup.addTool(AnnotationDisplayTool.toolName, {cursor:'asd'});
-    toolGroup.addTool(PanTool.toolName, {cursor:'move'});
-    toolGroup.addTool(WindowLevelTool.toolName, {cursor:'light'});
-
-    // 툴 활성화
-    toolGroup.setToolActive(WindowLevelTool.toolName, {
-        bindings: [{ mouseButton: MouseBindings.Primary }],
-    });
-
-    toolGroup.setToolActive(TrackballRotateTool.toolName, {
-        bindings: [{ mouseButton: MouseBindings.Auxiliary }],
-    });
-
-    toolGroup.setToolActive(ZoomTool.toolName, {
-        bindings: [{ mouseButton: MouseBindings.Secondary }],
-    });
-
-    toolGroup.addViewport(viewportId, renderingEngineId);
-};
+// const setTools = (viewportId, renderingEngineId) => {
+//     // 툴 추가
+//     csToolsInit();
+//
+//     const toolGroupId = 'NAVIGATION_TOOL_GROUP_ID';
+//
+//     cornerstoneTools.addTool(MagnifyTool);
+//     cornerstoneTools.addTool(TrackballRotateTool);
+//     cornerstoneTools.addTool(ZoomTool);
+//     cornerstoneTools.addTool(PanTool);
+//     cornerstoneTools.addTool(WindowLevelTool);
+//     // cornerstoneTools.addTool(SegmentationDisplayTool);
+//
+//     const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
+//
+//     toolGroup.addTool(MagnifyTool.toolName, { cursor: '' });
+//     toolGroup.addTool(TrackballRotateTool.toolName, { cursor: 'crosshair' });
+//     toolGroup.addTool(ZoomTool.toolName, { cursor: 'zoom-in' });
+//     // toolGroup.addTool(SegmentationDisplayTool.toolName, {cursor: 'abc'});
+//     // toolGroup.addTool(AnnotationDisplayTool.toolName, {cursor:'asd'});
+//     toolGroup.addTool(PanTool.toolName, {cursor:'move'});
+//     toolGroup.addTool(WindowLevelTool.toolName, {cursor:'light'});
+//
+//     // 툴 활성화
+//     toolGroup.setToolActive(WindowLevelTool.toolName, {
+//         bindings: [{ mouseButton: MouseBindings.Primary }],
+//     });
+//
+//     toolGroup.setToolActive(TrackballRotateTool.toolName, {
+//         bindings: [{ mouseButton: MouseBindings.Auxiliary }],
+//     });
+//
+//     toolGroup.setToolActive(ZoomTool.toolName, {
+//         bindings: [{ mouseButton: MouseBindings.Secondary }],
+//     });
+//
+//     toolGroup.addViewport(viewportId, renderingEngineId);
+// };
 
 const init = async () => {
     await cornerstone.init();
