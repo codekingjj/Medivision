@@ -26,7 +26,6 @@
             </div>
             <div class="logout-box">
                 <div class="logout-img">
-                </div>
                 <div class="logout-text">
                     로그아웃
                 </div>
