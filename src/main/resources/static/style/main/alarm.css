@@ -42,6 +42,9 @@
 .alarm-box.show {
     display: block;
 }
+.alarm-content p{
+    cursor: pointer;
+}
 .alarm-header {
     background-color: rgba(30, 121, 82, 0.6);
     padding: 10px;
@@ -56,19 +59,31 @@
     max-height: 200px;
     overflow-y: auto;
 }
-.alarm-content p {
+.no-check {
     margin: 10px 0;
     padding: 10px;
-    background-color: #fff;
+    background-color: #FFFF99;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #333;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    cursor: pointer;
+}
+.check{
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #FFF;
 }
 
+/*modal 창*/
+/* Modal styles */
 .modal {
     display: none;
     position: fixed;
