@@ -18,6 +18,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    processResources
 }
 
 repositories {
@@ -60,3 +61,25 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+tasks.withType(JavaCompile) {
+    options.incremental = true
+}
+
+tasks.withType(AbstractArchiveTask) {
+    outputs.cacheIf { true }
+}
+
+tasks.register('webpackBuild', Exec) {
+    workingDir 'src/main/resources/static'
+    commandLine 'npm.cmd', 'run', 'build'
+    inputs.dir 'src/main/resources/static'
+    outputs.dir 'build/resources/main/static'
+    standardOutput = new ByteArrayOutputStream()
+    errorOutput = standardOutput
+    doLast {
+        println standardOutput.toString()
+    }
+}
+
+processResources.dependsOn tasks.named('webpackBuild')
