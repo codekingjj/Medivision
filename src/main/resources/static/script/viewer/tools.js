@@ -27,10 +27,12 @@ const { MouseBindings } = csToolsEnums;
 const moveBtn = document.getElementById('defaultTool');
 const windowBtn = document.getElementById('windowLevel');
 const invertBtn = document.getElementById('invert');
+let annotationBox = document.getElementById('annotationBox');
 
 let isPanToolActive = false;
 let isWindowActive = false;
 let isInvertActive;
+let annotationDisplay = false;
 
 let selectedDivById = "";
 
@@ -39,6 +41,9 @@ moveBtn.addEventListener('click', function() {
 })
 windowBtn.addEventListener('click', function() {
     windowLevel();
+})
+annotationBox.addEventListener('click', function () {
+    showAnnotationBox();
 })
 invertBtn.addEventListener('click', function () {
     if (selectedDivById.getAttribute('invert') === 'unchecked') {
@@ -50,6 +55,26 @@ invertBtn.addEventListener('click', function () {
     }
     invertImageWithWWWC(selectedDivById);
 });
+
+function showAnnotationBox() {
+    if(!annotationDisplay) {
+        annotationBox.style.display='none'
+    }else {
+        annotationBox.style.display = 'inline-block';
+    }
+    annotationDisplay = !annotationDisplay;
+}
+// window.addEventListener('click', function (e) {
+//     if(e.target.id !== 'annotation')
+//         annotationBox.style.display = 'none';
+//     else {
+//         showAnnotationBox();
+//     }
+// })
+
+function activateAngle() {
+
+}
 
 
 

@@ -1,6 +1,6 @@
-const studyKey = $("#studyKey").val();
-const previousStudyKey = studyKey - 1;
+    let studyKey = $("#studyKey").val();
+    const previousStudyKey = studyKey - 1;
 
-document.getElementById("previous").addEventListener("click", function() {
-    window.location.href=`${previousStudyKey}`;
-})
+    document.getElementById("previous").addEventListener("click", function() {
+        window.location.href=`${previousStudyKey}`;
+    })

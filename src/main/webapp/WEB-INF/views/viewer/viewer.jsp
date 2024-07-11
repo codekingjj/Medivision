@@ -73,13 +73,39 @@
             <button id="" class="tool_button">비교검사</button>
         </div>
         <div>
-            <button id="" class="tool_button">주석</button>
+            <li class="annotation" onclick="showAnnotationBox()">
+                <div class="annotation">주석</div>
+                <div id="annotationBox">
+                    <div id="annotationContent">
+                        <ul>
+                            <div id="activateAngle" onclick="activateAngle()">각도</div>
+                            <div onclick="activateArrowAnnotate()">화살표</div>
+                        </ul>
+                        <ul>
+                            <div onclick="activateProbe()">Probe</div>
+                            <div onclick="activateLength()">길이</div>
+                        </ul>
+                        <ul>
+                            <div onclick="activateRectangleROI()">사각형 그리기</div>
+                            <div onclick="activateEllipticalROI()">원 그리기</div>
+                        </ul>
+                        <ul>
+                            <div onclick="activateFreeHand()">자율 그리기</div>
+                            <div onclick="activateBidirectional()">Bidirectional</div>
+                        </ul>
+                        <ul>
+                            <div onclick="activateCobbAngle()">콥 각도</div>
+                            <div onclick="activateTextMarker()">텍스트 마커</div>
+                        </ul>
+                        <ul>
+                            <div onclick="activateEraser()">선택 삭제</div>
+                        </ul>
+                    </div>
+                </div>
+            </li>
             <button id="" class="tool_button">도구</button>
         </div>
-
-
     </div>
-
     <div class="content">
 
     </div>
@@ -90,9 +116,11 @@
         <div class="footer-right"></div>
     </div>
 </div>
-</body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/tools.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/next.bundle.js"></script>
+</body>
+
 
 </html>
