@@ -53,28 +53,24 @@
     <div class="aside">
         <button id="report">리포트</button>
         <div>
-            <button id="" class="tool_button">이전</button>
-            <button id="" class="tool_button">다음</button>
+            <button id="previous" class="tool_button">이전</button>
+            <button id="next" class="tool_button">다음</button>
         </div>
         <div>
             <button id="workList" class="tool_button">워크리스트</button>
-            <button id="" class="tool_button">기본툴</button>
+            <button id="defaultTool" class="tool_button">기본툴</button>
         </div>
         <div>
-            <button id="" class="tool_button">윈도우 레벨</button>
-            <button id="" class="tool_button">흑백 반전</button>
+            <button id="windowLevel" class="tool_button">윈도우 레벨</button>
+            <button id="invert" class="tool_button">흑백 반전</button>
         </div>
         <div>
-            <button id="move" class="tool_button">이동</button>
             <button id="" class="tool_button">스크롤 루프</button>
+            <button id="" class="tool_button">플레이 플립</button>
         </div>
         <div>
             <button id="" class="tool_button">1시리즈</button>
             <button id="" class="tool_button">비교검사</button>
-        </div>
-        <div>
-            <button id="" class="tool_button">플레이 플립</button>
-            <button id="" class="tool_button"></button>
         </div>
         <div>
             <button id="" class="tool_button">주석</button>
@@ -97,5 +93,6 @@
 </body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/tools.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
 
 </html>

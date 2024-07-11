@@ -7,6 +7,7 @@
 import * as cornerstoneTools from "@cornerstonejs/tools";
 // import dicomParser from "dicom-parser";
 import{viewportIds, renderingEngineIds} from "./viewer.js";
+import * as cornerstone from '@cornerstonejs/core';
 
 const {
     //도구 -> 돋보기
@@ -21,25 +22,51 @@ const {
     WindowLevelTool,
 } = cornerstoneTools;
 
-const moveBtn = document.getElementById('move');
+const { MouseBindings } = csToolsEnums;
 
+const moveBtn = document.getElementById('defaultTool');
+const windowBtn = document.getElementById('windowLevel');
+const invertBtn = document.getElementById('invert');
 
 let isPanToolActive = false;
+let isWindowActive = false;
+let isInvertActive;
+
+let selectedDivById = "";
+
 moveBtn.addEventListener('click', function() {
-    console.log(viewportIds);
-    console.log(renderingEngineIds);
     movement_pan();
 })
+windowBtn.addEventListener('click', function() {
+    windowLevel();
+})
+invertBtn.addEventListener('click', function () {
+    if (selectedDivById.getAttribute('invert') === 'unchecked') {
+        selectedDivById.setAttribute('invert', 'checked');
+        isInvertActive = true;
+    } else {
+        selectedDivById.setAttribute('invert', 'unchecked');
+        isInvertActive = false;
+    }
+    invertImageWithWWWC(selectedDivById);
+});
+
+
+
 const toolGroupId = 'NAVIGATION_TOOL_GROUP_ID';
 const toolGroup = ToolGroupManager.createToolGroup(toolGroupId);
 
 function toolMaker() {
     cornerstoneTools.init();
     cornerstoneTools.addTool(PanTool);
+    cornerstoneTools.addTool(WindowLevelTool);
     toolGroup.addTool(PanTool.toolName, {cursor:'move'});
+    toolGroup.addTool(WindowLevelTool.toolName, {cursor:'window'});
+    // toolGroup.addTool(Invert)
 }
 
 toolMaker();
+
 
 
 
@@ -66,10 +93,8 @@ toolMaker();
 // }
 
 
-const { MouseBindings } = csToolsEnums;
-
 document.getElementById("workList").addEventListener("click", function () {
-    window.location.href = "/main"
+    window.location.href = "/select"
 })
 
 function movement_pan() {
@@ -84,6 +109,30 @@ function movement_pan() {
     }
     isPanToolActive = !isPanToolActive;
 }
+
+function windowLevel() {
+    if(isWindowActive) {
+        toolGroup.setToolDisabled('WindowLevel')
+    }else {
+        toolGroup.setToolActive('WindowLevel', {bindings: [{mouseButton: csToolsEnums.MouseBindings.Primary}]});
+    }
+    isWindowActive = !isWindowActive;
+}
+
+function invertImageWithWWWC(divById) {
+    const selectedDiv = cornerstone.getEnabledElement(divById).element;
+    const viewport = cornerstone.getViewport(selectedDiv);
+    viewport.invert = invertCheck;
+    cornerstone.setViewport(selectedDiv, viewport);
+}
+
+function invertHandler(divById) {
+    selectedDivById = divById;
+    const invertVal = divById.getAttribute('invert');
+    if (invertVal === null)
+        divById.setAttribute('invert', 'unchecked'); // checked
+}
+
 
 //
 // const init = async () => {
