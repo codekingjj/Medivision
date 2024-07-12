@@ -226,6 +226,9 @@ $(document).ready(function() {
             if("RW" === res.code){
                 alert("이미 해당 검사에 보고서를 작성했습니다.");
                 return;
+            }else if("NS" === res.code){
+                alert("판독 권한이 없습니다.");
+                return;
             }
             else if("SR"===res.code){
                 alert("이미 예비판독이 존재합니다.");
