@@ -96,7 +96,7 @@ public class ReportService {
 
         String typeDecode = reportDto.getTypeDecode();
 
-        if(!checkUserReport(reportDto)) {
+        if(checkUserReport(reportDto)) {
             return ReportResponse.alreadyWrote();
         }else if("예비판독".equals(typeDecode)){
             if(!checkSpareReport(reportDto)) return ReportResponse.createSpareReportFail(); //수정
@@ -118,16 +118,16 @@ public class ReportService {
 
     private boolean checkUserReport(ReportRequestDto reportDto){
         int studyKey = reportDto.getStudyKey();
-        int writer = reportDto.getWriter();
+        int userCode = reportDto.getWriter();
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+
         for(ReportEntity reportEntity : list){
-            String typeDecode = reportEntity.getTypeDecode();
-            if(writer == reportEntity.getWriter()){
-                return false;
+            int writer = reportEntity.getWriter();
+            if(writer == userCode){
+                return true;
             }
         }
-
-        return true;
+        return false;
     }
 
     private boolean checkSpareReport(ReportRequestDto reportRequestDto){
@@ -138,10 +138,8 @@ public class ReportService {
             String typeDecode = reportEntity.getTypeDecode();
             if("예비판독".equals(typeDecode)){
                 return false;
-            }else if(reportEntity.getWriter() == writer)
-                return false;
+            }
         }
-
         return true;
     }
 
@@ -153,9 +151,6 @@ public class ReportService {
         int cnt = 0;
         for(ReportEntity reportEntity : list){
             String typeDecode = reportEntity.getTypeDecode();
-
-            if(reportEntity.getWriter() == writer)
-                return false;
 
             if("판독".equals(typeDecode)){
                 cnt ++;
