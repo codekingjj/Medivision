@@ -141,7 +141,7 @@ $(document).ready(function() {
 
         var url = `/report/targetReport?index=${index}`;
         var name = "targetReport";
-        var option = "width=800, height=500, left=100, top=50, location=no";
+        var option = "width=800, height=600, left=100, top=50, location=no";
 
         pop = window.open(url, name, option);
     }
