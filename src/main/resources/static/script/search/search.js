@@ -157,6 +157,12 @@ $(document).ready(function() {
     });
     $('.results-section tbody').on('dblclick', '.tr-area', function(e) {
         let id = $(this).attr('id');
+        fetch(`/log/${id}`,{
+        method : 'GET',
+        headers: {
+            'Authorization': "Bearer "+localStorage.getItem("jwt")
+            }
+        })
         window.location.href=`viewer/${id}`;
     });
 });
