@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudyRepository extends JpaRepository<StudyEntity,Long> {
+public interface StudyRepository extends JpaRepository<StudyEntity,Integer> {
 
     List<StudyEntity> findAll();
-    boolean existsByStudykey(Long studykey);
+    boolean existsByStudykey(int studykey);
+    StudyEntity findById(int studykey);
 }

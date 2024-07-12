@@ -8,6 +8,7 @@ import com.medivision.medivision.report.dto.ReportResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import com.medivision.medivision.user.domain.repository.UserRepository;
+import com.medivision.pacs.entity.StudyEntity;
 import com.medivision.pacs.repository.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +25,22 @@ public class ReportService {
     private final StudyRepository studyRepository;
     private final AdminRepository adminRepository;
     private final DecodeRepository decodeRepository;
-    private final UserRepository userRepository;
+
+//    public StudyEntity getStudy(String studykey){
+//        int studyKey = Integer.parseInt(studykey);
+//        StudyEntity result = studyRepository.findById(studyKey);
+//        System.out.println(result.getPsex());
+//        System.out.println(result.getAifinding());
+//        System.out.println(result.getAimodelname());
+//        System.out.println(result.getAireport());
+//        return result;
+//    }
 
     public ResponseEntity<? super ReportResponse> getReportList(ReportRequestDto reportDto){
         int userCode = reportDto.getWriter();
 
         int studyKey = reportDto.getStudyKey();
-        Long studykey = Long.valueOf(studyKey);
-        boolean isExist = studyRepository.existsByStudykey(studykey);
+        boolean isExist = studyRepository.existsByStudykey(studyKey);
         if(!isExist) return ReportResponse.getListFail(); //수정 메소드 들어가서
 
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
@@ -87,9 +96,11 @@ public class ReportService {
 
         String typeDecode = reportDto.getTypeDecode();
 
-        if("예비판독".equals(typeDecode)){
+        if(!checkUserReport(reportDto)) {
+            return ReportResponse.alreadyWrote();
+        }else if("예비판독".equals(typeDecode)){
             if(!checkSpareReport(reportDto)) return ReportResponse.createSpareReportFail(); //수정
-        }else if("판독".equals(typeDecode)){
+        } else if("판독".equals(typeDecode)){
             if(!checkReportList(reportDto)) return ReportResponse.createReportFail(); //수정
         }
 
@@ -103,6 +114,20 @@ public class ReportService {
         decode = new DecodeEntity(decode.getStudyKey(),decodeStatus);
         decodeRepository.save(decode);
         return ReportResponse.createReportSuccess();
+    }
+
+    private boolean checkUserReport(ReportRequestDto reportDto){
+        int studyKey = reportDto.getStudyKey();
+        int writer = reportDto.getWriter();
+        List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
+        for(ReportEntity reportEntity : list){
+            String typeDecode = reportEntity.getTypeDecode();
+            if(writer == reportEntity.getWriter()){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private boolean checkSpareReport(ReportRequestDto reportRequestDto){
