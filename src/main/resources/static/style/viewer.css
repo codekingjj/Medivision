@@ -71,9 +71,106 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    justify-content: space-around;
 }
 
 .tool_button {
+    width: 75px;
+    height: 50px;
+    border: none;
+    border-radius: 5%;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+
+}
+
+.imageAndName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#previous {
+    background-image: url("../assets/icons8-left-arrow-50.png");
+}
+
+#next {
+    background-image: url("../assets/icons8-right-arrow-50.png");
+}
+#workList {
+    background-image: url("../assets/icons8-list-50 (1).png");
+}
+#defaultTool {
+    background-image: url("../assets/icons8-pointer-50.png");
+}
+#windowLevel {
+    background-image: url("../assets/icons8-brightness-48.png");
+}
+#invert {
+    background-image: url("../assets/icons8-invert-50.png");
+}
+#scrollLoop {
+    background-image: url("../assets/icons8-loop-50.png");
+}
+#playFlip {
+    background-image: url("../assets/icons8-play-50.png");
+}
+#series {
+    background-image: url("../assets/icons8-layout-48.png");
+}
+#compare {
+    background-image: url("../assets/icons8-compare-50.png");
+}
+#next {
+    background-image: url("../assets/icons8-right-arrow-50.png");
+}
+#next {
+    background-image: url("../assets/icons8-right-arrow-50.png");
+}
+#annotationBtn {
+    background-image: url("../assets/icons8-tag-50.png");
+}
+#toolsBtn {
+    background-image: url("../assets/icons8-tools-50 (1).png");
+}
+
+.annotation-select:hover .dropdown-annotation{
+    display: flex;
+    flex-direction: column;
+
+}
+.dropdown-annotation {
+    display: none;
+    position: absolute;
+    background-color: #9b9b9b;
+    padding: 5px;
+    border-radius: 10px;
+}
+.annotation-select {
+    position: relative;
+}
+
+.annotation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
-    height: 100%;
+}
+.annotation-content > button{
+    width: 70px;
+    overflow-wrap: break-word;
+    border: none;
+    padding: 5px;
+}
+.annotation-content > button:hover{
+    background-color: #9b9b9b;
+}
+.annotationBtn1 {
+    border-top-left-radius: 10px;
+}
+.annotationBtn2 {
+    border-top-right-radius: 10px;
+}
+.annotationBtn3 {
+    border-bottom-left-radius: 10px;
 }

@@ -53,58 +53,140 @@
     <div class="aside">
         <button id="report">리포트</button>
         <div>
-            <button id="previous" class="tool_button">이전</button>
-            <button id="next" class="tool_button">다음</button>
+            <div class="imageAndName">
+                <button id="previous" class="tool_button"></button>
+                <div>이전</div>
+            </div>
+            <div class="imageAndName">
+                <button id="next" class="tool_button"></button>
+                <div>다음</div>
+            </div>
         </div>
         <div>
-            <button id="workList" class="tool_button">워크리스트</button>
-            <button id="defaultTool" class="tool_button">기본툴</button>
+            <div class="imageAndName">
+                <button id="workList" class="tool_button"></button>
+                <div>워크리스트</div>
+            </div>
+            <div class="imageAndName">
+                <button id="defaultTool" class="tool_button"></button>
+                <div>기본툴</div>
+            </div>
         </div>
         <div>
-            <button id="windowLevel" class="tool_button">윈도우 레벨</button>
-            <button id="invert" class="tool_button">흑백 반전</button>
+            <div class="imageAndName">
+                <button id="windowLevel" class="tool_button"></button>
+                <div>윈도우 레벨</div>
+            </div>
+            <div class="imageAndName">
+                <button id="invert" class="tool_button"></button>
+                <div>흑백 반전</div>
+            </div>
         </div>
         <div>
-            <button id="" class="tool_button">스크롤 루프</button>
-            <button id="" class="tool_button">플레이 플립</button>
+            <div class="imageAndName">
+                <button id="scrollLoop" class="tool_button"></button>
+                <div>스크롤 루프</div>
+            </div>
+            <div class="imageAndName">
+                <button id="playFlip" class="tool_button"></button>
+                <div>플레이 플립</div>
+            </div>
         </div>
         <div>
-            <button id="" class="tool_button">1시리즈</button>
-            <button id="" class="tool_button">비교검사</button>
+            <div class="imageAndName">
+                <button id="series" class="tool_button"></button>
+                <div>1시리즈</div>
+            </div>
+            <div class="imageAndName">
+                <button id="compare" class="tool_button"></button>
+                <div>비교검사</div>
+            </div>
         </div>
         <div>
-            <li class="annotation" onclick="showAnnotationBox()">
-                <div class="annotation">주석</div>
-                <div id="annotationBox">
-                    <div id="annotationContent">
-                        <ul>
-                            <div id="activateAngle" onclick="activateAngle()">각도</div>
-                            <div onclick="activateArrowAnnotate()">화살표</div>
-                        </ul>
-                        <ul>
-                            <div onclick="activateProbe()">Probe</div>
-                            <div onclick="activateLength()">길이</div>
-                        </ul>
-                        <ul>
-                            <div onclick="activateRectangleROI()">사각형 그리기</div>
-                            <div onclick="activateEllipticalROI()">원 그리기</div>
-                        </ul>
-                        <ul>
-                            <div onclick="activateFreeHand()">자율 그리기</div>
-                            <div onclick="activateBidirectional()">Bidirectional</div>
-                        </ul>
-                        <ul>
-                            <div onclick="activateCobbAngle()">콥 각도</div>
-                            <div onclick="activateTextMarker()">텍스트 마커</div>
-                        </ul>
-                        <ul>
-                            <div onclick="activateEraser()">선택 삭제</div>
-                        </ul>
+            <div class="imageAndName">
+                <div class="annotation-select">
+                    <button id="annotationBtn" class="tool_button"></button>
+                    <div>주석</div>
+                    <div class="dropdown-annotation">
+                        <div class="annotation-content">
+                            <button class="annotationBtn1" id="activateAngle">각도</button>
+                            <button class="annotationBtn2" id="activateArrowAnnotate">화살표</button>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateProbe">Probe</button>
+                                <button id="activateLength">길이</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateRectangleRIO">사각형 그리기</button>
+                                <button id="activateEllipticalROI">원 그리기</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateFreeHand">자율 그리기</button>
+                                <button id="activateBidirectional">Bidirectional</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateCobbAngle">콥 각도</button>
+                                <button id="activateTextMarker">텍스트 마커</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button class="annotationBtn3" id="activateEraser">선택 삭제</button>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-            </li>
-            <button id="" class="tool_button">도구</button>
+
+            </div>
+            <div class="imageAndName">
+                <button id="toolsBtn" class="tool_button"></button>
+                <div>도구</div>
+            </div>
         </div>
+
+
+<%--        <div>--%>
+<%--            <li class="annotation" onclick="showAnnotationBox()">--%>
+<%--                <div class="annotation">주석</div>--%>
+<%--                <div id="annotationBox">--%>
+<%--                    <div id="annotationContent">--%>
+<%--                        <ul>--%>
+<%--                            <div id="activateAngle" onclick="activateAngle()">각도</div>--%>
+<%--                            <div onclick="activateArrowAnnotate()">화살표</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateProbe()">Probe</div>--%>
+<%--                            <div onclick="activateLength()">길이</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateRectangleROI()">사각형 그리기</div>--%>
+<%--                            <div onclick="activateEllipticalROI()">원 그리기</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateFreeHand()">자율 그리기</div>--%>
+<%--                            <div onclick="activateBidirectional()">Bidirectional</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateCobbAngle()">콥 각도</div>--%>
+<%--                            <div onclick="activateTextMarker()">텍스트 마커</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateEraser()">선택 삭제</div>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </li>--%>
+<%--            <button id="" class="tool_button">도구</button>--%>
+<%--        </div>--%>
     </div>
     <div class="content">
 
