@@ -223,12 +223,17 @@ $(document).ready(function() {
                 "Authorization" : `Bearer ${token}`
             },"data": JSON.stringify(req)
         }).then(res => {
-            if("SR"===res.code || "RF" === res.code){
-                alert("이미 작성했거나 해당 판독이 완료된 상태입니다.");
+            if("RW" === res.code){
+                alert("이미 해당 검사에 보고서를 작성했습니다.");
                 return;
             }
-
-            if("SU" === res.code){
+            else if("SR"===res.code){
+                alert("이미 예비판독이 존재합니다.");
+                return;
+            }else if("RF" === res.code) {
+                alert("이미 판독이 모두 등록되었습니다.");
+                return;
+            }else if("SU" === res.code){
                 $('#finding').val("");
                 $('#conclusion').val("");
                 $('#recommend').val("");
