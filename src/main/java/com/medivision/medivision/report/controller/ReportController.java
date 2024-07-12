@@ -40,7 +40,8 @@ public class ReportController {
     @PostMapping("/createReport")
     public ResponseEntity<? super ReportResponse> report(@RequestBody ReportRequestDto reportDto,@AuthenticationPrincipal String code) {
         reportDto.setWriter(Integer.parseInt(code));
-        return reportService.createReport(reportDto);
+        ResponseEntity<? super ReportResponse> response = reportService.createReport(reportDto);
+        return response;
     }
 
     @GetMapping("/reportPage")
@@ -51,7 +52,6 @@ public class ReportController {
     @GetMapping("/report/targetReport")
     public String targetPage(@RequestParam String index, Model model){
         ReportResponseDto reportResponseDto = reportService.getTarget(Integer.parseInt(index));
-        System.out.println(index);
         model.addAttribute("report", reportResponseDto);
         return "report/targetReport";
     }
