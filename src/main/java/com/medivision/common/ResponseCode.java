@@ -15,6 +15,7 @@ public interface ResponseCode {
 
     String SPARE_REPORT_ALREADY_EXIST = "SR";
     String REPORT_ALREADY_FULL = "RF";
+    String REPORT_ALREADY_WROTE = "RW";
 
     // HTTP Status 401
     String SIGN_IN_FAIL = "SF";
