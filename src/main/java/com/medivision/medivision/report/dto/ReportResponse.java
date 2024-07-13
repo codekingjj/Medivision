@@ -55,8 +55,14 @@ public class ReportResponse extends ResponseDto {
         return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
     }
 
+    public static ResponseEntity<ResponseDto> alreadyWrote(){
+        ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_WROTE, ResponseMessage.REPORT_ALREADY_WROTE);
+        return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
+    }
+
     public static ResponseEntity<ResponseDto> createReportFail(){
-        ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_FULL, ResponseMessage.REPORT_ALREADY_FULL);
+        ResponseDto result = new ResponseDto(ResponseCode.REPORT_ALREADY_FULL, ResponseMessage.REPORT_ALREADY_FULL
+        );
         return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).body(result);
     }
 

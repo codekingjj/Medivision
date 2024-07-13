@@ -2,7 +2,10 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        viewer: './script/viewer/viewer.js',     // 기존 엔트리 포인트
+        viewer: './script/viewer/viewer.js',
+        tools: './script/viewer/tools.js',// 기존 엔트리 포인트
+        previous:'./script/viewer/previous.js',
+        next:'./script/viewer/next.js',
         search: './script/search/search.js'      // 새로운 엔트리 포인트
     },
     output: {

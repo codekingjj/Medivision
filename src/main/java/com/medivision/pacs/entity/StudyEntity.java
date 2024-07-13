@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 public class StudyEntity {
     @Id
-    private long studykey;
+    private int studykey;
 
     private String studydate;
     private String studydesc;
@@ -24,10 +24,18 @@ public class StudyEntity {
     private String pid;
     private String pname;
     private String psex;
-    private long seriescnt;
-    private long imagecnt;
-    private long examstatus;
+    private int seriescnt;
+    private int imagecnt;
+    private int examstatus;
     private String pbirthdatetime;
+
+    private String aimodelname;
+    private String aifinding;
+    private String aireport;
+
+    public StudyEntity(int studykey){
+        this.studykey = studykey;
+    }
 
 
 }

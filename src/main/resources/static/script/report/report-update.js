@@ -13,7 +13,7 @@ $(document).ready(function() {
     function popup(index){
         var url = `/report/update?index=${index}`;
         var name = "updateReport";
-        var option = "width=800, height=500, left=200, top=50, location=no";
+        var option = "width=800, height=600, left=200, top=50, location=no";
 
         pop = window.open(url, name, option);
     }

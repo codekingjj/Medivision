@@ -6,6 +6,7 @@ import com.medivision.medivision.report.domain.service.ReportService;
 import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
+import com.medivision.pacs.entity.StudyEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -25,6 +26,7 @@ public class ReportController {
     @GetMapping("/reports/{studykey}")
     public ResponseEntity<? super ReportResponse> reports(@PathVariable("studykey") String studyKey,@AuthenticationPrincipal String code) {
         int studykey = Integer.parseInt(studyKey);
+        if("anonymousUser".equals(code)) return ReportResponse.differentUser();
         int userCode = Integer.parseInt(code);
         ReportRequestDto reportDto = new ReportRequestDto();
         reportDto.setStudyKey(studykey);
@@ -34,15 +36,17 @@ public class ReportController {
         return response;
     }
 
-//    @GetMapping("/report/{reportIndex}")
-//    public ResponseEntity<? super ReportResponse> targetReport(@PathVariable("reportIndex") String reportIndex ) {
-//        return reportService.getReport(Integer.parseInt(reportIndex));
+//    @GetMapping("/report/getStudy/{studykey}")
+//    public StudyEntity getStudy(@PathVariable("studykey") String studyKey, @AuthenticationPrincipal String code){
+//        StudyEntity study = reportService.getStudy(studyKey);
+//        return study;
 //    }
 
     @PostMapping("/createReport")
     public ResponseEntity<? super ReportResponse> report(@RequestBody ReportRequestDto reportDto,@AuthenticationPrincipal String code) {
         reportDto.setWriter(Integer.parseInt(code));
-        return reportService.createReport(reportDto);
+        ResponseEntity<? super ReportResponse> response = reportService.createReport(reportDto);
+        return response;
     }
 
     @GetMapping("/reportPage")
@@ -53,7 +57,6 @@ public class ReportController {
     @GetMapping("/report/targetReport")
     public String targetPage(@RequestParam("index") String index,@RequestParam("userCode") String userCode, Model model, HttpServletRequest request){
         ReportResponseDto reportResponseDto = reportService.getTarget(Integer.parseInt(index));
-        System.out.println(index);
         JwtProvider jwtProvider = new JwtProvider();
         String user = jwtProvider.validate(userCode);
         model.addAttribute("report", reportResponseDto);

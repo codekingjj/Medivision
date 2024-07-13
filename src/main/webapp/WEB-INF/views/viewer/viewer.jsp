@@ -3,8 +3,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
+
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
 
@@ -48,10 +50,145 @@
             </div>
         </div>
     </div>
-    <div class="aside"><button id="report">리포트</button></div>
+    <div class="aside">
+        <button id="report">리포트</button>
+        <div>
+            <div class="imageAndName">
+                <button id="previous" class="tool_button"></button>
+                <div>이전</div>
+            </div>
+            <div class="imageAndName">
+                <button id="next" class="tool_button"></button>
+                <div>다음</div>
+            </div>
+        </div>
+        <div>
+            <div class="imageAndName">
+                <button id="workList" class="tool_button"></button>
+                <div>워크리스트</div>
+            </div>
+            <div class="imageAndName">
+                <button id="defaultTool" class="tool_button"></button>
+                <div>기본툴</div>
+            </div>
+        </div>
+        <div>
+            <div class="imageAndName">
+                <button id="windowLevel" class="tool_button"></button>
+                <div>윈도우 레벨</div>
+            </div>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="invert" class="tool_button"></button>--%>
+<%--                <div>흑백 반전</div>--%>
+<%--            </div>--%>
+        </div>
+<%--        <div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="scrollLoop" class="tool_button"></button>--%>
+<%--                <div>스크롤 루프</div>--%>
+<%--            </div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="playFlip" class="tool_button"></button>--%>
+<%--                <div>플레이 플립</div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="series" class="tool_button"></button>--%>
+<%--                <div>1시리즈</div>--%>
+<%--            </div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="compare" class="tool_button"></button>--%>
+<%--                <div>비교검사</div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+        <div>
+            <div class="imageAndName">
+                <div class="annotation-select">
+                    <button id="annotationBtn" class="tool_button"></button>
+                    <div>주석</div>
+                    <div class="dropdown-annotation">
+                        <div class="annotation-content">
+                            <button class="annotationBtn1" id="activateAngle">각도</button>
+                            <button class="annotationBtn2" id="activateArrowAnnotate">화살표</button>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateProbe">Probe</button>
+                                <button id="activateLength">길이</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateRectangleRIO">사각형 그리기</button>
+                                <button id="activateEllipticalROI">원 그리기</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateFreeHand">자율 그리기</button>
+                                <button id="activateBidirectional">Bidirectional</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button id="activateCobbAngle">콥 각도</button>
+                                <button id="activateTextMarker">텍스트 마커</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="annotation-content">
+                                <button class="annotationBtn3" id="activateEraser">선택 삭제</button>
+                            </div>
 
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="imageAndName">
+                <button id="toolsBtn" class="tool_button"></button>
+                <div>도구</div>
+            </div>
+        </div>
+
+
+<%--        <div>--%>
+<%--            <li class="annotation" onclick="showAnnotationBox()">--%>
+<%--                <div class="annotation">주석</div>--%>
+<%--                <div id="annotationBox">--%>
+<%--                    <div id="annotationContent">--%>
+<%--                        <ul>--%>
+<%--                            <div id="activateAngle" onclick="activateAngle()">각도</div>--%>
+<%--                            <div onclick="activateArrowAnnotate()">화살표</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateProbe()">Probe</div>--%>
+<%--                            <div onclick="activateLength()">길이</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateRectangleROI()">사각형 그리기</div>--%>
+<%--                            <div onclick="activateEllipticalROI()">원 그리기</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateFreeHand()">자율 그리기</div>--%>
+<%--                            <div onclick="activateBidirectional()">Bidirectional</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateCobbAngle()">콥 각도</div>--%>
+<%--                            <div onclick="activateTextMarker()">텍스트 마커</div>--%>
+<%--                        </ul>--%>
+<%--                        <ul>--%>
+<%--                            <div onclick="activateEraser()">선택 삭제</div>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </li>--%>
+<%--            <button id="" class="tool_button">도구</button>--%>
+<%--        </div>--%>
+    </div>
     <div class="content">
-        <input type="hidden" id="studykey" value=""></div>
 
     </div>
     <div class="footer">
@@ -61,7 +198,11 @@
         <div class="footer-right"></div>
     </div>
 </div>
-</body>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/tools.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/static/dist/next.bundle.js"></script>
+</body>
+
 
 </html>

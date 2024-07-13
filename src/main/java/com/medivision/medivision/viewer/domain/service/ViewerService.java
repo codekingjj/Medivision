@@ -21,7 +21,8 @@ public class ViewerService {
     }
 
     public List<VImageEntity> findImagesBySeriesKeyAndStudyKey(int studyKey, int seriesKey) {
-        return vImageRepository.getImage(studyKey, seriesKey);
+
+        return vImageRepository.findAllByStudyKeyAndSeriesKey(studyKey, seriesKey);
     }
 
 }
