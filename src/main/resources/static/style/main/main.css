@@ -59,8 +59,8 @@
     .selected {
         background-color: rgba(30, 121, 82, 0.6);
     }
-    .menu.selected.dropdown:hover,
-    .menu.selected.dropdown {
+    dropdown:hover,
+    dropdown {
         background-color: rgba(30, 121, 82, 0.6);
     }
 
@@ -212,7 +212,7 @@
     z-index: 1;
 }
 
-.menu.selected.dropdown {
+.dropdown {
     position: relative;
     color: white;
     border: none;
