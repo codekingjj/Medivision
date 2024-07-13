@@ -2,13 +2,17 @@ package com.medivision.medivision.log.study.domain.service;
 
 import com.medivision.medivision.log.study.domain.StudyLogEntity;
 import com.medivision.medivision.log.study.domain.StudyLogRepository;
+import com.medivision.medivision.log.study.dto.StudyKeyLogResponseDto;
 import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.UserRepository;
 import com.medivision.pacs.entity.StudyEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +36,22 @@ public class StudyLogServiceImpl implements StudyLogService{
         studyLogEntity.setOpenDate(now);
 
         studyLogRepository.save(studyLogEntity);
+    }
+
+    @Override
+    public ResponseEntity<? super StudyKeyLogResponseDto> studyLog(String userCode) {
+        int userCodeNumber = Integer.parseInt(userCode);
+        List<StudyLogEntity> list = null;
+
+        try {
+        UserEntity user = userRepository.findByUserCode(userCodeNumber);
+        String userId = user.getUserId();
+        list = studyLogRepository.findByUserId(userId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return StudyKeyLogResponseDto.success(list);
     }
 }
