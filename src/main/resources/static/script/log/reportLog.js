@@ -18,8 +18,10 @@ function displayStudyLogs(logData) {
         row.innerHTML = `
             <th>${log.userId}</th>
             <th>${log.clientIp}</th>
-            <th>${log.openDate}</th>
+            <th>${log.reportDate}</th>
             <th>${log.studyKey}</th>
+            <th>${log.reportIndex}</th>
+            <th>${log.reportType}</th>
         `;
         tableBody.appendChild(row);
     });

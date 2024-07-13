@@ -92,6 +92,7 @@
             <th>접속시간</th>
             <th>차트번호</th>
             <th>리포트번호</th>
+            <th>리포트 타입</th>
             </thead>
             <tbody>
             <tr>
