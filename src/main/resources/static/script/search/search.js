@@ -264,7 +264,4 @@ $(document).ready(function() {
         }
     });
 
-    function pageSize (){
-        
-    }
 });

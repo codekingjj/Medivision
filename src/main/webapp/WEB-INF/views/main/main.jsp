@@ -104,6 +104,11 @@
                 <tbody>
                 </tbody>
             </table>
+            <div id="page-scope">
+                <div id="page-down"></div>
+                <div class="pageCount"></div>
+                <div id="page-up"></div>
+            </div>
         </div>
     </div>
     <div class="footer">

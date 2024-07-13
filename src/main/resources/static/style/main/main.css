@@ -9,7 +9,7 @@
         grid-template-rows: 16vh 1fr 10vh;
 
         grid-template-columns: 200px  6fr;
-        grid-template-areas: 
+        grid-template-areas:
         "header header header header"
         "content content content content"
         "footer footer footer footer";
@@ -405,4 +405,24 @@ select option {
 }
 .aside-selected{
     background-color: #1e795299;
+}
+#page-scope {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page-down, #page-up {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+#page-down {
+    background-image: url('/assets/left.png');
+}
+
+#page-up {
+    background-image: url('/assets/right.png');
 }
