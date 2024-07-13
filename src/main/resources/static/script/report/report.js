@@ -139,7 +139,7 @@ $(document).ready(function() {
 
     function popup(index) {
 
-        var url = `/report/targetReport?index=${index}`;
+        var url = `/report/targetReport?index=${index}&userCode=${localStorage.getItem("jwt")}`;
         var name = "targetReport";
         var option = "width=800, height=500, left=100, top=50, location=no";
 
