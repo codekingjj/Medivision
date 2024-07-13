@@ -11,7 +11,7 @@
     <title>Title</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/log/log.css">
-  <script src="${pageContext.request.contextPath}/script/log/loginLog.js"></script>
+  <script src="${pageContext.request.contextPath}/script/log/chartLog.js"></script>
 </head>
 <body>
 <div class="container">
@@ -35,7 +35,7 @@
       <div class="menu selected dropdown">
         <div class="dropdown-title">로그 기록 확인</div>
         <div class="dropdown-content-box">
-          <div class="dropdown-content"><a class="dropdown-content-a" onclick="loginLog()">로그인 로그 기록</a></div>
+          <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/login'">로그인 로그 기록</a></div>
           <div class="dropdown-content"><a class="dropdown-content-a" href="#">환자 차트 열람 로그 기록</a></div>
           <div class="dropdown-content"><a class="dropdown-content-a" href="#">리포트 로그 기록</a></div>
         </div>
@@ -56,7 +56,7 @@
   </div>
   <div class="content">
     <div class="content-top">
-      <div class="content-top-title">로그인 로그 기록</div>
+      <div class="content-top-title">차트 로그 기록</div>
     </div>
     <div class="content-bottom">
       <div class="content-bottom-box">
@@ -66,7 +66,7 @@
             <th>아이디</th>
             <th>아이피</th>
             <th>접속시간</th>
-            <th>환자 차트</th>
+            <th>환자 차트 번호</th>
             </thead>
             <tbody>
             <tr>
