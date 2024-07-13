@@ -53,10 +53,10 @@ $(document).ready(function() {
         });
     }
     setting();
-    $('.results-section tbody').on('click', '.tr-area', function(e) {
-        let id = $(this).attr('id');
-        alert(id);
-    });
+    // $('.results-section tbody').on('click', '.tr-area', function(e) {
+    //     let id = $(this).attr('id');
+    //     alert(id);
+    // });
 
 
     $('#search-form').submit(function(event) {
@@ -162,6 +162,17 @@ $(document).ready(function() {
                 console.error('Error fetching date', error);
             }
         });
+    });
+
+    $('.results-section tbody').on('dblclick', '.tr-area', function(e) {
+        let id = $(this).attr('id');
+        fetch(`/log/${id}`,{
+            method : 'GET',
+            headers: {
+                'Authorization': "Bearer "+localStorage.getItem("jwt")
+            }
+        })
+        window.location.href=`viewer/${id}`;
     });
 
     // 페이징 처리
