@@ -36,7 +36,6 @@ public class ViewerController {
     @GetMapping("/{studyKey}")
         public ModelAndView viewer(@PathVariable int studyKey) {
         ModelAndView modelAndView = new ModelAndView("viewer/viewer");
-        System.out.println(studyKey);
         modelAndView.addObject("studyKey", studyKey);
         return modelAndView;
     }

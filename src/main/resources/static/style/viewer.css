@@ -82,7 +82,7 @@
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center;
-
+    background-color: white;
 }
 
 .imageAndName {
@@ -161,6 +161,7 @@
     overflow-wrap: break-word;
     border: none;
     padding: 5px;
+    background-color: white;
 }
 .annotation-content > button:hover{
     background-color: #9b9b9b;
@@ -173,4 +174,7 @@
 }
 .annotationBtn3 {
     border-bottom-left-radius: 10px;
+}
+.annotationBtn4 {
+    border-bottom-right-radius: 10px;
 }

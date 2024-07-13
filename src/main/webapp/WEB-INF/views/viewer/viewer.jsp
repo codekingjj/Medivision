@@ -19,7 +19,7 @@
     <div class="header">
         <div class="header-top">
             <div class="logo">
-                <div class="mark"></div>
+                <div class="mark" onclick="location.href='/main'"></div>
             </div>
             <div class="logout-box">
                 <div class="logout-img">
@@ -132,17 +132,10 @@
                         </div>
                         <div>
                             <div class="annotation-content">
-                                <button id="activateCobbAngle">콥 각도</button>
-                                <button id="activateTextMarker">텍스트 마커</button>
+                                <button class="annotationBtn3" id="activateCobbAngle">콥 각도</button>
+                                    <button class="annotationBtn4" id="activateEraser">선택 삭제</button>
                             </div>
                         </div>
-                        <div>
-                            <div class="annotation-content">
-                                <button class="annotationBtn3" id="activateEraser">선택 삭제</button>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
 

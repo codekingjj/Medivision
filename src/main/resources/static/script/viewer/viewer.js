@@ -47,13 +47,11 @@ async function loadData() {
     let num = 0;
     const studyKey = $("#studyKey").val();
    let seriesKeys = await fetchSeriesKeys(studyKey);
-   console.log(seriesKeys);
    for (let seriesKey of seriesKeys) {
 
        let images = await fetchImages(seriesKey, studyKey);
 
        const imageIds = [];
-       console.log(images)
        images.forEach((base64) => {
            const binary = atob(base64);
            const arraybuffer = Uint8Array.from(binary, c => c.charCodeAt(0));
@@ -123,7 +121,6 @@ async function loadData() {
         element,
         type: cornerstone.Enums.ViewportType.STACK,
     }
-    console.log(viewportInput);
     renderingEngine.enableElement(viewportInput);
 
     const viewport = renderingEngine.getViewport(viewportInput.viewportId);
@@ -135,7 +132,6 @@ async function loadData() {
 
 
 async function fetchSeriesKeys(studyKey) {
-    console.log(studyKey);
     return await fetch(`/viewer/get/${studyKey}`, {
                 method: "GET",
             })
@@ -286,5 +282,9 @@ const init = async () => {
 
     cornerstoneDICOMImageLoader.webWorkerManager.initialize(config);
 };
+
+// $(".dicomImage").on("contextmenu", () => {
+//     return;
+// })
 
 init();
