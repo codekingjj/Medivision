@@ -199,7 +199,7 @@
     z-index: 1;
 }
 
-.menu.selected.dropdown {
+.dropdown {
     position: relative;
     color: white;
     border: none;
@@ -217,7 +217,7 @@
     background-color: #f1f1f1;
 }
 
-.menu.selected.dropdown:hover .dropdown-content-box {
+.dropdown:hover .dropdown-content-box {
     display: block;
 }
 
