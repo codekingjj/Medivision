@@ -46,9 +46,24 @@ public class ViewerController {
 
 
     @GetMapping("/get/{studyKey}/{seriesKey}")
-    public ResponseEntity<List<VImageEntity>> findImages(@PathVariable int studyKey, @PathVariable int seriesKey) {
+    public ResponseEntity<List<String>> findImages(@PathVariable int studyKey, @PathVariable int seriesKey) {
         List<VImageEntity> imageEntityList = viewerService.findImagesBySeriesKeyAndStudyKey(studyKey, seriesKey);
-        return new ResponseEntity<>(imageEntityList, HttpStatus.OK);
+        List<String> fileList = new ArrayList<>();
+        for(VImageEntity imageEntity : imageEntityList) {
+            String driver = "Z:\\";
+            String path = imageEntity.getPath();
+            String fileName = imageEntity.getFname();
+            String realPath = driver + path + fileName;
+            File file = new File(realPath);
+            try {
+                String base64Content = encodeFileToBase64(file);
+                fileList.add(base64Content);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return new ResponseEntity<>(fileList, HttpStatus.OK);
     }
 
     @GetMapping("/get/{studyKey}")

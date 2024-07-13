@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,5 +26,6 @@ public class ReportLogEntity {
     private String conclusion;
     private String recommend;
     private int studyKey;
-    private Timestamp reportDate;
+    private int reportIndex;
+    private LocalDateTime reportDate;
 }

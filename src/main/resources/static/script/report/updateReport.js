@@ -5,7 +5,7 @@ function adjustTextareaHeight(textarea) {
 
 $(document).ready(function(){
 
-    $('textarea[readonly]').each(function() {
+    $('textarea').each(function() {
         adjustTextareaHeight(this);
     });
 
@@ -132,6 +132,7 @@ $(document).ready(function(){
         }).then(res => {
             if ("SU" === res.code) {
                 alert("수정을 완료했습니다.");
+                opener.location.reload();
                 window.close();
             }else if("NU" === res.code){
                 alert("해당 보고서를 작성한 유저가 아닙니다.");
