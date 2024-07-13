@@ -11,9 +11,9 @@ import javax.persistence.Column;
 @Entity
 public class VImageEntity {
 
-    @Id
     private int studyKey;
     private int seriesKey;
+    @Id
     private int imageKey;
     private String path;
     private String fname;
