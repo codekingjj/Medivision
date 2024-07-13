@@ -77,31 +77,31 @@
                 <button id="windowLevel" class="tool_button"></button>
                 <div>윈도우 레벨</div>
             </div>
-            <div class="imageAndName">
-                <button id="invert" class="tool_button"></button>
-                <div>흑백 반전</div>
-            </div>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="invert" class="tool_button"></button>--%>
+<%--                <div>흑백 반전</div>--%>
+<%--            </div>--%>
         </div>
-        <div>
-            <div class="imageAndName">
-                <button id="scrollLoop" class="tool_button"></button>
-                <div>스크롤 루프</div>
-            </div>
-            <div class="imageAndName">
-                <button id="playFlip" class="tool_button"></button>
-                <div>플레이 플립</div>
-            </div>
-        </div>
-        <div>
-            <div class="imageAndName">
-                <button id="series" class="tool_button"></button>
-                <div>1시리즈</div>
-            </div>
-            <div class="imageAndName">
-                <button id="compare" class="tool_button"></button>
-                <div>비교검사</div>
-            </div>
-        </div>
+<%--        <div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="scrollLoop" class="tool_button"></button>--%>
+<%--                <div>스크롤 루프</div>--%>
+<%--            </div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="playFlip" class="tool_button"></button>--%>
+<%--                <div>플레이 플립</div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="series" class="tool_button"></button>--%>
+<%--                <div>1시리즈</div>--%>
+<%--            </div>--%>
+<%--            <div class="imageAndName">--%>
+<%--                <button id="compare" class="tool_button"></button>--%>
+<%--                <div>비교검사</div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         <div>
             <div class="imageAndName">
                 <div class="annotation-select">
