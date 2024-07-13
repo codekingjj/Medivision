@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+  <title>Title</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/log/log.css">
-  <script src="${pageContext.request.contextPath}/script/log/chartLog.js"></script>
+  <script src="${pageContext.request.contextPath}/script/log/reportLog.js"></script>
 
-  <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
+  <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
   <script src="${pageContext.request.contextPath}/script/chat/ChatPage.js" type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -75,12 +75,12 @@
   </div>
   <div class="aside">
     <div class="aside-content">로그인 로그 기록</div>
-    <div class="aside-content aside-selected" onclick="location.href='/log/studyKey'">환자 차트 열람<br> 로그 기록</div>
-    <div class="aside-content" onclick="location.href='/log/report'">리포트 로그 기록</div>
+    <div class="aside-content" onclick="location.href='/log/studyKey'">환자 차트 열람<br> 로그 기록</div>
+    <div class="aside-content aside-selected" onclick="location.href='/log/report'">리포트 로그 기록</div>
   </div>
   <div class="content">
     <div class="content-top">
-      <div class="content-top-title">차트 로그 기록</div>
+      <div class="content-top-title">리포트 로그 기록</div>
     </div>
     <div class="content-bottom">
       <div class="content-bottom-box">
@@ -90,26 +90,20 @@
             <th>아이디</th>
             <th>아이피</th>
             <th>접속시간</th>
-            <th>환자 차트 번호</th>
+            <th>차트번호</th>
+            <th>리포트번호</th>
+            <th>리포트 타입</th>
             </thead>
             <tbody>
             <tr>
               <th>sadf</th>
               <th>127.0.0.1</th>
               <th>2024.12.30 15:30</th>
-              <th>123</th>
             </tr>
             <tr>
               <th>sadf</th>
               <th>127.0.0.1</th>
               <th>2024.12.30 15:30</th>
-              <th>123</th>
-            </tr>
-            <tr>
-              <th>sadf</th>
-              <th>127.0.0.1</th>
-              <th>2024.12.30 15:30</th>
-              <th>123</th>
             </tr>
             </tbody>
           </table>

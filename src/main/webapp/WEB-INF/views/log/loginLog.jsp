@@ -13,8 +13,8 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/log/log.css">
   <script src="${pageContext.request.contextPath}/script/log/loginLog.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
   <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
   <script src="${pageContext.request.contextPath}/script/chat/ChatPage.js" type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -41,11 +41,11 @@
         <div class="dropdown-title">로그 기록 확인</div>
         <div class="dropdown-content-box">
           <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/login'">로그인 로그 기록</a></div>
-          <div class="dropdown-content"><a class="dropdown-content-a" href="#">환자 차트 열람 로그 기록</a></div>
-          <div class="dropdown-content"><a class="dropdown-content-a" href="#">리포트 로그 기록</a></div>
+          <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/studyKey'">환자 차트 열람 로그 기록</a></div>
+          <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/report'">리포트 로그 기록</a></div>
         </div>
       </div>
-      <div class="menu option">마이 페이지</div>
+      <div class="menu option" onclick="location.href='#'">마이페이지</div>
       <div class="menu diselected-side-menu">
         <div class="side-menu">
           <div class="side-menu-icon side-menu-icon-chat" id="btnChatPageOpen"></div>
@@ -75,8 +75,8 @@
   </div>
   <div class="aside">
     <div class="aside-content aside-selected">로그인 로그 기록</div>
-    <div class="aside-content">환자 차트 열람<br> 로그 기록</div>
-    <div class="aside-content">리포트 로그 기록</div>
+    <div class="aside-content" onclick="location.href='/log/studyKey'">환자 차트 열람<br> 로그 기록</div>
+    <div class="aside-content" onclick="location.href='/log/report'">리포트 로그 기록</div>
   </div>
   <div class="content">
     <div class="content-top">

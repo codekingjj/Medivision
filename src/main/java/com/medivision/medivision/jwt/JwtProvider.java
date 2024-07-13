@@ -36,9 +36,8 @@ public class JwtProvider {
     public String validate(String jwt){
 
         Claims claims = null;
-
         try {
-            claims = Jwts.parser().setSigningKey(secretKey) //파싱 열고 시크릿키 넣어주고 jwt토큰 넣어준 결과값을 반환
+            claims = Jwts.parser().setSigningKey("S3cr3tk3yS3cr3tk3yS3cr3tk3yS3cr3tk3y") //파싱 열고 시크릿키 넣어주고 jwt토큰 넣어준 결과값을 반환
                     .parseClaimsJws(jwt).getBody();
         }catch (Exception e){
             e.printStackTrace();
