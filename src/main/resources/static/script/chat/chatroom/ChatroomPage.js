@@ -46,6 +46,8 @@ class ChatroomPage {
             console.log("after fetch: " + this.#userCode)
         }).then(() => {
             this.populateChatHistory();
+        }).then(() => {
+            this.saveLastVisitedDate();
         })
 
         return this.#root;
@@ -121,7 +123,7 @@ class ChatroomPage {
         $("#inputMessage").val("");
     }
 
-    static async #handleGoToChatroomList() {
+    static async saveLastVisitedDate() {
         const bodyData = {
             roomId: this.#roomId,
             userCode: this.#userCode,
@@ -129,21 +131,13 @@ class ChatroomPage {
             createDate: "",
         };
 
-        fetch(`/chatroomMember/saveLastVisitedDate`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-            },
-            body: JSON.stringify(bodyData),
-        })
-        .then(() => {
-            StompManager.disconnct();
-            ChatRootPage.render(ChatRootPage.PAGE_NAMES.CHAT_ROOM_LIST);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        await ChatFetcher.saveLastVisitedDate(bodyData);
+    }
+
+    static async #handleGoToChatroomList() {
+        await this.saveLastVisitedDate();
+        StompManager.disconnct();
+        ChatRootPage.render(ChatRootPage.PAGE_NAMES.CHAT_ROOM_LIST);
     }
 
     static #createHeaderContainer() {
