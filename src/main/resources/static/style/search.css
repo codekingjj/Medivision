@@ -91,3 +91,24 @@ body {
     border-radius: 25px;
     cursor: pointer;
 }
+#page-scope {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page-down, #page-up {
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+#page-down {
+    background-image: url('/assets/left.png');
+}
+
+#page-up {
+    background-image: url('/assets/right.png');
+}
+

@@ -1,5 +1,7 @@
 package com.medivision.medivision.report.controller;
 
+import com.medivision.medivision.jwt.JwtProvider;
+import com.medivision.medivision.log.report.domain.service.ReportLogService;
 import com.medivision.medivision.report.domain.service.ReportService;
 import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
@@ -12,11 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequiredArgsConstructor
 public class ReportController {
 
     private final ReportService reportService;
+    private final ReportLogService reportLogService;
 
     @GetMapping("/reports/{studykey}")
     public ResponseEntity<? super ReportResponse> reports(@PathVariable("studykey") String studyKey,@AuthenticationPrincipal String code) {
@@ -50,9 +55,13 @@ public class ReportController {
     }
 
     @GetMapping("/report/targetReport")
-    public String targetPage(@RequestParam String index, Model model){
+    public String targetPage(@RequestParam("index") String index,@RequestParam("userCode") String userCode, Model model, HttpServletRequest request){
         ReportResponseDto reportResponseDto = reportService.getTarget(Integer.parseInt(index));
+        JwtProvider jwtProvider = new JwtProvider();
+        String user = jwtProvider.validate(userCode);
         model.addAttribute("report", reportResponseDto);
+        String ip = request.getRemoteAddr();
+        reportLogService.reportRead(reportResponseDto.getReportIndex(), user, ip);
         return "report/targetReport";
     }
 
