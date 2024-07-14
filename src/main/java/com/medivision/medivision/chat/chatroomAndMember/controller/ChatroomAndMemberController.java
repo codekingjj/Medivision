@@ -1,10 +1,8 @@
 package com.medivision.medivision.chat.chatroomAndMember.controller;
 
-import com.medivision.config.websocket.StompClient;
 import com.medivision.medivision.chat.chat.domain.Chat;
 import com.medivision.medivision.chat.chat.domain.ChatService;
 import com.medivision.medivision.chat.chatroom.domain.Chatroom;
-import com.medivision.medivision.chat.chatroom.domain.ChatroomRepository;
 import com.medivision.medivision.chat.chatroom.domain.ChatroomService;
 import com.medivision.medivision.chat.chatroom.utils.ChatroomUtils;
 import com.medivision.medivision.chat.chatroomAndMember.domain.ChatroomAndMember;
@@ -18,7 +16,6 @@ import com.medivision.medivision.user.domain.entity.AdminEntity;
 
 import com.medivision.medivision.user.domain.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -45,10 +41,6 @@ public class ChatroomAndMemberController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ChatroomAndMemberResponseDto>> getChatroomList(@AuthenticationPrincipal String userCodeString) {
-        if (userCodeString.equals("anonymousUser")) {
-           return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
         int userCode = Integer.parseInt(userCodeString);
 
         List<ChatroomAndMember> chatroomAndMembers = chatroomAndMemberService.findAllByUserCode(userCode);
@@ -82,9 +74,7 @@ public class ChatroomAndMemberController {
     }
 
     @PostMapping("/create")
-    public ModelAndView create(@RequestBody ChatroomAndMemberRequestDto chatroomAndMemberRequestDto) {
-        ModelAndView mav = new ModelAndView("chat/chatroom");
-
+    public ResponseEntity<HttpStatus> create(@RequestBody ChatroomAndMemberRequestDto chatroomAndMemberRequestDto) {
         for (AdminEntity member : chatroomAndMemberRequestDto.getMembers()) {
             AdminEntity user = adminRepository.findByUserCode(member.getUserCode());
             member.setUserName(user.getUserName());
@@ -100,13 +90,11 @@ public class ChatroomAndMemberController {
             chatroomMemberService.save(chatroomMember);
         }
 
-        return mav;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/delete")
-    public ModelAndView delete(@RequestBody ChatroomMemberRequestDto chatroomMemberRequestDto) {
-        ModelAndView mav = new ModelAndView("chat/chatroom");
-
+    public ResponseEntity<HttpStatus> delete(@RequestBody ChatroomMemberRequestDto chatroomMemberRequestDto) {
         ChatroomMember chatroomMember = new ChatroomMember(chatroomMemberRequestDto);
 
         int roomId = chatroomMemberRequestDto.getRoomId();
@@ -122,10 +110,9 @@ public class ChatroomAndMemberController {
 
         boolean hasMember = chatroomMemberService.existByChatroomId(roomId);
 
-        if (!hasMember) {
+        if (!hasMember)
             chatroomService.deleteByRoomId(roomId);
-        }
 
-        return mav;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

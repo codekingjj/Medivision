@@ -11,10 +11,16 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
-    <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- chat -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/chat/main.css">
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
 </head>
     <body>
+    <div class="sidebar-chat-root"></div>
 <header>
     <div class="header">
         <div class="header-top">

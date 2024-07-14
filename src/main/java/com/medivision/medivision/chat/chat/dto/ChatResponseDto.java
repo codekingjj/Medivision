@@ -11,6 +11,7 @@ public class ChatResponseDto {
     private int chatId;
     private int roomId;
     private int senderUserCode;
+    private String senderUserId;
     private String senderUserName;
 
     private String message;

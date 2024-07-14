@@ -15,7 +15,7 @@
         min-height: 100vh;
     }
     .header {
-        margin-top: 10px;
+        padding-top: 10px;
         grid-area: header;
         display: flex;
         flex-direction: column;

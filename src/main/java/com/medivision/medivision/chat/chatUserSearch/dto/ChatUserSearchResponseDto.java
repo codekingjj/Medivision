@@ -1,6 +1,6 @@
 package com.medivision.medivision.chat.chatUserSearch.dto;
 
-import com.medivision.medivision.user.domain.entity.AdminEntity;
+import com.medivision.medivision.user.domain.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +9,10 @@ import lombok.Setter;
 public class ChatUserSearchResponseDto {
     private int userCode;
     private String userName;
+    private String userId;
 
-    public ChatUserSearchResponseDto(AdminEntity user) {
+    public ChatUserSearchResponseDto(UserEntity user) {
         this.userCode = user.getUserCode();
-        this.userName = user.getUserName();
+        this.userId = user.getUserId();
     }
 }
