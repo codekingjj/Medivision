@@ -37,6 +37,7 @@ import java.util.List;
 public class ChatController {
     private final ChatService chatService;
     private final AdminRepository adminRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
@@ -49,8 +50,10 @@ public class ChatController {
         Chat chat = new Chat(chatRequestDto);
         ChatResponseDto chatResponseDto = new ChatResponseDto(chat);
 
-        AdminEntity admin = adminRepository.findByUserCode(chat.getSenderUserCode());
+        UserEntity user = userRepository.findByUserCode(chat.getSenderUserCode());
+        AdminEntity admin = adminRepository.findByUserCode(user.getUserCode());
 
+        chatResponseDto.setSenderUserId(user.getUserId());
         chatResponseDto.setSenderUserName(admin.getUserName());
 
         if (chatRequestDto.isSystemMessage()) {
@@ -69,11 +72,6 @@ public class ChatController {
         messagingTemplate.convertAndSend(MSG_DEST_URL, chatResponseDto);
     }
 
-    @GetMapping("/chat/chatPage")
-    public String chatPage() {
-        return "chat/chatPage";
-    }
-
     @PostMapping("/chat/{roomId}")
     public ResponseEntity<ChatListResponseDto> chat(@PathVariable int roomId, @RequestBody PageRequestDto pageDto) {
         Page<Chat> chats = chatService.findByRoomIdOrderByCreateDateDesc(roomId, pageDto.getPageNumber());
@@ -81,9 +79,11 @@ public class ChatController {
 
         for (Chat chat : chats) {
             AdminEntity admin = adminRepository.findByUserCode(chat.getSenderUserCode());
+            UserEntity user = userRepository.findByUserCode(admin.getUserCode());
 
             ChatResponseDto chatResponseDto = new ChatResponseDto(chat);
             chatResponseDto.setSenderUserName(admin.getUserName());
+            chatResponseDto.setSenderUserId(user.getUserId());
 
             chatResponseDtoList.add(chatResponseDto);
         }
