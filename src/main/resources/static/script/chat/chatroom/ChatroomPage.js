@@ -41,8 +41,6 @@ class ChatroomPage {
         this.#root.append(chatContentContainer);
         this.#root.append(roomIdElement);
 
-        //StompManager.connectStomp(this.#roomId, this.#stompSubscribeCallbackFunc.bind(this));
-
         Fetch.getUserCode().then(userCode => {
             this.#userCode = userCode;
             console.log("after fetch: " + this.#userCode)
@@ -51,18 +49,6 @@ class ChatroomPage {
         })
 
         return this.#root;
-    }
-
-    static async #stompSubscribeCallbackFunc(receivedData) {
-        console.log("=== received ===")
-        console.log(receivedData);
-        console.log("=== ======== ===")
-
-        const chatContainer = ChatElement.create(this.#userCode, receivedData);
-
-        ChatListContainer.append(chatContainer);
-
-        this.#scrollToBottom();
     }
 
     static createChatElementThenScrollToBottom(receivedData) {
@@ -152,6 +138,7 @@ class ChatroomPage {
             body: JSON.stringify(bodyData),
         })
         .then(() => {
+            StompManager.disconnct();
             ChatRootPage.render(ChatRootPage.PAGE_NAMES.CHAT_ROOM_LIST);
         })
         .catch(err => {

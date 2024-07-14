@@ -1,3 +1,5 @@
+import ChatRootPage from "../pageElements/ChatRootPage.js";
+
 class UserElement {
     static getUsers(loggedInUserCode, users) {
         const userContainerList = users.map(user => {
@@ -7,38 +9,33 @@ class UserElement {
         return userContainerList;
     }
 
-    static #createUserContainer(loggedInUserCode, userCode) {
-        const userContainer = document.createElement("div");
-
-        userContainer.classList.add("user-container");
-
-        userContainer.addEventListener("click", () => {
-            this.#addUsersToChatroom(loggedInUserCode, userCode);
-        });
-
-        return userContainer;
-    }
-
     static #create(loggedInUserCode, user) {
-        const { userCode, userName } = user;
-
+        const { userCode, userId, userName } = user;
         const userContainer = this.#createUserContainer(loggedInUserCode, userCode);
 
-        const content = document.createElement("span");
-
-        content.innerHTML = `${userName} (${userCode})`;
+        const content = $("<span>", {
+            text: `${userName} (${userId})`,
+        });
 
         userContainer.append(content);
 
         return userContainer;
     }
 
-    static #addUsersToChatroom(loggedInUserCode, userCode) {
-        console.log("my userCode: " + loggedInUserCode);
-        console.log("adding userCode: " + userCode);
+    static #createUserContainer(loggedInUserCode, userCode) {
+        const userContainer = $("<div>", {
+            class: "chat-user-container",
+            click: () => {
+                this.#addUsersToChatroom(loggedInUserCode, userCode);
+            }
+        });
 
+        return userContainer;
+    }
+
+    static #addUsersToChatroom(loggedInUserCode, userCode) {
         const bodyData = {
-            name: loggedInUserCode + ", " +userCode,
+            name: loggedInUserCode + ", " + userCode,
             creatorUserCode: loggedInUserCode,
             members: [
                 { userCode: loggedInUserCode },
@@ -54,13 +51,14 @@ class UserElement {
             },
             body: JSON.stringify(bodyData),
         })
-            .then(response => {
-                if (response.ok)
-                    window.location.href = "/chatroom";
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        .then(response => {
+            if (response.ok) {
+                ChatRootPage.render(ChatRootPage.PAGE_NAMES.CHAT_ROOM_LIST);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 }
 
