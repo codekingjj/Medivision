@@ -39,6 +39,7 @@ class ChatroomListPage {
                 ChatroomElement.update(messageData);
                 break;
             case ChatRootPage.PAGE_NAMES.CHAT_ROOM:
+                ChatroomPage.saveLastVisitedDate();
                 ChatroomPage.createChatElementThenScrollToBottom(messageData);
                 break;
             default:

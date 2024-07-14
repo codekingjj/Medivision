@@ -59,6 +59,20 @@ class ChatFetcher {
             console.log(err);
         });
     }
+
+    static async saveLastVisitedDate(bodyData) {
+        await fetch(`/chatroomMember/saveLastVisitedDate`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            },
+            body: JSON.stringify(bodyData),
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
 }
 
 export default ChatFetcher;
