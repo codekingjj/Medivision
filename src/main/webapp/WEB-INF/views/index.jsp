@@ -8,11 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>header</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
-    <script src="${pageContext.request.contextPath}/script/log/loginLog.js"></script>
-    <script src="${pageContext.request.contextPath}/script/chat/ChatPage.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/script/log/loginLog.js"></script>
+
+    <!-- chat -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/chat/main.css">
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
 </head>
 <body>
+<div class="sidebar-chat-root"></div>
 <div class="container">
     <div class="header">
         <div class="header-top">
@@ -42,7 +48,7 @@
             <div class="menu option">마이 페이지</div>
             <div class="menu diselected-side-menu">
                 <div class="side-menu">
-                    <div class="side-menu-icon side-menu-icon-chat" id="btnChatPgeOpen"></div>
+                    <div class="side-menu-icon side-menu-icon-chat" id="btnChatPageOpen"></div>
                     <div class="side-menu-icon side-menu-icon-bell"></div>
                 </div>
             </div>
