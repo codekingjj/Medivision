@@ -1,6 +1,5 @@
 package com.medivision.medivision.chat.chatroomAndMember.dto;
 
-import com.medivision.medivision.chat.chatroomAndMember.domain.ChatroomAndMember;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
