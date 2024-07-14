@@ -4,17 +4,17 @@
     <title>검색</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" src="${pageContext.request.contextPath}/static/dist/search.bundle.js"></script>
-    <script src="${pageContext.request.contextPath}/static/script/patientBookmark/search.js"></script>
+    <script src="${pageContext.request.contextPath}/static/script/patientBookmark/patientBookmarkAdd.js" defer></script>
     <link href="style/content.css" rel="stylesheet">
     <link href="style/search.css" rel="stylesheet">
     <link href="style/patientBookmark/search.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
-    <script src="${pageContext.request.contextPath}/script/chat/ChatPage.js" type="module"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<body>
+    <body>
 <header>
     <div class="header">
         <div class="header-top">

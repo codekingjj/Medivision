@@ -1,12 +1,10 @@
-window.onload = () => {
-    $("#btnToggleAddPatientBookmarkCheckboxes").on("click", () => {
-        toggleAddPatientBookmarkCheckboxes();
-    });
+$("#btnToggleAddPatientBookmarkCheckboxes").on("click", () => {
+    toggleAddPatientBookmarkCheckboxes();
+});
 
-    $("#btnAddCheckedStudiesToPatientBookmark").on("click", () => {
-        addCheckedStudiesToPatientBookmark();
-    });
-}
+$("#btnAddCheckedStudiesToPatientBookmark").on("click", () => {
+    addCheckedStudiesToPatientBookmark();
+});
 
 function toggleAddPatientBookmarkCheckboxes(e) {
     if ($(".table-th-patientBookmark").is(":hidden")) {
