@@ -16,12 +16,4 @@ public class ViewImageResponseDto {
     private String path;
     private String fname;
     private String totalPath;
-
-    public ViewImageResponseDto(VImageEntity vImageEntity) {
-        this.studyKey = vImageEntity.getStudyKey();
-        this.seriesKey = vImageEntity.getSeriesKey();
-        this.imageKey = vImageEntity.getImageKey();
-        this.path = vImageEntity.getPath();
-        this.fname = vImageEntity.getFname();
-    }
 }

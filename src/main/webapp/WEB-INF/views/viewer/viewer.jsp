@@ -19,12 +19,12 @@
     <div class="header">
         <div class="header-top">
             <div class="logo">
-                <div class="mark"></div>
+                <div class="mark" onclick="location.href='/main'"></div>
             </div>
             <div class="logout-box">
                 <div class="logout-img">
                 </div>
-                <div class="logout-text">
+                <div class="logout-text" onclick="location.href='/auth/select'">
                     로그아웃
                 </div>
             </div>
@@ -77,31 +77,7 @@
                 <button id="windowLevel" class="tool_button"></button>
                 <div>윈도우 레벨</div>
             </div>
-<%--            <div class="imageAndName">--%>
-<%--                <button id="invert" class="tool_button"></button>--%>
-<%--                <div>흑백 반전</div>--%>
-<%--            </div>--%>
         </div>
-<%--        <div>--%>
-<%--            <div class="imageAndName">--%>
-<%--                <button id="scrollLoop" class="tool_button"></button>--%>
-<%--                <div>스크롤 루프</div>--%>
-<%--            </div>--%>
-<%--            <div class="imageAndName">--%>
-<%--                <button id="playFlip" class="tool_button"></button>--%>
-<%--                <div>플레이 플립</div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <div>--%>
-<%--            <div class="imageAndName">--%>
-<%--                <button id="series" class="tool_button"></button>--%>
-<%--                <div>1시리즈</div>--%>
-<%--            </div>--%>
-<%--            <div class="imageAndName">--%>
-<%--                <button id="compare" class="tool_button"></button>--%>
-<%--                <div>비교검사</div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
         <div>
             <div class="imageAndName">
                 <div class="annotation-select">
@@ -132,61 +108,28 @@
                         </div>
                         <div>
                             <div class="annotation-content">
-                                <button id="activateCobbAngle">콥 각도</button>
-                                <button id="activateTextMarker">텍스트 마커</button>
+                                <button class="annotationBtn3" id="activateCobbAngle">콥 각도</button>
+                                <button class="annotationBtn4" id="activateEraser">선택 삭제</button>
                             </div>
                         </div>
-                        <div>
-                            <div class="annotation-content">
-                                <button class="annotationBtn3" id="activateEraser">선택 삭제</button>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
-
             </div>
             <div class="imageAndName">
-                <button id="toolsBtn" class="tool_button"></button>
-                <div>도구</div>
+                <div class="tools-select">
+                    <button id="toolsBtn" class="tool_button"></button>
+                    <div>도구</div>
+                    <div class="dropdown-tools">
+                        <div class="tools-content">
+                            <button class="toolsBtn1" id="activateZoom">확대축소</button>
+                        </div>
+                        <div class="tools-content">
+                            <button class="toolsBtn2" id="activateRotate">회전</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-
-<%--        <div>--%>
-<%--            <li class="annotation" onclick="showAnnotationBox()">--%>
-<%--                <div class="annotation">주석</div>--%>
-<%--                <div id="annotationBox">--%>
-<%--                    <div id="annotationContent">--%>
-<%--                        <ul>--%>
-<%--                            <div id="activateAngle" onclick="activateAngle()">각도</div>--%>
-<%--                            <div onclick="activateArrowAnnotate()">화살표</div>--%>
-<%--                        </ul>--%>
-<%--                        <ul>--%>
-<%--                            <div onclick="activateProbe()">Probe</div>--%>
-<%--                            <div onclick="activateLength()">길이</div>--%>
-<%--                        </ul>--%>
-<%--                        <ul>--%>
-<%--                            <div onclick="activateRectangleROI()">사각형 그리기</div>--%>
-<%--                            <div onclick="activateEllipticalROI()">원 그리기</div>--%>
-<%--                        </ul>--%>
-<%--                        <ul>--%>
-<%--                            <div onclick="activateFreeHand()">자율 그리기</div>--%>
-<%--                            <div onclick="activateBidirectional()">Bidirectional</div>--%>
-<%--                        </ul>--%>
-<%--                        <ul>--%>
-<%--                            <div onclick="activateCobbAngle()">콥 각도</div>--%>
-<%--                            <div onclick="activateTextMarker()">텍스트 마커</div>--%>
-<%--                        </ul>--%>
-<%--                        <ul>--%>
-<%--                            <div onclick="activateEraser()">선택 삭제</div>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </li>--%>
-<%--            <button id="" class="tool_button">도구</button>--%>
-<%--        </div>--%>
     </div>
     <div class="content">
 

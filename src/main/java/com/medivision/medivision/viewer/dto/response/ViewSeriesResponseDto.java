@@ -22,12 +22,4 @@ public class ViewSeriesResponseDto {
     private String fName;
     private List<ViewImageResponseDto> imageList;
 
-    public ViewSeriesResponseDto(VSeriesEntity vSeriesEntity) {
-        this.studyKey = vSeriesEntity.getStudyKey();
-        this.seriesKey = vSeriesEntity.getSeriesKey();
-        this.seriesDesc = vSeriesEntity.getSeriesDesc();
-        this.imageCnt = vSeriesEntity.getImageCnt();
-        this.path = vSeriesEntity.getPath();
-        this.fName = vSeriesEntity.getFName();
-    }
 }
