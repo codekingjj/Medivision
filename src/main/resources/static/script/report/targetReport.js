@@ -4,7 +4,6 @@ function adjustTextareaHeight(textarea) {
 }
 
 $(document).ready(function() {
-    console.log(window);
     $('textarea[readonly]').each(function() {
         adjustTextareaHeight(this);
     });
