@@ -3,3 +3,7 @@
 #btnAddCheckedStudiesToPatientBookmark {
     display: none;
 }
+
+.td-patientBookmark-checkbox-container {
+    text-align: center;
+}
