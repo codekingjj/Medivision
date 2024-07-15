@@ -171,7 +171,7 @@ $(document).ready(function() {
         else if("판독" === e.target.value) decodeType = "판독";
     });
 
-    $("form").submit(e=>{
+    $('form').submit(e=>{
         e.preventDefault();
         const finding = $('#finding').val();
         const conclusion = $('#conclusion').val();
