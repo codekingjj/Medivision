@@ -1,4 +1,4 @@
-package com.medivision.medivision.chat.chat.dto;
+package com.medivision.medivision.chat.chat.utils;
 
 public class ChatPage {
     public static final int ITEM_SIZE = 10;
