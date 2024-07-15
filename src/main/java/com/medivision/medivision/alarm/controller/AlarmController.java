@@ -19,8 +19,6 @@ public class AlarmController {
 
     @GetMapping("")
     public ResponseEntity<? super AlarmReponseDto> getList(@AuthenticationPrincipal String userCode){
-        System.out.println("userCode: "+userCode);
-        System.out.println("접근>>>>>>>>>>>>>>");
         ResponseEntity<? super AlarmReponseDto> response = service.getAlarmList(userCode);
         return response;
     }

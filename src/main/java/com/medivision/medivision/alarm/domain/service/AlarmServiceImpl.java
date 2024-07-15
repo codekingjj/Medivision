@@ -10,6 +10,7 @@ import com.medivision.medivision.alarm.dto.AlarmReponseDto;
 //import com.medivision.medivision.chat.roomMember.domain.ChatRoomMember;
 //import com.medivision.medivision.chat.roomMember.domain.ChatRoomMemberRepository;
 import com.medivision.medivision.chat.chat.domain.entity.Chat;
+import com.medivision.medivision.chat.chatroomAndMember.domain.entity.ChatroomAndMember;
 import com.medivision.medivision.chat.chatroomAndMember.domain.repository.ChatroomAndMemberRepository;
 import com.medivision.medivision.chat.chatroomMember.domain.entity.ChatroomMember;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -36,22 +38,36 @@ public class AlarmServiceImpl implements AlarmService{
     }
 
     @Override
-    public void saveChat(Chat chatRequestDto) {
+    public void saveChat(Chat chat) {
 
-        List<ChatroomMember> chatRoomMemberList = chatRoomMemberRepository.findByRoomId(chatRequestDto.getRoomId());
-
-        for(ChatroomMember member: chatRoomMemberList){
-            if(member.getUserCode() == chatRequestDto.getSenderUserCode()) continue;
+        List<ChatroomAndMember> chatRoomMemberList = chatRoomMemberRepository.findByRoomId(chat.getRoomId());
+//
+        LocalDateTime date = LocalDateTime.now();
+        for(ChatroomAndMember member: chatRoomMemberList){
+            if(member.getUserCode() == chat.getSenderUserCode()) continue;
             String content = "";
             AdminEntity user = adminRepository.findByUserCode(member.getUserCode());
             String userId = user.getUserName();
             content+= "【"+userId+"】님이 "+ "메세지를 보내셨습니다.";
-            content+= "<br>『"+chatRequestDto.getMessage()+"』";
+            content+= "<br>『"+chat.getMessage()+"』";
             AlarmEntity alarm = new AlarmEntity();
             alarm.setContent(content);
             alarm.setUserCode(member.getUserCode());
+            alarm.setRegDate(date);
             alarmRepository.save(alarm);
         }
+//        AdminEntity user = adminRepository.findByUserCode(chat.getSenderUserCode());
+//
+//        String content = "";
+//        String userId = user.getUserName();
+//        content+= "【"+userId+"】님이 "+ "메세지를 보내셨습니다.";
+//        content+= "<br>『"+chat.getMessage()+"』";
+//        LocalDateTime date = LocalDateTime.now();
+//
+//        AlarmEntity alarm = new AlarmEntity();
+//        alarm.setContent(content);
+//        alarm.setUserCode(chat.getSenderUserCode());
+//        alarmRepository.save(alarm);
     }
 
     @Override
@@ -59,7 +75,7 @@ public class AlarmServiceImpl implements AlarmService{
         int userCodeNumber = Integer.parseInt(userCode);
         System.out.println("codeTemp: " + userCodeNumber);
 
-        List<AlarmEntity> list = alarmRepository.findByUserCode(userCodeNumber);
+        List<AlarmEntity> list = alarmRepository.findByUserCodeOrderByRegDateDesc(userCodeNumber);
         System.out.println("list: " + list);
         if (list == null) return ResponseDto.databaseError();
         int count = 0;
