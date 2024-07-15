@@ -9,5 +9,6 @@ public interface AlarmService {
     void saveStudy(int studykey);
     void saveChat(Chat chatRequestDto);
 
+    void checkAlarm(String index);
     ResponseEntity<? super AlarmReponseDto> getAlarmList(String userCode);
 }

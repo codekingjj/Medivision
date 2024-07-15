@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,6 +23,10 @@ public class AlarmController {
     public ResponseEntity<? super AlarmReponseDto> getList(@AuthenticationPrincipal String userCode){
         ResponseEntity<? super AlarmReponseDto> response = service.getAlarmList(userCode);
         return response;
+    }
+    @PostMapping("{index}")
+    public void checkAlarm(@PathVariable("index") String index){
+        service.checkAlarm(index);
     }
 
 }
