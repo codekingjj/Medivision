@@ -112,3 +112,17 @@ body {
     background-image: url('/assets/right.png');
 }
 
+.pageCount {
+    margin: 0 5px;
+    display: flex;
+    justify-content: space-around;
+}
+.pageNum {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+}
+.target {
+    font-weight: bold;
+}

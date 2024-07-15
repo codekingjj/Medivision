@@ -83,6 +83,8 @@ $(document).ready(function() {
                 }else{
                     pageSetting(data);
                 }
+
+                pageCntSetting();
             },
 
 
@@ -218,10 +220,10 @@ $(document).ready(function() {
     
     //10개 이상일때 처리
     function pageSetting(data){
-        console.log(now*10);
-        let count = 0;
         for(let i=(now-1)*10; i<now*10; i++){
-            count++;
+            if(i >= data.length){
+                break;
+            }
             let item = data[i];
             if(item.reportstatus === 3){
                 item.reportstatus = "읽지않음";
@@ -245,7 +247,6 @@ $(document).ready(function() {
                 '</tr>';
             tbody.append(row);
         }
-        console.log(count);
     }
 
     $('#page-down').on('click',function (e){
@@ -253,6 +254,7 @@ $(document).ready(function() {
             now--;
             tbody.empty();
             pageSetting(list);
+            pageCntSetting();
         }
     });
 
@@ -261,7 +263,34 @@ $(document).ready(function() {
             now++;
             tbody.empty();
             pageSetting(list);
+            pageCntSetting();
         }
     });
 
+    function pageCntSetting(){
+        let pageArea =  $('.pageCount');
+        pageArea.empty();
+        let pageDiv;
+        console.log(now);
+        for(let i = 1; i <= pageCnt; i++){
+            if(now == i){
+                pageDiv = '<div id="' + i + '" class="pageNum target">' + i + '</div>';
+            } else {
+                pageDiv = '<div id="' + i + '" class="pageNum">' + i + '</div>';
+            }
+            pageArea.append(pageDiv);
+        }
+    }
+
+    $(document).on('click', '.pageNum', function (e) {
+        let id = $(this).attr('id');
+        tbody.empty();
+        now = parseInt(id);
+        if(pageCnt === 1){
+            setting(list);
+        } else {
+            pageSetting(list);
+        }
+        pageCntSetting();
+    });
 });
