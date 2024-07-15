@@ -1,6 +1,4 @@
 window.onload = () => {
-    console.log("patientBookmark.js loaded");
-
     populatePatients();
 
     $("#btnDeleteCheckedPatients").on("click", () => {
@@ -53,8 +51,6 @@ function appendPatientsToTableBody(patients) {
 async function populatePatients() {
     const patients = await fetchPatients();
 
-    console.log(patients);
-
     $(".results-section tbody").empty();
     appendPatientsToTableBody(patients);
 }
@@ -84,7 +80,6 @@ async function fetchPatientsBySearch() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             return data;
         })
         .catch(err => {
@@ -104,7 +99,6 @@ async function fetchPatients() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
         return data;
     })
     .catch(err => {

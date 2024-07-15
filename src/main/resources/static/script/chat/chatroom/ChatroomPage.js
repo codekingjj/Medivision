@@ -43,7 +43,6 @@ class ChatroomPage {
 
         Fetch.getUserCode().then(userCode => {
             this.#userCode = userCode;
-            console.log("after fetch: " + this.#userCode)
         }).then(() => {
             this.populateChatHistory();
         }).then(() => {
@@ -113,10 +112,6 @@ class ChatroomPage {
             senderUserCode: this.#userCode,
             createDate: Date.now(),
         };
-
-        console.log("=== sending ===");
-        console.log(data);
-        console.log("=== ====== ===");
 
         StompManager.client.send("/chat", {}, JSON.stringify(data));
 
