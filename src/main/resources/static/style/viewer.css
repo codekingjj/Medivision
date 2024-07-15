@@ -1,8 +1,8 @@
 .container {
-    display: flex;
-    height: calc(100vh - 120px);
+    grid-template-columns: 280px 1fr;
 }
-.content {
+
+.content-image{
     width: 100%;
     height: 100%;
     display: grid;
@@ -174,3 +174,4 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
