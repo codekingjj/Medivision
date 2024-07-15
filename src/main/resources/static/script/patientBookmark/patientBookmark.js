@@ -13,8 +13,20 @@ window.onload = () => {
     });
 }
 
+function convertStringToDate(dateString) {
+    // dateString format: 20101212
+    const year = dateString.substring(0, 4);
+    const month = dateString.substring(4, 6);
+    const day = dateString.substring(6, 8);
+
+    return `${year}-${month}-${day}`;
+}
+
 function createPatientElementRow(patient) {
-    const { pid, pname } = patient;
+    const { pid, pname, psex, pbirthdate } = patient;
+
+    const pSexString = psex ? psex : "없음";
+    const pBirthDateString = pbirthdate ? convertStringToDate(pbirthdate) : "없음";
 
     const rowElement =
         '<tr class="tr-area" >' +
@@ -23,6 +35,8 @@ function createPatientElementRow(patient) {
             '</td>' +
             '<td>' + pid + '</td>' +
             '<td>' + pname + '</td>' +
+            '<td>' + pSexString + '</td>' +
+            '<td>' + pBirthDateString + '</td>' +
         '</tr>';
 
     return rowElement;
@@ -38,6 +52,8 @@ function appendPatientsToTableBody(patients) {
 
 async function populatePatients() {
     const patients = await fetchPatients();
+
+    console.log(patients);
 
     $(".results-section tbody").empty();
     appendPatientsToTableBody(patients);

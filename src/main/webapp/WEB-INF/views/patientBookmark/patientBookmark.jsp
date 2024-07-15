@@ -75,7 +75,6 @@
     </div>
     <div class="sidebar">
         <div class="sidebar-content">
-            <div id="search-count">0명의 환자를 찾았습니다</div>
             <form id="search-form">
                 <label for="pid">환자 아이디</label>
                 <input type="text" id="pid" name="pid">
@@ -95,6 +94,8 @@
                     <th>담당 환자 관리</th>
                     <th>환자 번호</th>
                     <th>환자 이름</th>
+                    <th>환자 성별</th>
+                    <th>환자 생년월일</th>
                 </tr>
             </thead>
             <tbody class="results-section tbody"></tbody>

@@ -16,6 +16,7 @@ import javax.persistence.Table;
 public class PatientEntity {
     @Id
     private String pid;
-
     private String pname;
+    private String psex;
+    private String pbirthdate;
 }
