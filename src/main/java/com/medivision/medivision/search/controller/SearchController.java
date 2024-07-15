@@ -97,7 +97,6 @@ public class SearchController {
 
         String ip = request.getRemoteAddr();
         int studyKey = searchRequestDto.getStudyKey();
-//        studyLogService.saveStudyLog(userCode,studyKey,ip);
 
         List<StudyEntity> result = new ArrayList<>();
         List<StudyEntity> temp = new ArrayList<>();
