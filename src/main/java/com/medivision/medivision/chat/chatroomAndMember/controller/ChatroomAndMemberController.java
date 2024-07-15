@@ -1,17 +1,17 @@
 package com.medivision.medivision.chat.chatroomAndMember.controller;
 
-import com.medivision.medivision.chat.chat.domain.Chat;
-import com.medivision.medivision.chat.chat.domain.ChatService;
-import com.medivision.medivision.chat.chatroom.domain.Chatroom;
-import com.medivision.medivision.chat.chatroom.domain.ChatroomService;
+import com.medivision.medivision.chat.chat.domain.entity.Chat;
+import com.medivision.medivision.chat.chat.domain.service.ChatService;
+import com.medivision.medivision.chat.chatroom.domain.entity.Chatroom;
+import com.medivision.medivision.chat.chatroom.domain.service.ChatroomService;
 import com.medivision.medivision.chat.chatroom.utils.ChatroomUtils;
-import com.medivision.medivision.chat.chatroomAndMember.domain.ChatroomAndMember;
-import com.medivision.medivision.chat.chatroomAndMember.dto.ChatroomAndMemberRequestDto;
-import com.medivision.medivision.chat.chatroomAndMember.dto.ChatroomAndMemberResponseDto;
-import com.medivision.medivision.chat.chatroomAndMember.service.ChatroomAndMemberService;
-import com.medivision.medivision.chat.chatroomMember.domain.ChatroomMember;
-import com.medivision.medivision.chat.chatroomMember.domain.ChatroomMemberService;
-import com.medivision.medivision.chat.chatroomMember.dto.ChatroomMemberRequestDto;
+import com.medivision.medivision.chat.chatroomAndMember.domain.entity.ChatroomAndMember;
+import com.medivision.medivision.chat.chatroomAndMember.dto.request.ChatroomAndMemberRequestDto;
+import com.medivision.medivision.chat.chatroomAndMember.dto.response.ChatroomAndMemberResponseDto;
+import com.medivision.medivision.chat.chatroomAndMember.domain.service.ChatroomAndMemberService;
+import com.medivision.medivision.chat.chatroomMember.domain.entity.ChatroomMember;
+import com.medivision.medivision.chat.chatroomMember.domain.service.ChatroomMemberService;
+import com.medivision.medivision.chat.chatroomMember.dto.request.ChatroomMemberRequestDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 
 import com.medivision.medivision.user.domain.repository.AdminRepository;

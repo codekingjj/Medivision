@@ -1,14 +1,13 @@
 package com.medivision.medivision.patientBookmark.controller;
 
-import com.medivision.medivision.patientBookmark.domain.PatientBookmark;
-import com.medivision.medivision.patientBookmark.domain.PatientBookmarkService;
+import com.medivision.medivision.patientBookmark.domain.entity.PatientBookmark;
+import com.medivision.medivision.patientBookmark.domain.service.PatientBookmarkService;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkAddRequestDto;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkDeleteRequestDto;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkSearchRequestDto;
 import com.medivision.medivision.patientBookmark.dto.response.PatientBookmarkResponseDto;
 import com.medivision.pacs.entity.PatientEntity;
 import com.medivision.pacs.entity.VStudyEntity;
-import com.medivision.pacs.repository.PatientRepository;
 import com.medivision.pacs.repository.VStudyRepository;
 import com.medivision.pacs.service.PatientService;
 import lombok.RequiredArgsConstructor;

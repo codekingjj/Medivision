@@ -1,9 +1,9 @@
 package com.medivision.medivision.chat.chatUserSearch.controller;
 
-import com.medivision.medivision.chat.chatUserSearch.domain.ChatUserSearchPage;
-import com.medivision.medivision.chat.chatUserSearch.dto.ChatUserSearchListResponseDto;
-import com.medivision.medivision.chat.chatUserSearch.dto.ChatUserSearchRequestDto;
-import com.medivision.medivision.chat.chatUserSearch.dto.ChatUserSearchResponseDto;
+import com.medivision.medivision.chat.chatUserSearch.utils.ChatUserSearchPage;
+import com.medivision.medivision.chat.chatUserSearch.dto.response.ChatUserSearchListResponseDto;
+import com.medivision.medivision.chat.chatUserSearch.dto.request.ChatUserSearchRequestDto;
+import com.medivision.medivision.chat.chatUserSearch.dto.response.ChatUserSearchResponseDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
