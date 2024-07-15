@@ -8,7 +8,7 @@ export let viewportIds = [];
 export let renderingEngineIds = [];
 
 // 뷰 포트 생성
-const content = $(".content");
+const content = $(".content-image");
 
 // 툴 정의
 
