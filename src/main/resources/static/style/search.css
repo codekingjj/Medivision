@@ -14,7 +14,6 @@
 .thumbnail {
     width: 200px;
     margin-left: 10px;
-    border: 1px solid #ddd;
     grid-area: thumbnail;
 }
 #search-count {
