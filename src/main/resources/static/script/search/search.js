@@ -175,7 +175,7 @@ $(document).ready(function() {
             }else if(item.reportstatus === 6){
                 item.reportstatus = "판독";
             }
-            var row = '<tr id=' + item.studyKey + ' class="tr-area" >' +
+            var row = '<tr id=' + item.studykey + ' class="tr-area" >' +
                 // 담당 환자 추가를 위한 체크박스
                 '<td class="td-patientBookmark-checkbox-container">' + `<input type="checkbox" class="checkbox-patientBookmark" id=${item.pid} />` + '</td>' +
                 '<td>' + item.pid + '</td>' +
@@ -186,6 +186,7 @@ $(document).ready(function() {
                 '<td>' + item.reportstatus + '</td>' +
                 '<td>' + item.seriescnt + '</td>' +
                 '<td>' + item.imagecnt + '</td>' +
+                '<td>' + item.ai_score + '</td>' +
                 '</tr>';
             tbody.append(row);
         });
@@ -206,7 +207,7 @@ $(document).ready(function() {
                 item.reportstatus = "판독";
             }
 
-            let row = '<tr id=' + item.studyKey + ' class="tr-area" >' +
+            let row = '<tr id=' + item.studykey + ' class="tr-area" >' +
                 // 담당 환자 추가를 위한 체크박스
                 '<td class="td-patientBookmark-checkbox-container">' + `<input type="checkbox" class="checkbox-patientBookmark" id=${item.pid} />` + '</td>' +
                 '<td>' + item.pid + '</td>' +
@@ -217,6 +218,7 @@ $(document).ready(function() {
                 '<td>' + item.reportstatus + '</td>' +
                 '<td>' + item.seriescnt + '</td>' +
                 '<td>' + item.imagecnt + '</td>' +
+                '<td>' + item.ai_score + '</td>' +
                 '</tr>';
             tbody.append(row);
         }

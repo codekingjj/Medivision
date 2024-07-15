@@ -159,6 +159,7 @@
                         <th>판  독</th>
                         <th>시리즈</th>
                         <th>이미지</th>
+                        <th>AI판독</th>
                     </tr>
                     </thead>
                     <tbody>

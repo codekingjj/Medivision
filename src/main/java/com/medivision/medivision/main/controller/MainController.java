@@ -3,7 +3,7 @@ package com.medivision.medivision.main.controller;
 import com.medivision.medivision.main.domain.MainService;
 import com.medivision.medivision.search.domain.service.SearchService;
 import com.medivision.medivision.search.dto.request.SearchRequestDto;
-import com.medivision.pacs.entity.VStudyEntity;
+import com.medivision.pacs.entity.StudyEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,30 +31,30 @@ public class MainController {
 
     @GetMapping("setting")
     @ResponseBody
-    public List<VStudyEntity> setting() {
+    public List<StudyEntity> setting() {
         return mainService.findAll();
     }
 
     @GetMapping("date")
     @ResponseBody
-    public List<VStudyEntity> dateSearch(String date){
+    public List<StudyEntity> dateSearch(String date){
         LocalDateTime now = LocalDateTime.now();
-        List<VStudyEntity> list = mainService.findAll();
-        List<VStudyEntity> result = new ArrayList<>();
+        List<StudyEntity> list = mainService.findAll();
+        List<StudyEntity> result = new ArrayList<>();
         if(date.equals("three-days")){
             String threeDaysAgo = LocalDate.now().minusDays(3).toString().replace("-", "");
-            for(VStudyEntity vStudyEntity : list){
-                int studydate = Integer.parseInt(vStudyEntity.getStudydate());
+            for(StudyEntity StudyEntity : list){
+                int studydate = Integer.parseInt(StudyEntity.getStudydate());
                 if(studydate >= Integer.parseInt(threeDaysAgo)){
-                    result.add(vStudyEntity);
+                    result.add(StudyEntity);
                 }
             }
         }else if (date.equals("week")) {
             String week = LocalDate.now().minusDays(7).toString().replace("-", "");
-            for(VStudyEntity vStudyEntity : list){
-                int studydate = Integer.parseInt(vStudyEntity.getStudydate());
+            for(StudyEntity StudyEntity : list){
+                int studydate = Integer.parseInt(StudyEntity.getStudydate());
                 if(studydate >= Integer.parseInt(week)){
-                    result.add(vStudyEntity);
+                    result.add(StudyEntity);
                 }
             }
         }else if (date.equals("all")) {
@@ -67,13 +67,13 @@ public class MainController {
 
     @GetMapping("search")
     @ResponseBody
-    public List<VStudyEntity> search(@ModelAttribute SearchRequestDto searchRequestDto) {
-        List<VStudyEntity> result = new ArrayList<>();
-        List<VStudyEntity> temp = new ArrayList<>();
+    public List<StudyEntity> search(@ModelAttribute SearchRequestDto searchRequestDto) {
+        List<StudyEntity> result = new ArrayList<>();
+        List<StudyEntity> temp = new ArrayList<>();
 
-        List<VStudyEntity> findPid = new ArrayList<>();
-        List<VStudyEntity> findPName = new ArrayList<>();
-        List<VStudyEntity> findReportStatus = new ArrayList<>();
+        List<StudyEntity> findPid = new ArrayList<>();
+        List<StudyEntity> findPName = new ArrayList<>();
+        List<StudyEntity> findReportStatus = new ArrayList<>();
 
         boolean pidFlag = false;
         boolean pNameFlag = false;
@@ -110,11 +110,11 @@ public class MainController {
             start = true;
         } else if (pNameFlag && start) {
             for(int i=0; i<findPName.size(); i++){
-                VStudyEntity vStudyEntity = findPName.get(i);
+                StudyEntity StudyEntity = findPName.get(i);
 
                 for(int j=0; j<result.size(); j++){
-                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
-                        temp.add(vStudyEntity);
+                    if(StudyEntity.getStudykey() == result.get(j).getStudykey()){
+                        temp.add(StudyEntity);
                     }
                 }
             }
@@ -128,11 +128,11 @@ public class MainController {
             start = true;
         } else if (reportStatusFlag && start) {
             for(int i=0; i<findReportStatus.size(); i++){
-                VStudyEntity vStudyEntity = findReportStatus.get(i);
+                StudyEntity StudyEntity = findReportStatus.get(i);
 
                 for(int j=0; j<result.size(); j++){
-                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
-                        temp.add(vStudyEntity);
+                    if(StudyEntity.getStudykey() == result.get(j).getStudykey()){
+                        temp.add(StudyEntity);
                     }
                 }
             }
