@@ -6,11 +6,9 @@ class StompManager {
         const sock = new SockJS(this.#WS_END_POINT);
         this.client = Stomp.over(sock);
 
-        //this.client.debug = null; // hide stomp connection info messages
+       this.client.debug = null; // hide stomp connection info messages
 
         this.client.connect({}, options => {
-            console.log("stomp conntected");
-
             for (const chatroomId of chatroomIds) {
                 this.client.subscribe(`/topic/chatroom/${chatroomId}`, (event) => {
                     subscribeCallbackFunc(JSON.parse(event.body));
@@ -21,7 +19,6 @@ class StompManager {
 
     static disconnct() {
         this.client.disconnect(function () {
-            console.log("stomp disconnected");
         });
     }
 }

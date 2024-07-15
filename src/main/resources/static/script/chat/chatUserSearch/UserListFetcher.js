@@ -20,7 +20,7 @@ class UserListFetcher {
             return data;
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
         });
     }
 }

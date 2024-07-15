@@ -22,7 +22,7 @@ class ChatFetcher {
             return data;
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
         });
     }
 
@@ -56,7 +56,7 @@ class ChatFetcher {
             }
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
         });
     }
 
@@ -70,7 +70,7 @@ class ChatFetcher {
             body: JSON.stringify(bodyData),
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
         });
     }
 }
