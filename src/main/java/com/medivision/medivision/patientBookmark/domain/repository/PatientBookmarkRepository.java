@@ -1,9 +1,8 @@
-package com.medivision.medivision.patientBookmark.domain;
+package com.medivision.medivision.patientBookmark.domain.repository;
 
-import com.medivision.pacs.entity.VStudyEntity;
+import com.medivision.medivision.patientBookmark.domain.entity.PatientBookmark;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

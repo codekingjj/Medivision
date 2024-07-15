@@ -1,9 +1,8 @@
-package com.medivision.medivision.patientBookmark.domain;
+package com.medivision.medivision.patientBookmark.domain.service;
 
+import com.medivision.medivision.patientBookmark.domain.entity.PatientBookmark;
+import com.medivision.medivision.patientBookmark.domain.repository.PatientBookmarkRepository;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkRequestDto;
-import com.medivision.pacs.entity.VStudyEntity;
-import com.medivision.pacs.repository.VStudyRepository;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
