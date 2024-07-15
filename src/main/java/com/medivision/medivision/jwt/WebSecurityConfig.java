@@ -33,7 +33,7 @@ public class WebSecurityConfig {
                 .httpBasic().disable() //로그인창 사용 여부
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/","/index","/main/**","/admin/**","/auth/**","/viewer/**","/test","/test232","/search/**","/style/**","/assets/**", "/js/**",
+                .antMatchers("/","/**","/index","/main/**","/admin/**","/auth/**","/viewer/**","/test","/test232","/search/**","/style/**","/assets/**", "/js/**",
                         "/static/**",
                         "/script/**","/reportPage","/patientBookmark/**",
                         "/ws/**", "/topic/**",
