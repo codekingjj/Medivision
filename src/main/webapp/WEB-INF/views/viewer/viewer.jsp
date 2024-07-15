@@ -11,9 +11,11 @@
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
 
     <title>뷰어</title>
-
+    <!-- Chat CSS -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/chat/main.css">
 </head>
 <body>
+<div class="sidebar-chat-root"></div>
 <input type="hidden" id="studyKey" value="${studyKey}">
 <div class="container">
     <div class="header">
@@ -44,7 +46,7 @@
             <div class="menu option">마이 페이지</div>
             <div class="menu diselected-side-menu">
                 <div class="side-menu">
-                    <div class="side-menu-icon side-menu-icon-chat" onclick="location.href='/chatroomAndMember'"></div>
+                    <div class="side-menu-icon side-menu-icon-chat" id="btnChatPageOpen"></div>
                     <div class="side-menu-icon side-menu-icon-bell"></div>
                 </div>
             </div>
@@ -146,6 +148,7 @@
 <script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/next.bundle.js"></script>
 </body>
-
-
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
+    <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
 </html>
