@@ -1,12 +1,11 @@
 package com.medivision.medivision.chat.chat.controller;
 
-import com.medivision.config.websocket.StompClient;
-import com.medivision.medivision.chat.chat.domain.Chat;
-import com.medivision.medivision.chat.chat.domain.ChatService;
-import com.medivision.medivision.chat.chat.dto.ChatListResponseDto;
-import com.medivision.medivision.chat.chat.dto.ChatRequestDto;
-import com.medivision.medivision.chat.chat.dto.ChatResponseDto;
-import com.medivision.medivision.chat.chat.dto.PageRequestDto;
+import com.medivision.medivision.chat.chat.domain.entity.Chat;
+import com.medivision.medivision.chat.chat.domain.service.ChatService;
+import com.medivision.medivision.chat.chat.dto.response.ChatListResponseDto;
+import com.medivision.medivision.chat.chat.dto.request.ChatRequestDto;
+import com.medivision.medivision.chat.chat.dto.response.ChatResponseDto;
+import com.medivision.medivision.chat.chat.dto.request.PageRequestDto;
 import com.medivision.medivision.user.domain.entity.AdminEntity;
 import com.medivision.medivision.user.domain.entity.UserEntity;
 import com.medivision.medivision.user.domain.repository.AdminRepository;
@@ -14,20 +13,16 @@ import com.medivision.medivision.user.domain.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
-import org.apache.coyote.Response;
-import org.hibernate.service.spi.Stoppable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
