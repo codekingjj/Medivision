@@ -17,7 +17,7 @@ public class Paging {
         if (pageTemp != 1) {
             pagingStr += "<div><a class=page-block-button href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a></div>";
             pagingStr += "<div><a class=page-block-button href='" + reqUrl + "?pageNum=" + (pageTemp - 1)
-                    + "'>[이전 블록]</a></div> |";
+                    + "'><<</a></div> |";
         }
 
         // 단계 3 : 각 페이지 번호 출력
@@ -37,7 +37,7 @@ public class Paging {
         // 단계 4 : '다음 페이지 블록 바로가기' 출력
         if (pageTemp <= totalPages) {
             pagingStr += "| <div><a class=page-block-button href='" + reqUrl + "?pageNum=" + pageTemp
-                    + "'>[다음 블록]</a></div>";
+                    + "'>>></a></div>";
             pagingStr += "<div><a class=page-block-button href='" + reqUrl + "?pageNum=" + totalPages
                     + "'>[마지막 페이지]</a></div>";
         }
