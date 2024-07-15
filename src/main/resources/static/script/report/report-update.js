@@ -6,7 +6,6 @@ $(document).ready(function() {
         if("update" !== e.target.className) return;
         const index = e.target.parentNode.parentNode.id;
 
-        console.log(index);
         popup(index);
     });
 

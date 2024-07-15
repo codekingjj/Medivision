@@ -42,8 +42,6 @@ $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
     const study = opener.document.getElementById('studykey');
     const studyKey = study.value;
-    console.log(study);
-    console.log(studyKey);
 
     let decodeType ="";
     let reportData = null;
@@ -53,7 +51,6 @@ $(document).ready(function() {
         const tbody = document.getElementById('report-list');
         tbody.replaceChildren();
         const token = localStorage.getItem("jwt");
-        console.log(studyKey);
         $.ajax({
             "url" : `/reports/${studyKey}`,
             "method" : 'GET',
@@ -63,8 +60,6 @@ $(document).ready(function() {
             }
         }).then(res => {
             const data = res.result;
-            console.log(res);
-            console.log(data);
 
             let num = 0;
 
@@ -167,7 +162,6 @@ $(document).ready(function() {
         const index = e.target.parentNode.id;
 
         if(index == null) return;
-        console.log(index);
 
         popup(index);
     });
@@ -183,12 +177,6 @@ $(document).ready(function() {
         const conclusion = $('#conclusion').val();
         const recommend = $('#recommend').val();
         const comment = $('#comment').val();
-
-        console.log("finding : "+ finding);
-        console.log("conclusion : "+conclusion);
-        console.log("recommend : "+recommend);
-        console.log("comment : " + comment);
-        console.log("decodeType : "+ decodeType);
 
         let isValid = false;
 

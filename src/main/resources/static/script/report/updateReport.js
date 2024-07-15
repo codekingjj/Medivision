@@ -90,13 +90,6 @@ $(document).ready(function(){
         const typeDecode = $('#typeDecode').val();
         const studyKey = $('#studyKey').val();
 
-        console.log("index : "+ reportIndex);
-        console.log("finding : "+ finding);
-        console.log("conclusion : "+ conclusion);
-        console.log("recommend : "+recommend);
-        console.log("comment : " + comment);
-        console.log("decodeType : "+ typeDecode);
-
 
         let isValid = false;
 

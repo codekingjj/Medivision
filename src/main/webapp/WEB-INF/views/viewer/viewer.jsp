@@ -6,12 +6,9 @@
 
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
-    <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
-
-    <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -80,7 +77,11 @@
             </div>
         </div>
                 <div class="aside">
-                    <button id="report">리포트</button>
+                    <div>
+                        <button id="report" class="tool_button"></button>
+                        <div>리포트</div>
+                    </div>
+
                     <div>
                         <div class="imageAndName">
                             <button id="previous" class="tool_button"></button>
@@ -185,4 +186,5 @@
     <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
+    <script src="${pageContext.request.contextPath}/script/viewer/reportPopup.js"></script>
 </html>

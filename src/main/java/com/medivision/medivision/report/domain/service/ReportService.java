@@ -26,16 +26,6 @@ public class ReportService {
     private final AdminRepository adminRepository;
     private final DecodeRepository decodeRepository;
 
-//    public StudyEntity getStudy(String studykey){
-//        int studyKey = Integer.parseInt(studykey);
-//        StudyEntity result = studyRepository.findById(studyKey);
-//        System.out.println(result.getPsex());
-//        System.out.println(result.getAifinding());
-//        System.out.println(result.getAimodelname());
-//        System.out.println(result.getAireport());
-//        return result;
-//    }
-
     public ResponseEntity<? super ReportResponse> getReportList(ReportRequestDto reportDto){
         int userCode = reportDto.getWriter();
 
@@ -84,7 +74,6 @@ public class ReportService {
         int writer = report.getWriter();
         AdminEntity admin = adminRepository.findByUserCode(writer);
         String writerName = admin.getUserName();
-        System.out.println("writerName : "+writerName);
         ReportResponseDto target = new ReportResponseDto(report, writerName);
         return target;
     }
