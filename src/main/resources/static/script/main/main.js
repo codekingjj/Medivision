@@ -30,10 +30,6 @@ $(document).ready(function() {
         });
     }
     setting();
-    // $('.results-section tbody').on('click', '.tr-area', function(e) {
-    //     let id = $(this).attr('id');
-    //     alert(id);
-    // });
 
 
     $('#search-form').submit(function(event) {
@@ -128,6 +124,7 @@ $(document).ready(function() {
                 '<td>' + item.imagecnt + '</td>' +
                 '<td>' + item.ai_score + '</td>' +
                 '</tr>';
+            tbody.append(row);
         });
     }
 
