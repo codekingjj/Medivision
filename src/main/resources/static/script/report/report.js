@@ -1,17 +1,14 @@
 function remaindTime(reportTime) {
-    // 현재 시간을 구한다.
     var reportDate = new Date(reportTime);
-    // 마감 기간을 가져온다.
-    var end = new Date();
+    var today = new Date();
 
-    // 현재 시간을 ms로 반환한다.
     var rt = reportDate.getTime();
     // 마감 기간을 ms로 반환한다.
-    var et = end.getTime();
+    var tt = today.getTime();
 
     // 마감 기간이 현재 시간보다 클 경우
-    if (rt < et) {
-        let sec = parseInt(et - rt) / 1000;
+    if (rt < tt) {
+        let sec = parseInt(tt - rt) / 1000;
         let days = parseInt(sec / 60 / 60 / 24);
         sec = sec - days * 60 * 60 * 24;
         let hour = parseInt(sec / 60 / 60);
@@ -28,7 +25,6 @@ function remaindTime(reportTime) {
         if (sec < 10) {
             sec = '0' + sec;
         }
-        // return days + '일 ' + hour + '시간 ' + min + '분 ' + sec + '초';
 
         if(days==0 &&hour < 1) return true;
 
@@ -50,6 +46,7 @@ $(document).ready(function() {
     function getReport(){
         const tbody = document.getElementById('report-list');
         tbody.replaceChildren();
+
         const token = localStorage.getItem("jwt");
         $.ajax({
             "url" : `/reports/${studyKey}`,
@@ -225,7 +222,7 @@ $(document).ready(function() {
                 return;
             }
             else if("SR"===res.code){
-                alert("이미 예비판독이 존재합니다.");
+                alert("이미 예비판독이 등록되었거나 판독이 등록되어 예비판독을 작성할 수 없습니다.");
                 return;
             }else if("RF" === res.code) {
                 alert("이미 판독이 모두 등록되었습니다.");
@@ -236,7 +233,7 @@ $(document).ready(function() {
                 $('#recommend').val("");
                 $('#comment').val("");
 
-                getReport();
+                location.reload();
             }
         });
     });
