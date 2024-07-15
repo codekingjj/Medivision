@@ -12,4 +12,14 @@ public interface StudyRepository extends JpaRepository<StudyEntity,Integer> {
     List<StudyEntity> findAll();
     boolean existsByStudykey(int studykey);
     StudyEntity findById(int studykey);
+
+    List<StudyEntity> findByPid(String pid);
+
+    List<StudyEntity> findByModality(String modality);
+
+    List<StudyEntity> findByPidLike(String pid);
+
+    List<StudyEntity> findByPnameLike(String pname);
+
+    List<StudyEntity> findByReportstatus(int reportstatus);
 }

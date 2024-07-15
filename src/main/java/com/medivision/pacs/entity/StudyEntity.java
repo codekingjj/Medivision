@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -32,6 +30,9 @@ public class StudyEntity {
     private String aimodelname;
     private String aifinding;
     private String aireport;
+
+    private int reportstatus;
+    private Float ai_score;
 
     public StudyEntity(int studykey){
         this.studykey = studykey;

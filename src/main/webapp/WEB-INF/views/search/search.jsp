@@ -20,7 +20,7 @@
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
 </head>
     <body class="body">
-<%--    <div class="sidebar-chat-root"></div>--%>
+    <div class="sidebar-chat-root"></div>
     <div class="container">
         <div class="header">
             <div class="header-top">
@@ -159,6 +159,7 @@
                         <th>판  독</th>
                         <th>시리즈</th>
                         <th>이미지</th>
+                        <th>AI판독</th>
                     </tr>
                     </thead>
                     <tbody>

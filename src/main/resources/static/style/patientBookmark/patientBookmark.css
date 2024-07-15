@@ -1,9 +1,9 @@
-/* content.css */
+/* override content.css */
 .container {
     grid-template-columns: 250px 6fr;
 }
 
-/* search.css */
+/* override search.css */
 .sidebar {
     width: 100%;
     padding: 0;
@@ -14,10 +14,19 @@
     grid-area: content;
 }
 
+.results-section {
+    width: 100%;
+}
+
 .sidebar-content {
     padding: 20px;
 }
 
-.td-patientBookmark-checkbox-container {
+.results-section .td-patientBookmark-checkbox-container {
     text-align: center;
+}
+
+.results-section thead tr th {
+    width: 1%;
+    white-space: nowrap;
 }

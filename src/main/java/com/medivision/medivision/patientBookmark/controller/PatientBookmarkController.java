@@ -60,6 +60,8 @@ public class PatientBookmarkController {
 
             patientBookmarkResponseDto.setPid(patientBookmark.getPid());
             patientBookmarkResponseDto.setPname(patient.getPname());
+            patientBookmarkResponseDto.setPbirthdate(patient.getPbirthdate());
+            patientBookmarkResponseDto.setPsex(patient.getPsex());
 
             patientBookmarkResponseDtoList.add(patientBookmarkResponseDto);
         }
@@ -83,12 +85,11 @@ public class PatientBookmarkController {
             if (patientBookmark == null)
                 continue;
 
-            System.out.println("PID : " + patient.getPid());
-            System.out.println("USERCODE: " + patientBookmark.getUserCode());
-
             PatientBookmarkResponseDto patientBookmarkResponseDto = new PatientBookmarkResponseDto();
             patientBookmarkResponseDto.setPid(patientBookmark.getPid());
             patientBookmarkResponseDto.setPname(patient.getPname());
+            patientBookmarkResponseDto.setPbirthdate(patient.getPbirthdate());
+            patientBookmarkResponseDto.setPsex(patient.getPsex());
 
             patientBookmarkResponseDtoList.add(patientBookmarkResponseDto);
         }

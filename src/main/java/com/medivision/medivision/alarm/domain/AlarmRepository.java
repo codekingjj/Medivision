@@ -9,4 +9,6 @@ import java.util.List;
 public interface AlarmRepository extends JpaRepository<AlarmEntity, Integer> {
 
     List<AlarmEntity> findByUserCodeOrderByRegDateDesc(int userCode);
+
+    AlarmEntity findByAlarmIndex(int index);
 }

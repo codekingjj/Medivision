@@ -47,6 +47,11 @@
     justify-content: center;
     align-items: center;
 }
+
+#report{
+    background-image: url("../assets/icons8-report-100.png")
+}
+
 #previous {
     background-image: url("../assets/icons8-left-arrow-50.png");
 }

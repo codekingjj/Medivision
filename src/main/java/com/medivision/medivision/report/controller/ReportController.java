@@ -36,12 +36,6 @@ public class ReportController {
         return response;
     }
 
-//    @GetMapping("/report/getStudy/{studykey}")
-//    public StudyEntity getStudy(@PathVariable("studykey") String studyKey, @AuthenticationPrincipal String code){
-//        StudyEntity study = reportService.getStudy(studyKey);
-//        return study;
-//    }
-
     @PostMapping("/createReport")
     public ResponseEntity<? super ReportResponse> report(@RequestBody ReportRequestDto reportDto,@AuthenticationPrincipal String code) {
         reportDto.setWriter(Integer.parseInt(code));

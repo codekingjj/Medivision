@@ -44,7 +44,7 @@
                     <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/report'">리포트 로그 기록</a></div>
                 </div>
             </div>
-            <div class="menu option" onclick="location.href='#'">마이페이지</div>
+            <div class="menu option" onclick="location.href='/auth/mypage'">마이페이지</div>
             <div class="menu diselected-side-menu">
                 <div class="side-menu">
                     <div class="side-menu-icon side-menu-icon-chat" id="btnChatPageOpen"></div>
@@ -106,6 +106,7 @@
                     <th>판  독</th>
                     <th>시리즈</th>
                     <th>이미지</th>
+                    <th>AI판독</th>
                 </tr>
                 </thead>
                 <tbody>
