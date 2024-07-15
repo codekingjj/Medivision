@@ -4,18 +4,14 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
-
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
-
     <title>뷰어</title>
     <!-- Chat CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/chat/main.css">
