@@ -28,6 +28,12 @@ public class UserController {
     private final AdminService adminService;
     private final UserService userService;
     private final LoginLogService loginLogService;
+
+    @GetMapping("/auth/mypage")
+    public String mypage(){
+        return "user/mypage";
+    }
+
     @PostMapping("/auth/sign-up")
     public String signup(@RequestParam("userCode") int userCode, Model model){
         SignUpRequestDto requestBody = new SignUpRequestDto();

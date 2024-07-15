@@ -1,5 +1,6 @@
 .content{
     flex: 1;
+    height: fit-content;
 }
 .content-top{
     min-width: 100%;

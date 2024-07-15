@@ -17,10 +17,12 @@ function displayAlarm(data){
     content.innerHTML="";
     data.forEach(alarm =>{
         const row = document.createElement('p');
-        if(data.check)
+        if(alarm.check){
             row.className="check";
-        else
+        }
+        else{
             row.className="no-check";
+        }
         row.innerHTML= `${alarm.regDate} | ${alarm.content}`;
 
         row.onclick = function() {
@@ -42,8 +44,9 @@ function displayAlarmCount(data){
     }
 }
 function handleAlarmClick(index) {
-    console.log(`Alarm index: ${index}`);
-    // 여기에 원하는 로직을 추가할 수 있습니다.
+    fetch(`/alarm/${index}`,{
+        method:"POST"
+    })
 }
 document.addEventListener("DOMContentLoaded", function() {
     var modal = document.getElementById("myModal");

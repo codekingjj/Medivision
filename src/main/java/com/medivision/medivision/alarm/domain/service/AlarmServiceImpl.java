@@ -71,6 +71,14 @@ public class AlarmServiceImpl implements AlarmService{
     }
 
     @Override
+    public void checkAlarm(String index) {
+        int alarmIndex = Integer.parseInt(index);
+        AlarmEntity alarm = alarmRepository.findByAlarmIndex(alarmIndex);
+        alarm.setCheck(true);
+        alarmRepository.save(alarm);
+    }
+
+    @Override
     public ResponseEntity<? super AlarmReponseDto> getAlarmList(String userCode) {
         int userCodeNumber = Integer.parseInt(userCode);
         System.out.println("codeTemp: " + userCodeNumber);
