@@ -76,10 +76,11 @@
         </div>
                 <div class="aside">
                     <div>
-                        <button id="report" class="tool_button"></button>
-                        <div>리포트</div>
+                        <div class="imageAndName">
+                            <button id="report" class="tool_button"></button>
+                            <div>리포트</div>
+                        </div>
                     </div>
-
                     <div>
                         <div class="imageAndName">
                             <button id="previous" class="tool_button"></button>
