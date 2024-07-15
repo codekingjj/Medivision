@@ -121,15 +121,10 @@ public class ReportService {
 
     private boolean checkSpareReport(ReportRequestDto reportRequestDto){
         int studyKey = reportRequestDto.getStudyKey();
-        int writer = reportRequestDto.getWriter();
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
-        for(ReportEntity reportEntity : list){
-            String typeDecode = reportEntity.getTypeDecode();
-            if("예비판독".equals(typeDecode)){
-                return false;
-            }
-        }
-        return true;
+        if(list.size() == 0) return true;
+
+        return false;
     }
 
     private boolean checkReportList(ReportRequestDto reportRequestDto){
@@ -197,6 +192,7 @@ public class ReportService {
             }
 
             if(!isValid) return ReportResponse.updateFail();
+
             report.update(reportDto);
             reportRepository.save(report);
             int studyKey = reportDto.getStudyKey();
