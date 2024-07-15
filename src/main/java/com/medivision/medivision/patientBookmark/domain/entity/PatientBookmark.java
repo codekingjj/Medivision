@@ -1,5 +1,6 @@
-package com.medivision.medivision.patientBookmark.domain;
+package com.medivision.medivision.patientBookmark.domain.entity;
 
+import com.medivision.medivision.patientBookmark.domain.PatientBookmarkId;
 import com.medivision.medivision.patientBookmark.dto.request.PatientBookmarkRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
