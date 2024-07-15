@@ -145,7 +145,7 @@ public class MainController {
             result.sort((v1, v2) -> {
                 int date1 = searchService.dateformat(v1.getStudydate());
                 int date2 = searchService.dateformat(v2.getStudydate());
-                return Integer.compare(date2, date1); // descending order
+                return Integer.compare(date2, date1);
             });
         }
 

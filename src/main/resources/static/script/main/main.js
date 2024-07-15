@@ -16,7 +16,6 @@ $(document).ready(function() {
                 list = data;
                 tbody.empty();
                 pageCnt = Math.ceil(data.length / 10);
-                console.log(pageCnt);
                 now = 1;
                 if(pageCnt === 1){
                     paggten(data);
@@ -57,7 +56,6 @@ $(document).ready(function() {
                 list = data;
                 tbody.empty();
                 pageCnt = Math.ceil(data.length / 10);
-                console.log(pageCnt);
                 now = 1;
                 if(pageCnt === 1){
                     paggten(data);
@@ -82,7 +80,6 @@ $(document).ready(function() {
                 list = data;
                 tbody.empty();
                 pageCnt = Math.ceil(data.length / 10);
-                console.log(pageCnt);
                 now = 1;
                 if(pageCnt === 1){
                     paggten(data);

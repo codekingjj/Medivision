@@ -76,7 +76,6 @@ $(document).ready(function() {
                 let count = '<p>' + data.length + '명의 환자를 찾았습니다.</p>';
                 countArea.append(count);
                 pageCnt = Math.ceil(data.length / 10);
-                console.log(pageCnt);
                 now = 1;
                 if(pageCnt === 1){
                     setting(data);
@@ -101,7 +100,6 @@ $(document).ready(function() {
             type: 'GET',
             data: { studyKey: id },
             success: function(data) {
-                console.log("파일을 처리 중입니다.");
 
                 // 여러 이미지를 처리하기 위해 imageIds 배열 생성
                 data.forEach((fileData, index) => {
@@ -246,7 +244,6 @@ $(document).ready(function() {
         let pageArea =  $('.pageCount');
         pageArea.empty();
         let pageDiv;
-        console.log(now);
         for(let i = 1; i <= pageCnt; i++){
             if(now == i){
                 pageDiv = '<div id="' + i + '" class="pageNum target">' + i + '</div>';

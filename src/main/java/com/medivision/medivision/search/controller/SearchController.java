@@ -55,7 +55,6 @@ public class SearchController {
     @GetMapping("file")
     @ResponseBody
     public List<FileResponse> getFiles(int studyKey) {
-        System.out.println(studyKey);
         List<VSeriesEntity> list = vSeriesService.findStudyKey(studyKey);
         List<FileResponse> fileList = new ArrayList<>();
         String driver = "Z:\\";
@@ -66,7 +65,6 @@ public class SearchController {
             String realPath = driver + path + fileName;
             File file = new File(realPath);
 
-            // 파일을 Base64로 인코딩
             try {
                 FileResponse fileResponse = new FileResponse();
                 fileResponse.setFileName(fileName);
@@ -97,7 +95,6 @@ public class SearchController {
     @ResponseBody
     public List<StudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto, @AuthenticationPrincipal String userCode, HttpServletRequest request){
 
-        // study 열람시 로그 찍기 로직
         String ip = request.getRemoteAddr();
         int studyKey = searchRequestDto.getStudyKey();
 //        studyLogService.saveStudyLog(userCode,studyKey,ip);
@@ -125,7 +122,6 @@ public class SearchController {
         int startDate = searchService.dateformat(searchRequestDto.getStartDate());
         int endDate = searchService.dateformat(searchRequestDto.getEndDate());
 
-        System.out.println(startDate + " " + endDate);
 
         if(!pid.isEmpty()){
             findPid = searchService.findByPidLike(pid);
@@ -227,13 +223,12 @@ public class SearchController {
             temp.clear();
         }
         
-        
-        // 날짜기준 내림차순
+
         if(result.size() > 0){
             result.sort((v1, v2) -> {
                 int date1 = searchService.dateformat(v1.getStudydate());
                 int date2 = searchService.dateformat(v2.getStudydate());
-                return Integer.compare(date2, date1); // descending order
+                return Integer.compare(date2, date1);
             });
         }
 
