@@ -20,7 +20,7 @@
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
 </head>
     <body class="body">
-<%--    <div class="sidebar-chat-root"></div>--%>
+    <div class="sidebar-chat-root"></div>
     <div class="container">
         <div class="header">
             <div class="header-top">
