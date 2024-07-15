@@ -4,8 +4,8 @@ import com.medivision.medivision.log.study.domain.service.StudyLogService;
 import com.medivision.medivision.search.domain.service.SearchService;
 import com.medivision.medivision.search.dto.request.SearchRequestDto;
 import com.medivision.medivision.search.dto.response.FileResponse;
+import com.medivision.pacs.entity.StudyEntity;
 import com.medivision.pacs.entity.VSeriesEntity;
-import com.medivision.pacs.entity.VStudyEntity;
 import com.medivision.pacs.service.VSeriesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -55,7 +55,6 @@ public class SearchController {
     @GetMapping("file")
     @ResponseBody
     public List<FileResponse> getFiles(int studyKey) {
-        System.out.println(studyKey);
         List<VSeriesEntity> list = vSeriesService.findStudyKey(studyKey);
         List<FileResponse> fileList = new ArrayList<>();
         String driver = "Z:\\";
@@ -66,7 +65,6 @@ public class SearchController {
             String realPath = driver + path + fileName;
             File file = new File(realPath);
 
-            // 파일을 Base64로 인코딩
             try {
                 FileResponse fileResponse = new FileResponse();
                 fileResponse.setFileName(fileName);
@@ -89,27 +87,25 @@ public class SearchController {
 
     @GetMapping("findall")
     @ResponseBody
-    public List<VStudyEntity> findAll(){
+    public List<StudyEntity> findAll(){
         return searchService.findAll();
     }
 
     @GetMapping("detail")
     @ResponseBody
-    public List<VStudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto, @AuthenticationPrincipal String userCode, HttpServletRequest request){
+    public List<StudyEntity> findById(@ModelAttribute SearchRequestDto searchRequestDto, @AuthenticationPrincipal String userCode, HttpServletRequest request){
 
-        // study 열람시 로그 찍기 로직
         String ip = request.getRemoteAddr();
         int studyKey = searchRequestDto.getStudyKey();
-//        studyLogService.saveStudyLog(userCode,studyKey,ip);
 
-        List<VStudyEntity> result = new ArrayList<>();
-        List<VStudyEntity> temp = new ArrayList<>();
+        List<StudyEntity> result = new ArrayList<>();
+        List<StudyEntity> temp = new ArrayList<>();
 
-        List<VStudyEntity> findPid = new ArrayList<>();
-        List<VStudyEntity> findPName = new ArrayList<>();
-        List<VStudyEntity> findReportStatus = new ArrayList<>();
-        List<VStudyEntity> findModality = new ArrayList<>();
-        List<VStudyEntity> findAll = findAll();
+        List<StudyEntity> findPid = new ArrayList<>();
+        List<StudyEntity> findPName = new ArrayList<>();
+        List<StudyEntity> findReportStatus = new ArrayList<>();
+        List<StudyEntity> findModality = new ArrayList<>();
+        List<StudyEntity> findAll = findAll();
 
         boolean pidFlag = false;
         boolean pNameFlag = false;
@@ -125,7 +121,6 @@ public class SearchController {
         int startDate = searchService.dateformat(searchRequestDto.getStartDate());
         int endDate = searchService.dateformat(searchRequestDto.getEndDate());
 
-        System.out.println(startDate + " " + endDate);
 
         if(!pid.isEmpty()){
             findPid = searchService.findByPidLike(pid);
@@ -161,11 +156,11 @@ public class SearchController {
             start = true;
         } else if (pNameFlag && start) {
             for(int i=0; i<findPName.size(); i++){
-                VStudyEntity vStudyEntity = findPName.get(i);
+                StudyEntity StudyEntity = findPName.get(i);
 
                 for(int j=0; j<result.size(); j++){
-                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
-                        temp.add(vStudyEntity);
+                    if(StudyEntity.getStudykey() == result.get(j).getStudykey()){
+                        temp.add(StudyEntity);
                     }
                 }
             }
@@ -179,11 +174,11 @@ public class SearchController {
             start = true;
         } else if (reportStatusFlag && start) {
             for(int i=0; i<findReportStatus.size(); i++){
-                VStudyEntity vStudyEntity = findReportStatus.get(i);
+                StudyEntity StudyEntity = findReportStatus.get(i);
 
                 for(int j=0; j<result.size(); j++){
-                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
-                        temp.add(vStudyEntity);
+                    if(StudyEntity.getStudykey() == result.get(j).getStudykey()){
+                        temp.add(StudyEntity);
                     }
                 }
             }
@@ -197,11 +192,11 @@ public class SearchController {
             start = true;
         } else if (modalityFlag && start) {
             for(int i=0; i<findModality.size(); i++){
-                VStudyEntity vStudyEntity = findModality.get(i);
+                StudyEntity StudyEntity = findModality.get(i);
 
                 for(int j=0; j<result.size(); j++){
-                    if(vStudyEntity.getStudyKey() == result.get(j).getStudyKey()){
-                        temp.add(vStudyEntity);
+                    if(StudyEntity.getStudykey() == result.get(j).getStudykey()){
+                        temp.add(StudyEntity);
                     }
                 }
             }
@@ -216,10 +211,10 @@ public class SearchController {
 
         }else if (dateFlag && start) {
             for(int i=0; i<result.size(); i++){
-                VStudyEntity vStudyEntity = result.get(i);
-                int date = searchService.dateformat(vStudyEntity.getStudydate());
+                StudyEntity StudyEntity = result.get(i);
+                int date = searchService.dateformat(StudyEntity.getStudydate());
                 if(date >= startDate && date <= endDate){
-                    temp.add(vStudyEntity);
+                    temp.add(StudyEntity);
                 }
             }
             result.clear();
@@ -227,13 +222,12 @@ public class SearchController {
             temp.clear();
         }
         
-        
-        // 날짜기준 내림차순
+
         if(result.size() > 0){
             result.sort((v1, v2) -> {
                 int date1 = searchService.dateformat(v1.getStudydate());
                 int date2 = searchService.dateformat(v2.getStudydate());
-                return Integer.compare(date2, date1); // descending order
+                return Integer.compare(date2, date1);
             });
         }
 

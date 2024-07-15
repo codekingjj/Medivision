@@ -76,7 +76,6 @@ $(document).ready(function() {
                 let count = '<p>' + data.length + '명의 환자를 찾았습니다.</p>';
                 countArea.append(count);
                 pageCnt = Math.ceil(data.length / 10);
-                console.log(pageCnt);
                 now = 1;
                 if(pageCnt === 1){
                     setting(data);
@@ -101,7 +100,6 @@ $(document).ready(function() {
             type: 'GET',
             data: { studyKey: id },
             success: function(data) {
-                console.log("파일을 처리 중입니다.");
 
                 // 여러 이미지를 처리하기 위해 imageIds 배열 생성
                 data.forEach((fileData, index) => {
@@ -175,7 +173,7 @@ $(document).ready(function() {
             }else if(item.reportstatus === 6){
                 item.reportstatus = "판독";
             }
-            var row = '<tr id=' + item.studyKey + ' class="tr-area" >' +
+            var row = '<tr id=' + item.studykey + ' class="tr-area" >' +
                 // 담당 환자 추가를 위한 체크박스
                 '<td class="td-patientBookmark-checkbox-container">' + `<input type="checkbox" class="checkbox-patientBookmark" id=${item.pid} />` + '</td>' +
                 '<td>' + item.pid + '</td>' +
@@ -186,6 +184,7 @@ $(document).ready(function() {
                 '<td>' + item.reportstatus + '</td>' +
                 '<td>' + item.seriescnt + '</td>' +
                 '<td>' + item.imagecnt + '</td>' +
+                '<td>' + item.ai_score + '</td>' +
                 '</tr>';
             tbody.append(row);
         });
@@ -206,7 +205,7 @@ $(document).ready(function() {
                 item.reportstatus = "판독";
             }
 
-            let row = '<tr id=' + item.studyKey + ' class="tr-area" >' +
+            let row = '<tr id=' + item.studykey + ' class="tr-area" >' +
                 // 담당 환자 추가를 위한 체크박스
                 '<td class="td-patientBookmark-checkbox-container">' + `<input type="checkbox" class="checkbox-patientBookmark" id=${item.pid} />` + '</td>' +
                 '<td>' + item.pid + '</td>' +
@@ -217,6 +216,7 @@ $(document).ready(function() {
                 '<td>' + item.reportstatus + '</td>' +
                 '<td>' + item.seriescnt + '</td>' +
                 '<td>' + item.imagecnt + '</td>' +
+                '<td>' + item.ai_score + '</td>' +
                 '</tr>';
             tbody.append(row);
         }
@@ -244,7 +244,6 @@ $(document).ready(function() {
         let pageArea =  $('.pageCount');
         pageArea.empty();
         let pageDiv;
-        console.log(now);
         for(let i = 1; i <= pageCnt; i++){
             if(now == i){
                 pageDiv = '<div id="' + i + '" class="pageNum target">' + i + '</div>';
