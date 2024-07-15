@@ -1,0 +1,23 @@
+/* content.css */
+.container {
+    grid-template-columns: 250px 6fr;
+}
+
+/* search.css */
+.sidebar {
+    width: 100%;
+    padding: 0;
+    grid-area: aside;
+}
+
+.main {
+    grid-area: content;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.td-patientBookmark-checkbox-container {
+    text-align: center;
+}
