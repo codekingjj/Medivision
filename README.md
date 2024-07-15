@@ -25,7 +25,7 @@ DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서
 #### 기능설명 << 각자작성
 #### 데모영상
 
-<img src="https://github.com/user-attachments/assets/d32ea30e-0038-419e-a5c7-7a60cdaffc34" width="1000px" height="600px">
+<img src="https://github.com/user-attachments/assets/9187a8a8-eecb-43bf-9d5e-7e7ab455958e">
 
 
 ----
