@@ -30,7 +30,7 @@
 
     <div id="report-form">
         <h1>Write</h1>
-        <form method="POST" action="/report">
+        <form method="POST" action="/createReport">
             <div id="content-container">
                 <a>[Finding]</a>
                 <textarea id="finding"  rows="2" style="overflow:hidden;"></textarea>

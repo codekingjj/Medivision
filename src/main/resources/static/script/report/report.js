@@ -11,12 +11,12 @@ function remaindTime(reportTime) {
 
     // 마감 기간이 현재 시간보다 클 경우
     if (rt < et) {
-        sec = parseInt(et - rt) / 1000;
-        days = parseInt(sec / 60 / 60 / 24);
+        let sec = parseInt(et - rt) / 1000;
+        let days = parseInt(sec / 60 / 60 / 24);
         sec = sec - days * 60 * 60 * 24;
-        hour = parseInt(sec / 60 / 60);
+        let hour = parseInt(sec / 60 / 60);
         sec = sec - hour * 60 * 60;
-        min = parseInt(sec / 60);
+        let min = parseInt(sec / 60);
         sec = parseInt(sec - min * 60);
 
         if (hour < 10) {
@@ -40,7 +40,7 @@ function remaindTime(reportTime) {
 
 $(document).ready(function() {
     //부모창 뷰어페이지가 지닌 스터디키 가져오기
-    const study = opener.document.getElementById('studykey');
+    const study = opener.document.getElementById('studyKey');
     const studyKey = study.value;
 
     let decodeType ="";
@@ -62,6 +62,11 @@ $(document).ready(function() {
             const data = res.result;
 
             let num = 0;
+
+            if(res.userCode == null){
+                alert("로그인 후 이용하세요.");
+                window.close();
+            }
 
             data.forEach(function(report){
                 const trE = document.createElement("tr");
@@ -171,8 +176,9 @@ $(document).ready(function() {
         else if("판독" === e.target.value) decodeType = "판독";
     });
 
-    $("form").submit(e=>{
+    $('form').submit(e=>{
         e.preventDefault();
+
         const finding = $('#finding').val();
         const conclusion = $('#conclusion').val();
         const recommend = $('#recommend').val();
