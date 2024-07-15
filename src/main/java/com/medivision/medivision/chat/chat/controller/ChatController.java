@@ -62,10 +62,10 @@ public class ChatController {
         Chat chatWithLeaveMessage = new Chat(chatRequestDto);
 
         chatService.save(chatWithLeaveMessage);
-        alarmService.saveChat(chatWithLeaveMessage);
         final String MSG_DEST_URL = "/topic/chatroom/" + chatResponseDto.getRoomId();
 
         messagingTemplate.convertAndSend(MSG_DEST_URL, chatResponseDto);
+        alarmService.saveChat(chatWithLeaveMessage);
     }
 
     @PostMapping("/chat/{roomId}")
