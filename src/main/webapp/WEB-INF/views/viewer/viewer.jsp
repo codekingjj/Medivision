@@ -10,8 +10,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
+    <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>뷰어</title>
     <!-- Chat CSS -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/chat/main.css">
@@ -33,6 +36,7 @@
                     <div class="logout-text" onclick="location.href='/auth/select'">
                         로그아웃
                     </div>
+
                 </div>
             </div>
             <div class="header-menu">

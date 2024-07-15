@@ -1,5 +1,6 @@
 package com.medivision.medivision.chat.chat.controller;
 
+import com.medivision.medivision.alarm.domain.service.AlarmService;
 import com.medivision.medivision.chat.chat.domain.entity.Chat;
 import com.medivision.medivision.chat.chat.domain.service.ChatService;
 import com.medivision.medivision.chat.chat.dto.response.ChatListResponseDto;
@@ -33,7 +34,7 @@ public class ChatController {
     private final ChatService chatService;
     private final AdminRepository adminRepository;
     private final UserRepository userRepository;
-
+    private final AlarmService alarmService;
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
@@ -61,10 +62,10 @@ public class ChatController {
         Chat chatWithLeaveMessage = new Chat(chatRequestDto);
 
         chatService.save(chatWithLeaveMessage);
-
         final String MSG_DEST_URL = "/topic/chatroom/" + chatResponseDto.getRoomId();
 
         messagingTemplate.convertAndSend(MSG_DEST_URL, chatResponseDto);
+        alarmService.saveChat(chatWithLeaveMessage);
     }
 
     @PostMapping("/chat/{roomId}")
