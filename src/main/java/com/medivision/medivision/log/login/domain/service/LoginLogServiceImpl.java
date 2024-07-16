@@ -32,14 +32,11 @@ public class LoginLogServiceImpl implements LoginLogService{
     @Override
     public ResponseEntity<? super LogingLogResponseDto> loginUserLog(String userCode) {
         int userCodeNumber = Integer.parseInt(userCode);
-        System.out.println("userCodeNumber: " +userCodeNumber);
         List<LoginLogEntity> userLoginList = null;
         try{
             UserEntity user = userRepository.findByUserCode(userCodeNumber);
             String userId = user.getUserId();
-            System.out.println("userId: " +userId);
             userLoginList = loginLogRepository.findByUserId(userId);
-            System.out.println("logList"+ userLoginList.toString());
         }catch (Exception e){
             e.printStackTrace();
             return null;

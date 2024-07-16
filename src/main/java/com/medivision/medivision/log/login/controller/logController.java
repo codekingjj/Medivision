@@ -24,7 +24,6 @@ public class logController {
 
     @PostMapping("/log/login")
     public ResponseEntity<? super LogingLogResponseDto> loginLog(@AuthenticationPrincipal String userCode){
-        System.out.println("userCode: "+userCode);
         ResponseEntity<? super LogingLogResponseDto> log = loginLogService.loginUserLog(userCode);
         return log;
     }

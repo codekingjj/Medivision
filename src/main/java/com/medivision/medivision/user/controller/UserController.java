@@ -73,7 +73,6 @@ public class UserController {
         long totalCountLong = adminService.getTotalCount();
         int totalCount = (int)totalCountLong;
         String pagingImg = Paging.pagingStr(totalCount, pageSize, blockPage, pageNum, "/admin");
-        System.out.println("pagingImg: "+ pagingImg);
         model.addAttribute("userLists", userList.getContent());
         model.addAttribute("pagingImg", pagingImg);
         model.addAttribute("totalCount", totalCount);
@@ -100,18 +99,10 @@ public class UserController {
         SignInRequestDto requestBody = new SignInRequestDto();
         requestBody.setUserId(userId);
         requestBody.setUserPassword(userPassword);
-        System.out.println("id: "+ requestBody.getUserId());
-        System.out.println("pw: "+ requestBody.getUserPassword());
         boolean isCheck = adminService.adminSignIn(requestBody);
-        System.out.println("check: "+isCheck);
         if(isCheck)
             return "redirect:/admin";
         return "redirect:/auth/select";
-    }
-    @PostMapping("/test3")
-    public String ad(@AuthenticationPrincipal String code){
-        System.out.println("code: "+code);
-        return "index";
     }
 
 }

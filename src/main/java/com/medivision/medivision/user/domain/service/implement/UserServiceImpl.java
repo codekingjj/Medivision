@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
             String encodedPassword = user.getUserPassword();
             boolean isMatched =passwordEncoder.matches(password,encodedPassword);
             if(!isMatched) return  SignInResponseDto.signInFail();
-            System.out.println("로그인 완료");
             int userCode = user.getUserCode();
             token = jwtProvider.create(userCode);
 

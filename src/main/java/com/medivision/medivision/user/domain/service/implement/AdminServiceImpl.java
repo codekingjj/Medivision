@@ -34,7 +34,6 @@ public class AdminServiceImpl implements AdminService {
     // 회원가입
     @Override
     public ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto) {
-        System.out.println(dto.getUserCode());
         AdminEntity result = adminRepository.findById(dto.getUserCode()).orElseThrow();
         if(result == null) return SignUpResponseDto.databaseError();
         result.setSignup(true);
@@ -50,11 +49,6 @@ public class AdminServiceImpl implements AdminService {
         String encodePassword = passwordEncoder.encode(result.getUserJuminSC());
 
         UserEntity user = new UserEntity(dto.getUserCode(), id, encodePassword);
-
-        System.out.println("code: "+dto.getUserCode());
-        System.out.println("id: "+id);
-        System.out.println("password(before): " + result.getUserJuminSC());
-        System.out.println("password(after): "+passwordEncoder.toString());
 
         userRepository.save(user);
         return SignUpResponseDto.success(id);

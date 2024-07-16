@@ -6,8 +6,6 @@
     })
         .then(res => res.json())
         .then(response =>{
-            console.log(response);
-            console.log(response.list);
             displayLoginLogs(response.list);
         })
 function displayLoginLogs(logData) {

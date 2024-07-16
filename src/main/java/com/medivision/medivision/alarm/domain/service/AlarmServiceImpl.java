@@ -41,7 +41,7 @@ public class AlarmServiceImpl implements AlarmService{
     public void saveChat(Chat chat) {
 
         List<ChatroomAndMember> chatRoomMemberList = chatRoomMemberRepository.findByRoomId(chat.getRoomId());
-//
+
         LocalDateTime date = LocalDateTime.now();
         for(ChatroomAndMember member: chatRoomMemberList){
             if(member.getUserCode() == chat.getSenderUserCode()) continue;
@@ -56,18 +56,6 @@ public class AlarmServiceImpl implements AlarmService{
             alarm.setRegDate(date);
             alarmRepository.save(alarm);
         }
-//        AdminEntity user = adminRepository.findByUserCode(chat.getSenderUserCode());
-//
-//        String content = "";
-//        String userId = user.getUserName();
-//        content+= "【"+userId+"】님이 "+ "메세지를 보내셨습니다.";
-//        content+= "<br>『"+chat.getMessage()+"』";
-//        LocalDateTime date = LocalDateTime.now();
-//
-//        AlarmEntity alarm = new AlarmEntity();
-//        alarm.setContent(content);
-//        alarm.setUserCode(chat.getSenderUserCode());
-//        alarmRepository.save(alarm);
     }
 
     @Override
@@ -84,7 +72,6 @@ public class AlarmServiceImpl implements AlarmService{
         System.out.println("codeTemp: " + userCodeNumber);
 
         List<AlarmEntity> list = alarmRepository.findByUserCodeOrderByRegDateDesc(userCodeNumber);
-        System.out.println("list: " + list);
         if (list == null) return ResponseDto.databaseError();
         int count = 0;
         for(AlarmEntity alarm : list){

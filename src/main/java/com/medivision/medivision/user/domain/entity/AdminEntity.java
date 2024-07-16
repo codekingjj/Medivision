@@ -18,20 +18,13 @@ import javax.persistence.Table;
 @Table(name="admin")
 public class AdminEntity {
 
-    @Id //@Column(name = "user_code")
+    @Id
     private int userCode;
-    //@Column(name = "user_birthday")
     private String userBirthday;
-    //@Column(name = "user_juminSC")
     private String userJuminSC;
-    //@Column(name = "user_phonenumber")
     private String userPhonenumber;
-    //@Column(name = "user_telecom")
     private String userTelecom;
-    //@Column(name = "user_name")
     private String userName;
-    //@Column(name = "user_licensenum")
     private String userLicensenum;
-    //@Column(name = "signup")
     private Boolean signup;
 }
