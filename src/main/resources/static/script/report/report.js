@@ -88,7 +88,7 @@ $(document).ready(function() {
 
                 const td5 = document.createElement("td");
                 td5.className = "update-button";
-                if(remaindTime(report.regDate) && res.userCode == report.writer){
+                if(remaindTime(report.regDate) && res.userCode+""=== report.writer+""){
                     const update = document.createElement("button");
                     update.className = "update";
                     update.innerText = "✎";
