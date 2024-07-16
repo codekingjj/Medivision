@@ -6,7 +6,6 @@ import com.medivision.medivision.report.domain.service.ReportService;
 import com.medivision.medivision.report.dto.ReportRequestDto;
 import com.medivision.medivision.report.dto.ReportResponse;
 import com.medivision.medivision.report.dto.ReportResponseDto;
-import com.medivision.pacs.entity.StudyEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
