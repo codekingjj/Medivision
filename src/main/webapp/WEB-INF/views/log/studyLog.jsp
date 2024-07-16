@@ -79,7 +79,7 @@
     </div>
   </div>
   <div class="aside">
-    <div class="aside-content">로그인 로그 기록</div>
+    <div class="aside-content" onclick="location.href='/log/login'">로그인 로그 기록</div>
     <div class="aside-content aside-selected" onclick="location.href='/log/studyKey'">환자 차트 열람<br> 로그 기록</div>
     <div class="aside-content" onclick="location.href='/log/report'">리포트 로그 기록</div>
   </div>
