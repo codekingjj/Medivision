@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
+    <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <title>뷰어</title>
@@ -163,20 +164,40 @@
 
             <div class="content-image">
 
+    </div>
+    <div class="footer">
+        <div class="footer-left">
+            <div class="footer-person">
+                <div class="person">
+                    <div class="footer-right-title">강다연 : da092511@naver.com</div>
+                    <div class="footer-right-logo" onclick="location.href='https://github.com/da092511'"></div>
+                </div>
+                <div class="person">
+                    <div class="footer-right-title">이재정 : jaejung0413@naver.com</div>
+                    <div class="footer-right-logo" onclick="location.href='https://github.com/codekingjj'"></div>
+                </div>
+                <div class="person">
+                </div>
             </div>
-
-
-        <div class="footer">
-            <div class="footer-left">
-                copyright@Megastudy
+        </div>
+        <div class="footer-right">
+            <div class="footer-person">
+                <div class="person">
+                    <div class="footer-right-title">주승재: 0719improvement@naver.com</div>
+                    <div class="footer-right-logo" onclick="location.href='https://github.com/IT-improvement'"></div>
+                </div>
+                <div class="person">
+                    <div class="footer-right-title">김민규 : minkyu.kim.contact@gmail.com</div>
+                    <div class="footer-right-logo" onclick="location.href='https://github.com/typoscript'"></div>
+                </div>
+                <div class="person">
+                    <div class="footer-right-title">이인선 : dlstjs7617@gmail.com</div>
+                    <div class="footer-right-logo" onclick="location.href='https://github.com/dlstjs7617'"></div>
+                </div>
             </div>
-            <div class="footer-right"></div>
         </div>
     </div>
-
-</main>
-
-
+</div>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/viewer.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/tools.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
@@ -185,5 +206,4 @@
     <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
-    <script src="${pageContext.request.contextPath}/script/viewer/reportPopup.js"></script>
 </html>

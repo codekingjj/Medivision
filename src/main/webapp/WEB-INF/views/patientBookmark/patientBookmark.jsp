@@ -3,9 +3,8 @@
 <head>
     <title>담당 환자 목록</title>
     <script src="${pageContext.request.contextPath}/script/patientBookmark/patientBookmark.js"></script>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/search.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/content.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/patientBookmark/patientBookmark.css">
+    <link href="style/content.css" rel="stylesheet">
+    <link href="style/search.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>

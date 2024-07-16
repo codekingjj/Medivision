@@ -22,7 +22,7 @@
     }
     .header-menu {
         display: grid;
-        grid-template-columns: 200px 1fr 1fr 1fr 1fr 2fr;
+        grid-template-columns: 200px 1fr 1fr 1fr 3fr;
         height: 40px;
         gap: 7px;
     }
@@ -254,12 +254,39 @@
     display: flex;
     justify-content: center;
     align-items: end;
-    font-size: 18px;
-    font-weight: 400;
 }
 .footer-right {
     min-width: 50%;
 }
 .aside-selected{
     background-color: rgba(30, 121, 82, 0.6);
+}
+.footer-right-left{
+    width: 100%;
+    height: 100%;
+}
+.footer-person{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.person{
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+}
+.footer-right-title{
+    color: rgba(0,0,0,0.7);
+    width: 50%;
+}
+.footer-right-logo{
+    width: 10%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url('/assets/github.png');
+
+    cursor: pointer;
 }
