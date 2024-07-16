@@ -41,7 +41,7 @@ public class AdminLogController {
         int blockPage = 10;
 
         Page<StudyLogEntity> studyList = adminLogService.studyList(pageNum,pageSize);
-        long totalCountLong = adminLogService.getTotalCountLogin();
+        long totalCountLong = adminLogService.getTotalCountStudy();
         int totalCount = (int)totalCountLong;
         String pagingImg = Paging.pagingStr(totalCount, pageSize, blockPage, pageNum, "/admin/log/study");
         model.addAttribute("studyLists", studyList.getContent());
@@ -58,7 +58,7 @@ public class AdminLogController {
         int blockPage = 10;
 
         Page<ReportLogEntity> reportList = adminLogService.reportList(pageNum,pageSize);
-        long totalCountLong = adminLogService.getTotalCountLogin();
+        long totalCountLong = adminLogService.getTotalCountReport();
         int totalCount = (int)totalCountLong;
         String pagingImg = Paging.pagingStr(totalCount, pageSize, blockPage, pageNum, "/admin/log/report");
         model.addAttribute("reportLists", reportList.getContent());
