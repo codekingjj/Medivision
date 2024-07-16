@@ -56,7 +56,8 @@ DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서
 #### 기능설명
 * 환자에 대한 검색과 해당환자 썸네일만 미리보기로 볼수있는 기능
 #### 데모영상
-<img src="https://github.com/user-attachments/assets/a76e83ee-0f9e-4d0a-9070-181ed5e86568">
+<video src="https://github.com/user-attachments/assets/a76e83ee-0f9e-4d0a-9070-181ed5e86568">
+<!-- ![검색시연](https://github.com/user-attachments/assets/54d8407d-0758-4d46-aca5-e29218ff1ce9) -->
 
 ----
 ### 기능명 : 실시간 메세지
