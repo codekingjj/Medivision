@@ -67,7 +67,7 @@ public class UserController {
     public String userList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
 
         int pageSize = 8;
-        int blockPage = 3;
+        int blockPage = 5;
 
         Page<AdminEntity> userList = adminService.userLIst(pageNum,pageSize);
         long totalCountLong = adminService.getTotalCount();

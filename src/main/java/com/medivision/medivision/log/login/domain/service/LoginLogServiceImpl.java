@@ -47,4 +47,5 @@ public class LoginLogServiceImpl implements LoginLogService{
         return  LogingLogResponseDto.success(userLoginList);
     }
 
+
 }
