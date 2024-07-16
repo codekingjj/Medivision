@@ -41,10 +41,11 @@ DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서
   * ##### 유저는 한 검사에 리포트 1개만 작성 가능
   * ##### 한 검사에 예비판독 1개, 판독 2개 작성 가능
   * ##### 판독 레포트 등록되어 있을 경우, 예비판독 등록 불가
+  * ##### 부모창 재로드 또는 다른 주소로 이동 시 자식팝업 닫힘
 
 #### 데모영상
 
-<img src="https://github.com/user-attachments/assets/fafe7ba3-68f9-44c8-a882-d6c48185906b">
+<img src="https://github.com/user-attachments/assets/1202141f-d703-4595-bd5b-08206bee2be8">
 
 ----
 ### 기능명<< 각자작성
