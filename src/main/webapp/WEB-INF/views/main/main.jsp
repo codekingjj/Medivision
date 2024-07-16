@@ -6,7 +6,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script/main/main.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
-    <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -152,4 +151,5 @@
     </div>
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
 </html>

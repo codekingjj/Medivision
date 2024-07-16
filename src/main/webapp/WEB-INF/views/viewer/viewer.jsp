@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/content.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
-    <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/style/viewer.css">
     <script src="${pageContext.request.contextPath}/static/script/viewer/reportPopup.js"></script>
-    <script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/main/alarm.css">
     <title>뷰어</title>
     <!-- Chat CSS -->
@@ -202,6 +200,7 @@
 <script type="module" src="${pageContext.request.contextPath}/static/dist/previous.bundle.js"></script>
 <script type="module" src="${pageContext.request.contextPath}/static/dist/next.bundle.js"></script>
 </body>
+<script src="${pageContext.request.contextPath}/script/main/alarm.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/websocket/stomp.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/websocket/sockjs.min.js"></script>
     <script src="${pageContext.request.contextPath}/script/chat/main.js" type="module" defer></script>
