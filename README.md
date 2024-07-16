@@ -22,7 +22,7 @@ DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서
 
 ---
 ## 문서
-1. [요구사항 정의서](https://docs.google.com/spreadsheets/d/e/2PACX-1vRbpXzsAOQ3sHXsYtBp4e4gEh_44h1VfCQeJwzaxm46KEAsH_redu_qowyfISy8hw/pubhtml)
+1. [요구사항 정의서](https://docs.google.com/spreadsheets/d/1NwWVFWAsstbINeFBxzig71Zngk0iqtsM/edit?gid=294377876#gid=294377876)
 2. 인터페이스 정의서
 
 ---
