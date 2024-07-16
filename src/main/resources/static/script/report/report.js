@@ -3,10 +3,8 @@ function remaindTime(reportTime) {
     var today = new Date();
 
     var rt = reportDate.getTime();
-    // 마감 기간을 ms로 반환한다.
     var tt = today.getTime();
 
-    // 마감 기간이 현재 시간보다 클 경우
     if (rt < tt) {
         let sec = parseInt(tt - rt) / 1000;
         let days = parseInt(sec / 60 / 60 / 24);
@@ -35,12 +33,10 @@ function remaindTime(reportTime) {
 }
 
 $(document).ready(function() {
-    //부모창 뷰어페이지가 지닌 스터디키 가져오기
     const study = opener.document.getElementById('studyKey');
     const studyKey = study.value;
 
     let decodeType ="";
-    let reportData = null;
     getReport()
 
     function getReport(){

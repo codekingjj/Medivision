@@ -31,7 +31,7 @@ public class ReportService {
 
         int studyKey = reportDto.getStudyKey();
         boolean isExist = studyRepository.existsByStudykey(studyKey);
-        if(!isExist) return ReportResponse.getListFail(); //수정 메소드 들어가서
+        if(!isExist) return ReportResponse.getListFail();
 
         List<ReportEntity> list = reportRepository.findByStudyKey(studyKey);
         List<ReportResponseDto> result = new ArrayList<>();
@@ -54,7 +54,7 @@ public class ReportService {
 
     public ResponseEntity<? super ReportResponse> getReport(int reportIndex){
         ReportEntity report = reportRepository.findByReportIndex(reportIndex);
-        if(report == null) return ReportResponse.getReportFail();  //수정 메소드 들어가서
+        if(report == null) return ReportResponse.getReportFail();
 
         List<ReportResponseDto> result = new ArrayList<>();
         int writer = report.getWriter();
@@ -81,16 +81,16 @@ public class ReportService {
     public ResponseEntity<? super ReportResponse> createReport(ReportRequestDto reportDto){
         int writer = reportDto.getWriter();
         AdminEntity admin = adminRepository.findByUserCode(writer);
-        if(admin == null || admin.getUserLicensenum() == null) return ReportResponse.getListFail(); //수정 메소드 들어가서
+        if(admin == null || admin.getUserLicensenum() == null) return ReportResponse.getListFail();
 
         String typeDecode = reportDto.getTypeDecode();
 
         if(checkUserReport(reportDto)) {
             return ReportResponse.alreadyWrote();
         }else if("예비판독".equals(typeDecode)){
-            if(!checkSpareReport(reportDto)) return ReportResponse.createSpareReportFail(); //수정
+            if(!checkSpareReport(reportDto)) return ReportResponse.createSpareReportFail();
         } else if("판독".equals(typeDecode)){
-            if(!checkReportList(reportDto)) return ReportResponse.createReportFail(); //수정
+            if(!checkReportList(reportDto)) return ReportResponse.createReportFail();
         }
 
         ReportEntity reportEntity = new ReportEntity(reportDto);
