@@ -19,10 +19,11 @@
         </div>
     </div>
     <ul class="sidebar-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#settings">Settings</a></li>
-        <li><a href="#logout">Logout</a></li>
+        <li><a href="/admin">user list</a></li>
+        <li><a href="/admin/log/login">login log</a></li>
+        <li><a href="/admin/log/study">study log</a></li>
+        <li><a href="/admin/log/report">report log</a></li>
+        <li><a href="/auth/select">Logout</a></li>
     </ul>
 </div>
 <div class="container">
