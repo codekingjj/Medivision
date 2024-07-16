@@ -27,8 +27,6 @@ function addCheckedStudiesToPatientBookmark() {
     const checkedCheckboxes = $(".checkbox-patientBookmark:checked");
     const bodyData = { pids: getIdsOfCheckedCheckboxes(checkedCheckboxes) };
 
-    console.log(bodyData);
-
     fetch("/patientBookmark/add", {
         method: "POST",
         headers: {
@@ -51,8 +49,6 @@ function addCheckedStudiesToPatientBookmark() {
 
 function getIdsOfCheckedCheckboxes(checkboxes) {
     const checkedCheckboxIds = [];
-
-    console.log(checkedCheckboxIds);
 
     checkboxes.each(function() {
         checkedCheckboxIds.push(this.id);

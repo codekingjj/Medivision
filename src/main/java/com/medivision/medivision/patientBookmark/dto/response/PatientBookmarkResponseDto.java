@@ -10,4 +10,6 @@ import lombok.Setter;
 public class PatientBookmarkResponseDto {
     private String pid;
     private String pname;
+    private String psex;
+    private String pbirthdate;
 }

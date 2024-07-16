@@ -30,10 +30,6 @@ class ChatroomListPage {
     }
 
     static #stompSubscribeCallbackFunc(messageData) {
-        console.log("=== received (list page) ===")
-        console.log(messageData);
-        console.log("=== ======== ===");
-
         switch (ChatRootPage.getCurrentPageName()) {
             case ChatRootPage.PAGE_NAMES.CHAT_ROOM_LIST:
                 ChatroomElement.update(messageData);
