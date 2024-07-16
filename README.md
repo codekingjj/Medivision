@@ -19,6 +19,12 @@ DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서
 - **IDE** : Intellij
 - **Framework** : Springboot(2.7.18)
 - **Database** : Oracle DB, MySQL
+
+---
+## 문서
+1. [요구사항 정의서](https://docs.google.com/spreadsheets/d/e/2PACX-1vRbpXzsAOQ3sHXsYtBp4e4gEh_44h1VfCQeJwzaxm46KEAsH_redu_qowyfISy8hw/pubhtml)
+2. 인터페이스 정의서
+
 ---
 
 ### 기능명 : 뷰어 기능(이미지 로드, 툴바 기능)
