@@ -51,7 +51,6 @@
           <div class="dropdown-content"><a class="dropdown-content-a" onclick="location.href='/log/report'">리포트 로그 기록</a></div>
         </div>
       </div>
-      <div class="menu option" onclick="location.href='#'">마이페이지</div>
       <div class="menu diselected-side-menu">
         <div class="side-menu">
           <div class="side-menu-icon side-menu-icon-chat" id="btnChatPageOpen"></div>
@@ -119,9 +118,35 @@
   </div>
   <div class="footer">
     <div class="footer-left">
-      copyright@Megastudy
+      <div class="footer-person">
+        <div class="person">
+          <div class="footer-right-title">강다연 : da092511@naver.com</div>
+          <div class="footer-right-logo" onclick="location.href='https://github.com/da092511'"></div>
+        </div>
+        <div class="person">
+          <div class="footer-right-title">이재정 : jaejung0413@naver.com</div>
+          <div class="footer-right-logo" onclick="location.href='https://github.com/codekingjj'"></div>
+        </div>
+        <div class="person">
+        </div>
+      </div>
     </div>
-    <div class="footer-right"></div>
+    <div class="footer-right">
+      <div class="footer-person">
+        <div class="person">
+          <div class="footer-right-title">주승재: 0719improvement@naver.com</div>
+          <div class="footer-right-logo" onclick="location.href='https://github.com/IT-improvement'"></div>
+        </div>
+        <div class="person">
+          <div class="footer-right-title">김민규 : minkyu.kim.contact@gmail.com</div>
+          <div class="footer-right-logo" onclick="location.href='https://github.com/typoscript'"></div>
+        </div>
+        <div class="person">
+          <div class="footer-right-title">이인선 : dlstjs7617@gmail.com</div>
+          <div class="footer-right-logo" onclick="location.href='https://github.com/dlstjs7617'"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </body>
