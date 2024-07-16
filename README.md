@@ -2,24 +2,40 @@
 DICOM이미지를 이용한 의료 영상 저장*전송을 할 수 있는 웹서비스입니다.
 
 ---
-## ⌛개발기간
+## ⌛ 개발기간
 *24.06.18 ~ 24.07.16
 
 ---
-### 👨‍👧‍👦멤버구성
+### 👨‍👧‍👦 멤버구성
 - 팀장 이재정 : 뷰어 페이지(이미지 로더, 툴바 기능)
 - 서기 강다연 : 리포트 페이지(리포트 CRU)
 - 팀원 김민규 : 메세지 & 담당 환자 관리 페이지
 - 팀원 이인선 : 검색기능(Dicom 썸네일), 메인페이지
 - 팀원 주승재 : <<<각자 기능 작성
 --- 
-### 🛠개발환경
+### 🛠 개발환경
 - `Java 11`
 - `JDK 11`
 - **IDE** : Intellij
 - **Framework** : Springboot(2.7.18)
 - **Database** : Oracle DB, MySQL
 
+---
+### 🛠 활용 기술
+- **Front-end**
+  - HTML/CSS
+  - Javascript/jQuery
+  - JSP
+- **Back-end**
+  - Java
+  - Spring Boot
+  - Tomcat
+- **Database**
+  - Oracle
+  - MySQL 
+- **Others**
+  - Git
+  - AWS RDS
 ---
 ## 문서
 1. [요구사항 정의서](https://docs.google.com/spreadsheets/d/1NwWVFWAsstbINeFBxzig71Zngk0iqtsM/edit?gid=1180260534#gid=1180260534)
